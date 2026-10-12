@@ -11,13 +11,13 @@
 <style>
 :root{--bg:#f4f6fa;--card:#fff;--tx:#1b2433;--mut:#6b7585;--ln:#e1e6ee;--pri:#1f4fd8;--ok:#1e9e5a;--okbg:#e3f6ec;
 --e:#9aa5b5;--q:#e8742b;--l:#2b7be8;--t:#d9a400;--s:#4aa86a;--x:#d6336c;--r:#c4cad5;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+box-sizing:border-box}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1420;--card:#18202f;--tx:#e8edf6;--mut:#93a0b5;--ln:#28324a;--pri:#6b93ff;--ok:#4cd08a;--okbg:#14382a}}
 :root[data-theme="dark"]{--bg:#0f1420;--card:#18202f;--tx:#e8edf6;--mut:#93a0b5;--ln:#28324a;--pri:#6b93ff;--ok:#4cd08a;--okbg:#14382a}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0;overflow:hidden;overscroll-behavior:none}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 -apple-system,"SF Pro Text",Arial,sans-serif;padding-bottom:76px}
-main{max-width:640px;margin:0 auto;padding:14px}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 -apple-system,"SF Pro Text",Arial,sans-serif;display:flex;flex-direction:column;height:100vh;height:100dvh}
+main{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;width:100%;max-width:640px;margin:0 auto;padding:14px;padding-top:calc(14px + env(safe-area-inset-top,0px))}
 h1{font-size:20px;margin:4px 0 2px}h2{font-size:16px;margin:18px 0 8px}
 .sub{color:var(--mut);font-size:13px}
 .card{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:12px;margin:10px 0}
@@ -36,7 +36,7 @@ details{background:var(--card);border:1px solid var(--ln);border-radius:14px;mar
 summary{padding:12px 2px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:8px}
 summary::-webkit-details-marker{display:none}summary small{color:var(--mut);font-weight:400}
 table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:7px 4px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top}
-nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav{flex:0 0 auto;display:flex;background:var(--card);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px)}
 nav button{flex:1;border:0;background:none;color:var(--mut);padding:10px 0 8px;font-size:12px}
 nav button b{display:block;font-size:20px;font-weight:400}nav button.on{color:var(--pri);font-weight:600}
 section{display:none}section.on{display:block}
