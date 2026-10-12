@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Cẩm nang HM sub 1:40</title>
 <meta name="apple-mobile-web-app-title" content="HM 1:40">
@@ -17,7 +17,7 @@ box-sizing:border-box}
 html,body{height:100%;margin:0;overflow:hidden;overscroll-behavior:none}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 -apple-system,"SF Pro Text",Arial,sans-serif;display:flex;flex-direction:column;height:100vh;height:100dvh}
-main{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;width:100%;max-width:640px;margin:0 auto;padding:14px;padding-top:calc(14px + env(safe-area-inset-top,0px))}
+main{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;width:100%;max-width:640px;margin:0 auto;padding:6px 14px 14px;touch-action:pan-y}
 h1{font-size:20px;margin:4px 0 2px}h2{font-size:16px;margin:18px 0 8px}
 .sub{color:var(--mut);font-size:13px}
 .card{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:12px;margin:10px 0}
@@ -39,11 +39,15 @@ table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:7px 4px;b
 nav{flex:0 0 auto;display:flex;background:var(--card);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px)}
 nav button{flex:1;border:0;background:none;color:var(--mut);padding:10px 0 8px;font-size:12px}
 nav button b{display:block;font-size:20px;font-weight:400}nav button.on{color:var(--pri);font-weight:600}
-section{display:none}section.on{display:block}
+section{display:none;zoom:var(--z,1)}section.on{display:block}
+section>h1:first-child,section>h1:first-child+.sub{display:none}
+header{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--ln);padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px}
+#hdi{max-width:640px;margin:0 auto}#hdi h1{margin:0 0 2px}
 .bt{flex:1;height:38px;border:1px solid var(--ln);border-radius:10px;background:var(--bg);color:var(--pri);font-size:15px}textarea{width:100%;margin-top:8px;padding:8px;border:1px solid var(--ln);border-radius:8px;background:var(--bg);color:var(--tx);font-size:16px}
 </style>
 </head>
 <body>
+<header><div id="hdi"></div></header>
 <main>
 <section id="s0" class="on"></section>
 <section id="s1"></section>
@@ -132,8 +136,16 @@ if(id=='bxo'){var L=['HM26 · tick và km thực tế'];D.forEach(function(o){if
 else if(id=='bxc'&&t.value){t.select();t.setSelectionRange(0,999999);try{navigator.clipboard.writeText(t.value)}catch(x){}try{document.execCommand('copy')}catch(x){}}
 else if(id=='bxr'){var m=t.value.split('HM26DATA:')[1];try{var q=JSON.parse(m);if(q&&q.v&&q.k){ST=q;save();location.reload()}else{throw 1}}catch(x){alert('Không đọc được dữ liệu. Hãy dán đủ cả dòng HM26DATA.')}}});
 document.getElementById("s0").innerHTML=today();document.getElementById("s1").innerHTML=cal();calc();
+function hd(){var s=document.querySelector("section.on"),t=s&&s.querySelector("h1"),b=t&&t.nextElementSibling;document.getElementById("hdi").innerHTML=t?"<h1>"+t.innerHTML+"</h1>"+(b&&b.classList.contains("sub")?"<div class='sub'>"+b.innerHTML+"</div>":""):""}hd();
+(function(){var M=document.querySelector("main"),z=1,Z=0,d0=0,z0=1;try{Z=parseFloat(localStorage.getItem("hm26z"))||1}catch(e){}
+function set(v){z=Math.max(.8,Math.min(2.5,v));document.documentElement.style.setProperty("--z",z)}set(Z||1);
+function dist(t){var a=t[0],b=t[1];return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)}
+M.addEventListener("touchstart",function(e){if(e.touches.length==2){d0=dist(e.touches);z0=z}},{passive:true});
+M.addEventListener("touchmove",function(e){if(e.touches.length==2&&d0){e.preventDefault();set(z0*dist(e.touches)/d0)}},{passive:false});
+M.addEventListener("touchend",function(e){if(e.touches.length<2&&d0){d0=0;try{localStorage.setItem("hm26z",z)}catch(x){}}});
+["gesturestart","gesturechange","gestureend"].forEach(function(n){document.addEventListener(n,function(e){e.preventDefault()},{passive:false})})})();
 document.addEventListener("click",function(e){var b=e.target.closest(".ck");if(b){var k=b.dataset.k;ST.v[k]=!ST.v[k];save();document.querySelectorAll('.d[data-k="'+k+'"]').forEach(function(x){x.classList.toggle("done",!!ST.v[k])});calc();return}
-var n=e.target.closest("nav button");if(n){document.querySelectorAll("nav button").forEach(function(x){x.classList.toggle("on",x==n)});document.querySelectorAll("section").forEach(function(x,j){x.classList.toggle("on",j==+n.dataset.t)});window.scrollTo(0,0)}});
+var n=e.target.closest("nav button");if(n){document.querySelectorAll("nav button").forEach(function(x){x.classList.toggle("on",x==n)});document.querySelectorAll("section").forEach(function(x,j){x.classList.toggle("on",j==+n.dataset.t)});hd();document.querySelector("main").scrollTop=0}});
 document.addEventListener("input",function(e){var k=e.target.dataset&&e.target.dataset.k;if(k&&e.target.tagName=="INPUT"){ST.k[k]=e.target.value;save();document.querySelectorAll('input[data-k="'+k+'"]').forEach(function(x){if(x!=e.target)x.value=e.target.value});calc()}});
 </script>
 </body>
