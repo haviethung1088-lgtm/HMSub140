@@ -42,12 +42,14 @@ nav button b{display:block;font-size:20px;font-weight:400}nav button.on{color:va
 section{display:none;zoom:var(--z,1)}section.on{display:block}
 section>h1:first-child,section>h1:first-child+.sub{display:none}
 header{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--ln);padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px}
-#hdi{max-width:640px;margin:0 auto}#hdi h1{margin:0 0 2px}
+header{position:relative}#hdi{max-width:640px;margin:0 auto;padding-right:64px}
+#zr{position:absolute;right:14px;top:calc(10px + env(safe-area-inset-top,0px));border:1px solid var(--ln);background:var(--card);color:var(--mut);border-radius:14px;padding:5px 10px;font-size:12px}#zr.on{color:var(--pri);border-color:var(--pri);font-weight:600}
+.d.today{box-shadow:0 0 0 2px var(--pri)}#hdi h1{margin:0 0 2px}
 .bt{flex:1;height:38px;border:1px solid var(--ln);border-radius:10px;background:var(--bg);color:var(--pri);font-size:15px}textarea{width:100%;margin-top:8px;padding:8px;border:1px solid var(--ln);border-radius:8px;background:var(--bg);color:var(--tx);font-size:16px}
 </style>
 </head>
 <body>
-<header><div id="hdi"></div></header>
+<header><div id="hdi"></div><button id="zr" type="button" aria-label="Đặt lại cỡ chuẩn">100%</button></header>
 <main>
 <section id="s0" class="on"></section>
 <section id="s1"></section>
@@ -118,8 +120,10 @@ function dayHTML(i){var o=D[i],dt=o.d,dn=DOW[dt.getDay()]+" "+dt.getDate()+"/"+(
 var dn2=ST.v[o.k]?" done":"";var kv=ST.k[o.k]||"";
 var f=o.t=="r"?"":'<div class="df">'+(o.km?"KH "+o.km+" km":"")+(o.km?'<input inputmode="decimal" placeholder="km thực" data-k="'+o.k+'" value="'+kv+'">':"")+'<button class="ck" data-k="'+o.k+'">✔</button></div>';
 return '<div class="d t-'+o.t+dn2+'" data-k="'+o.k+'"><div class="dh"><b>'+dn+'</b><span class="tp">'+TN[o.t]+'</span></div><div class="ds">'+o.s+'</div>'+f+'</div>'}
-function prog(){var n=0,tot=0,km=0;D.forEach(function(o){if(o.t!="r"){tot++;if(ST.v[o.k])n++}km+=parseFloat(ST.k[o.k])||0});return{n:n,tot:tot,km:km}}
-function calc(){var g=prog();var el=document.getElementById("pg");if(el){el.innerHTML=g.n+"/"+g.tot+" buổi · "+g.km.toFixed(1)+" km thực tế";document.getElementById("pb").style.width=(100*g.n/g.tot)+"%"}}
+function num(v){return parseFloat(String(v).replace(',','.'))||0}
+function prog(){var n=0,tot=0,km=0;D.forEach(function(o){if(o.t!="r"){tot++;if(ST.v[o.k])n++}km+=num(ST.k[o.k])});return{n:n,tot:tot,km:km}}
+function calc(){var g=prog();var el=document.getElementById("pg");if(el){el.innerHTML=g.n+"/"+g.tot+" buổi · "+g.km.toFixed(1)+" km thực tế";document.getElementById("pb").style.width=(100*g.n/g.tot)+"%"}
+for(var w=0;w<11;w++){var e=document.getElementById("wk"+w);if(!e)continue;var a=0,p=0;for(var q=0;q<7;q++){var o=D[w*7+q];p+=o.km||0;a+=num(ST.k[o.k])}p=Math.round(p*10)/10;e.textContent=a>0?(Math.round(a*10)/10)+" / "+p+" km":p+" km"}}
 function today(){var t=new Date();t=new Date(t.getFullYear(),t.getMonth(),t.getDate());var i=Math.round((t-START)/864e5);var race=new Date(2026,11,27);var left=Math.round((race-t)/864e5);
 var h="<h1>HM sub 1:40</h1><div class='sub'>Giải ngày 27/12/2026</div><div class='card'>";
 h+=left>0?"<div class='big'>"+left+" ngày</div><div class='sub'>nữa đến ngày thi đấu</div>":(left==0?"<div class='big'>Hôm nay thi!</div>":"<div class='big'>Đã xong</div>");
@@ -128,7 +132,7 @@ if(i<0)h+="<h2>Giáo án bắt đầu 12/10</h2>"+dayHTML(0);else if(i<=76)h+="<
 return h}
 function cal(){var t=new Date();t=new Date(t.getFullYear(),t.getMonth(),t.getDate());var cur=Math.floor(Math.round((t-START)/864e5)/7);var h="<h1>Lịch 11 tuần</h1><div class='sub'>12/10 đến 27/12/2026</div>";
 for(var w=0;w<11;w++){var km=0;for(var q=0;q<7;q++)km+=D[w*7+q].km||0;var a=D[w*7].d,b=D[w*7+6].d;
-h+="<details"+(w==cur?" open":"")+"><summary><span>Tuần "+(w+1)+" · "+PH[w]+"<br><small>"+a.getDate()+"/"+(a.getMonth()+1)+" – "+b.getDate()+"/"+(b.getMonth()+1)+"</small></span><span>"+(Math.round(km*10)/10)+" km</span></summary>";
+h+="<details"+(w==cur?" open":"")+"><summary><span>Tuần "+(w+1)+" · "+PH[w]+"<br><small>"+a.getDate()+"/"+(a.getMonth()+1)+" – "+b.getDate()+"/"+(b.getMonth()+1)+"</small></span><span id='wk"+w+"'>"+(Math.round(km*10)/10)+" km</span></summary>";
 for(q=0;q<7;q++)h+=dayHTML(w*7+q);h+="</details>"}return h}
 var BK=`<h2>Sao lưu dữ liệu</h2><div class='card'><div class='sub'>Xuất rồi lưu vào Ghi chú. Dán lại và bấm Khôi phục khi đổi máy hoặc mất dữ liệu.</div><textarea id='bx' rows='6'></textarea><div class='df' style='margin-top:8px'><button class='bt' id='bxo'>Xuất</button><button class='bt' id='bxc'>Sao chép</button><button class='bt' id='bxr'>Khôi phục</button></div></div>`;
 document.addEventListener('click',function(e){var id=e.target.id,t=document.getElementById('bx'),NL=String.fromCharCode(10);
@@ -136,16 +140,18 @@ if(id=='bxo'){var L=['HM26 · tick và km thực tế'];D.forEach(function(o){if
 else if(id=='bxc'&&t.value){t.select();t.setSelectionRange(0,999999);try{navigator.clipboard.writeText(t.value)}catch(x){}try{document.execCommand('copy')}catch(x){}}
 else if(id=='bxr'){var m=t.value.split('HM26DATA:')[1];try{var q=JSON.parse(m);if(q&&q.v&&q.k){ST=q;save();location.reload()}else{throw 1}}catch(x){alert('Không đọc được dữ liệu. Hãy dán đủ cả dòng HM26DATA.')}}});
 document.getElementById("s0").innerHTML=today();document.getElementById("s1").innerHTML=cal();calc();
+(function(){var t=new Date(),c=document.querySelector('#s1 .d[data-k="'+fk(t)+'"]');if(c)c.classList.add("today")})();
 function hd(){var s=document.querySelector("section.on"),t=s&&s.querySelector("h1"),b=t&&t.nextElementSibling;document.getElementById("hdi").innerHTML=t?"<h1>"+t.innerHTML+"</h1>"+(b&&b.classList.contains("sub")?"<div class='sub'>"+b.innerHTML+"</div>":""):""}hd();
 (function(){var M=document.querySelector("main"),z=1,Z=0,d0=0,z0=1;try{Z=parseFloat(localStorage.getItem("hm26z"))||1}catch(e){}
-function set(v){z=Math.max(.8,Math.min(2.5,v));document.documentElement.style.setProperty("--z",z)}set(Z||1);
+var R=document.getElementById("zr");function set(v){z=Math.max(.8,Math.min(2.5,v));document.documentElement.style.setProperty("--z",z);R.textContent=Math.round(z*100)+"%";R.classList.toggle("on",Math.abs(z-1)>.01)}set(Z||1);
+R.addEventListener("click",function(){set(1);try{localStorage.setItem("hm26z",1)}catch(x){}});
 function dist(t){var a=t[0],b=t[1];return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)}
 M.addEventListener("touchstart",function(e){if(e.touches.length==2){d0=dist(e.touches);z0=z}},{passive:true});
 M.addEventListener("touchmove",function(e){if(e.touches.length==2&&d0){e.preventDefault();set(z0*dist(e.touches)/d0)}},{passive:false});
 M.addEventListener("touchend",function(e){if(e.touches.length<2&&d0){d0=0;try{localStorage.setItem("hm26z",z)}catch(x){}}});
 ["gesturestart","gesturechange","gestureend"].forEach(function(n){document.addEventListener(n,function(e){e.preventDefault()},{passive:false})})})();
 document.addEventListener("click",function(e){var b=e.target.closest(".ck");if(b){var k=b.dataset.k;ST.v[k]=!ST.v[k];save();document.querySelectorAll('.d[data-k="'+k+'"]').forEach(function(x){x.classList.toggle("done",!!ST.v[k])});calc();return}
-var n=e.target.closest("nav button");if(n){document.querySelectorAll("nav button").forEach(function(x){x.classList.toggle("on",x==n)});document.querySelectorAll("section").forEach(function(x,j){x.classList.toggle("on",j==+n.dataset.t)});hd();document.querySelector("main").scrollTop=0}});
+var n=e.target.closest("nav button");if(n){document.querySelectorAll("nav button").forEach(function(x){x.classList.toggle("on",x==n)});document.querySelectorAll("section").forEach(function(x,j){x.classList.toggle("on",j==+n.dataset.t)});hd();var M=document.querySelector("main");M.scrollTop=0;if(n.dataset.t=="1"){var c=document.querySelector("#s1 .d.today");if(c)c.scrollIntoView({block:"center"})}}});
 document.addEventListener("input",function(e){var k=e.target.dataset&&e.target.dataset.k;if(k&&e.target.tagName=="INPUT"){ST.k[k]=e.target.value;save();document.querySelectorAll('input[data-k="'+k+'"]').forEach(function(x){if(x!=e.target)x.value=e.target.value});calc()}});
 </script>
 </body>
