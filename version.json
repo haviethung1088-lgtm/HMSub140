@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.8",
+  "ver": "1.2.10",
   "date": "2026-10-13",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,8 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.10: sửa co tên giải theo chiều rộng chữ thực tế trên màn hình, tránh cắt tên ở các mức thu phóng lớn hơn.",
+    "Bản 1.2.9: ngày kết quả và ngày sinh hiển thị dạng dd/mm/yyyy; thu gọn thẻ giao diện.",
     "Bản 1.2.8: đổi tên cự ly thành Half Marathon và Full Marathon; trạng thái phiên bản gọn, phần ghi chú và nút cập nhật nằm trong Xem chi tiết.",
     "Bản 1.2.7: sửa số điện thoại chủ sở hữu; ngày kế hoạch hiển thị dạng dd/mm/yyyy; sửa co chữ tên giải ở các mức thu phóng.",
     "Bản 1.2.6: thời tiết tự cập nhật mỗi 10 phút, cập nhật ngay sau khi lưu GPS và làm mới khi quay lại app nếu dữ liệu đã cũ.",
