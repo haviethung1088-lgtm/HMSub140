@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.19",
+  "ver": "1.2.20",
   "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.20: chọn ngẫu nhiên lời chúc sinh nhật từ nhiều câu và giữ ổn định trong lần mở app.",
     "Bản 1.2.19: thẻ thông tin giải chạy trên Trang chủ dùng cùng tông nền với tiêu đề và tên vận động viên.",
     "Bản 1.2.18: thêm lời chúc sinh nhật trên Trang chủ vào ngày sinh của vận động viên.",
     "Bản 1.2.17: thay icon About và Cài đặt bằng biểu tượng vector đồng bộ, hiện đại hơn.",
