@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.0",
+  "ver": "1.2.1",
   "date": "2026-10-13",
   "owner": {
     "name": "Hùng",
@@ -7,6 +7,7 @@
     "email": ""
   },
   "notes": [
+    "Sửa lỗi cú pháp gây treo app khi khởi động (bản vá 1.2.1).",
     "Sao lưu thành file JSON, chia sẻ/tải file, nhắc hàng tuần và xác nhận trước khi khôi phục.",
     "Mạng yếu: ưu tiên bản đã lưu, tải mới ngầm; tự cập nhật khi có phiên bản mới.",
     "Sửa thông tin độ dài giáo án theo cự ly; vị trí thời tiết có thể nhập hoặc lấy GPS.",

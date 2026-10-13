@@ -506,7 +506,7 @@ else{var reg2=await navigator.serviceWorker.ready,s2=await reg2.pushManager.getS
 setTimeout(function(){var c=pget();if(c.on&&pushSup()&&Notification.permission=="granted"&&!PSYNC){PSYNC=1;pushSub().catch(function(){})}},3000);
 
 /* ---- Giới thiệu, hướng dẫn, cập nhật phiên bản ---- */
-var APP={ver:"1.2.0",date:"2026-10-13"},OWN={name:"Hùng",phone:"",email:""},AK="hm26a",UPD=null,LCK=0,UPDATING=false,
+var APP={ver:"1.2.1",date:"2026-10-13"},OWN={name:"Hùng",phone:"",email:""},AK="hm26a",UPD=null,LCK=0,UPDATING=false,
 NOTES=["Sao lưu thành file JSON, chia sẻ/tải file, nhắc hàng tuần và xác nhận trước khi khôi phục.","Mạng yếu: ưu tiên bản đã lưu, tải mới ngầm; tự cập nhật khi có phiên bản mới.","Sửa thông tin độ dài giáo án theo cự ly; vị trí thời tiết có thể nhập hoặc lấy GPS.","Thêm màu theme cho thanh trình duyệt và iPhone; tinh chỉnh lời chào, tên vận động viên và tên giải.","Điều chỉnh long run bán marathon, đỉnh 19 km, dựa trên giáo án tham khảo công khai."],
 GUIDE=[
 ["Cài app lên iPhone","Mở trang của app bằng <b>Safari</b> → nút Chia sẻ → <b>Thêm vào Màn hình chính</b> → mở app từ biểu tượng vừa tạo. Sau lần đầu app chạy được cả khi mất mạng (riêng thời tiết và kiểm tra cập nhật cần internet). Thông báo đẩy cần iOS 16.4 trở lên."],
@@ -604,7 +604,7 @@ var kk=dk(CP).k,tl=Math.max(6,Math.round(60*kk/HMD)),st=kk<=10?10:60,v=es<=CP.go
 o5.innerHTML="Ước tính "+dk(CP).lb+": <b>"+hms(es)+"</b>. "+v;return}
 var bx=E("bx");
 if(id=="bxc"&&bx){if(!bx.value)bx.value=backupText();bx.select();bx.setSelectionRange(0,999999);try{navigator.clipboard.writeText(bx.value)}catch(x){}try{document.execCommand("copy")}catch(x){}}
-else if(id=="bxr"&&bx){var m=bx.value.split("HM26DATA:")[1];if(m)backupRestore(m.trim())else alert("Hãy dán đủ dòng HM26DATA:{...}.")}});
+else if(id=="bxr"&&bx){var m=bx.value.split("HM26DATA:")[1];if(m){backupRestore(m.trim())}else{alert("Hãy dán đủ dòng HM26DATA:{...}.")}}});
 document.addEventListener("visibilitychange",function(){if(document.hidden)return;if(day0().getTime()!=TODAY.getTime())renderAll();else if(actTab()==0&&greetTxt()!=LGT)hd();backupReminder();autoUpd()});
 ST=load();applyUI();renderAll();markUpd();setTimeout(autoUpd,4000);setTimeout(backupReminder,2500);
 
