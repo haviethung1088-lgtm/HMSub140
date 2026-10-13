@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.11",
+  "ver": "1.2.12",
   "date": "2026-10-13",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.12: tăng độ đậm nền bong bóng tiêu đề; thu nhỏ thẻ giao diện và nút màu nhấn.",
     "Bản 1.2.11: tiêu đề tất cả tab có nền pha nhẹ màu nhấn và khung bo cong kiểu bong bóng.",
     "Bản 1.2.10: sửa co tên giải theo chiều rộng chữ thực tế trên màn hình, tránh cắt tên ở các mức thu phóng lớn hơn.",
     "Bản 1.2.9: ngày kết quả và ngày sinh hiển thị dạng dd/mm/yyyy; thu gọn thẻ giao diện.",
