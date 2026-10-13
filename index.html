@@ -67,9 +67,21 @@ header{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--ln);padd
 :root[data-skin="forest"]{color-scheme:light;--bg:#f2f0e6;--card:#fffdf5;--tx:#23301f;--mut:#6b7a5e;--ln:#ddd9c4;--pri:#2f7d4f;--ok:#2f7d4f;--okbg:#dcefd9;--missbg:#f8e3dc}
 :root[data-skin="sunset"]{color-scheme:dark;--bg:#1d1226;--card:#2a1a38;--tx:#fbeee6;--mut:#c3a3b8;--ln:#44284f;--pri:#ff8a5b;--ok:#5fd39a;--okbg:#1f3d3a;--missbg:#4a2030}
 :root[data-skin="carbon"]{color-scheme:dark;--bg:#000;--card:#111;--tx:#f2f2f2;--mut:#9a9a9a;--ln:#262626;--pri:#ff5a36;--ok:#35d07f;--okbg:#0d2c1c;--missbg:#2e1117}
+
+#ban{max-width:640px;margin:0 auto 8px;padding:10px 14px;border-radius:16px;color:#fff;background:linear-gradient(135deg,rgba(0,0,0,.22),rgba(0,0,0,.52)),var(--pri);box-shadow:0 2px 10px rgba(0,0,0,.18)}
+#ban #hbar{max-width:none;align-items:center}
+#ban #tm{font-size:32px;font-weight:700;letter-spacing:1px;line-height:1.1}
+#ban #dt{display:block;margin:3px 0 0;font-size:13px;color:rgba(255,255,255,.92)}
+#ban #wx1{font-size:26px;font-weight:700;text-align:right}
+#ban #wx2{max-width:none;margin:8px 0 0;padding-top:8px;border-top:1px solid rgba(255,255,255,.28);font-size:12.5px;color:rgba(255,255,255,.94);line-height:1.5}
+.hero{padding:14px}.hi{font-size:14px;color:var(--mut)}.hn{font-size:32px;font-weight:800;line-height:1.15;color:var(--tx);word-break:break-word}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}.chip{font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px;background:var(--bg);border:1px solid var(--ln);color:var(--pri)}
+.tl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}.tl>div{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:9px 4px;text-align:center}.tl b{display:block;font-size:20px;color:var(--pri);line-height:1.2}.tl small{font-size:11px;color:var(--mut)}
+.ws{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:8px 0}.wd{border:1px solid var(--ln);border-bottom:4px solid var(--r);border-radius:10px;text-align:center;padding:5px 0;background:var(--card)}.wd small{display:block;font-size:11px;color:var(--mut)}.wd b{display:block;font-size:15px}.wd i{display:block;font-style:normal;font-size:12px;color:var(--mut)}
+.wd.t-e{border-bottom-color:var(--e)}.wd.t-q{border-bottom-color:var(--q)}.wd.t-l{border-bottom-color:var(--l)}.wd.t-t{border-bottom-color:var(--t)}.wd.t-s{border-bottom-color:var(--s)}.wd.t-x{border-bottom-color:var(--x)}.wd.done{background:var(--okbg)}.wd.done i{color:var(--ok);font-weight:700}.wd.now{box-shadow:0 0 0 2px var(--pri)}
 </style>
 <body>
-<header><div id="hbar"><div id="clk"><b id="tm">--:--:--</b><span id="dt"></span></div><div id="wx1"></div></div><div id="wx2">Đang tải thời tiết…</div>
+<header><div id="ban"><div id="hbar"><div id="clk"><b id="tm">--:--:--</b><span id="dt"></span></div><div id="wx1"></div></div><div id="wx2">Đang tải thời tiết…</div></div>
 <div id="hrow"><div id="hdi"></div><button id="gs" type="button" aria-label="Cài đặt">⚙️</button><button id="zr" type="button" aria-label="Đặt lại cỡ chuẩn">100%</button></div></header>
 <main>
 <section id="s0" class="on"></section>
@@ -80,7 +92,7 @@ header{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--ln);padd
 <section id="s5"></section>
 </main>
 <nav>
-<button class="on" data-t="0"><b>🏃</b>Hôm nay</button>
+<button class="on" data-t="0"><b>🏠</b>Trang chủ</button>
 <button data-t="1"><b>📅</b>Lịch</button>
 <button data-t="4"><b>🏅</b>Giải</button>
 <button data-t="2"><b>⏱</b>Pace</button>
@@ -192,15 +204,30 @@ function dayHTML(i){var o=D[i],dt=o.d,dn=DOW[dt.getDay()]+" "+fD(dt),lu=" ("+fL(
 var f=o.t=="r"?"":'<div class="df">'+(o.km?"KH "+o.km+" km":"")+(o.km?ksel('data-k="'+o.k+'" data-kp="i"','data-k="'+o.k+'" data-kp="d"',kv,true):"")+'<button class="nb'+(has?" has":"")+'" data-k="'+o.k+'" aria-label="Ghi chú">📝</button><button class="ck" data-k="'+o.k+'">✔</button></div>'+notePanel(o.k);
 return '<div class="d t-'+o.t+dn2+ms+'" data-k="'+o.k+'" data-p="'+(past?1:0)+'"><div class="dh"><span><b>'+dn+'</b><small class="lu">'+lu+'</small></span><span class="tp">'+TN[o.t]+'</span></div><div class="ds">'+esc(o.s)+'</div>'+f+'</div>'}
 function prog(){var n=0,tot=0,km=0,pk=0,ms=0;D.forEach(function(o){if(o.t!="r"){tot++;if(CP.v[o.k])n++;else if(o.d<TODAY)ms++}km+=num(CP.k[o.k]);pk+=o.km||0});return{n:n,tot:tot,km:km,pk:pk,ms:ms}}
-function calc(){var g=prog(),el=E("pg");if(el){el.innerHTML=g.n+"/"+g.tot+" buổi · "+g.km.toFixed(1)+" km thực tế (kế hoạch "+Math.round(g.pk)+" km)"+(g.ms?" · bỏ lỡ "+g.ms+" buổi":"");E("pb").style.width=(100*g.n/Math.max(1,g.tot))+"%"}
+function calc(){var g=prog(),el=E("pg");var ht=E("ht");if(ht)ht.innerHTML=homeTiles();var hp=E("hp");if(hp)hp.innerHTML=homeTip();if(el){el.innerHTML=g.n+"/"+g.tot+" buổi · "+g.km.toFixed(1)+" km thực tế (kế hoạch "+Math.round(g.pk)+" km)"+(g.ms?" · bỏ lỡ "+g.ms+" buổi":"");E("pb").style.width=(100*g.n/Math.max(1,g.tot))+"%"}
 for(var w=0;w<D.length/7;w++){var e=E("wk"+w);if(!e)continue;var a=0,p=0;for(var q=0;q<7;q++){var o=D[w*7+q];p+=o.km||0;a+=num(CP.k[o.k])}p=Math.round(p*10)/10;e.textContent=a>0?(Math.round(a*10)/10)+" / "+p+" km":p+" km"}}
-function today(){var p=CP,R=pd(p.race),i=Math.round((TODAY-D[0].d)/DAY),left=Math.round((R-TODAY)/DAY),N=D.length;
-var me=ST.me,age=ageOf(),h="<h1>"+esc(p.name)+"</h1><div class='sub'>Giải ngày "+fY(R)+" ("+fL(R)+") · Mục tiêu "+hms(p.goal)+"</div><div class='card'>"+(me.name?"<div class='sub' style='margin-bottom:6px'>Xin chào, <b>"+esc(me.name)+"</b>"+(age>0&&age<110?" · "+age+" tuổi":"")+"</div>":"");
-h+=left>0?"<div class='big'>"+left+" ngày</div><div class='sub'>nữa đến ngày thi đấu</div>":(left==0?"<div class='big'>Hôm nay thi!</div>":"<div class='big'>Đã xong</div>");
+var TIP={r:"Ngày nghỉ: ngủ đủ 7–9 giờ, đi bộ nhẹ, uống đủ nước và ăn đủ đạm.",e:"Chạy nhẹ vẫn nói được thành câu. Đừng đuổi pace, mục tiêu là tích lũy quãng đường.",q:"Khởi động đủ, giữ đúng pace từng phần, chạy hồi phục thật chậm giữa các lần.",l:"Ăn nhẹ trước 1–2 giờ, mang nước hoặc gel. Tập ăn uống giống ngày thi.",t:"Hôm trước nghỉ đủ, khởi động kỹ, chạy hết sức đều. Ghi giờ ngay sau buổi tập.",s:"Tập chậm, đúng kỹ thuật, dừng trước khi kiệt sức. Không tập nặng sát buổi chạy chất lượng.",x:"Ngày thi: 2 km đầu chậm hơn mục tiêu 5–10 giây mỗi km, uống nước đều, đừng thử đồ mới."};
+function homeTiles(){var g=prog(),i=Math.round((TODAY-D[0].d)/DAY),N=D.length,nw=N/7,cw=Math.max(0,Math.min(nw-1,Math.floor(i/7))),wp=0,wa=0,wn=0,wt=0,sp="",DN=["CN","T2","T3","T4","T5","T6","T7"];
+for(var q=0;q<7;q++){var o=D[cw*7+q];wp+=o.km||0;wa+=num(CP.k[o.k]);if(o.t!="r"){wt++;if(CP.v[o.k])wn++}
+sp+="<div class='wd t-"+o.t+(CP.v[o.k]?" done":"")+(o.k==fk(TODAY)?" now":"")+"' data-go='1'><small>"+DN[o.d.getDay()]+"</small><b>"+o.d.getDate()+"</b><i>"+(o.t=="r"?"–":(CP.v[o.k]?"✔":(o.t=="s"?"💪":(o.km||"·"))))+"</i></div>"}
+var st=0,j=Math.min(i,N-1);if(j>=0&&D[j].t!="r"&&!CP.v[D[j].k])j--;for(;j>=0;j--){var d=D[j];if(d.t=="r")continue;if(CP.v[d.k])st++;else break}
+wp=Math.round(wp*10)/10;wa=Math.round(wa*10)/10;
+return"<div class='sub'>Tuần "+(cw+1)+"/"+nw+" · "+esc(D[cw*7].ph)+"</div><div class='ws'>"+sp+"</div><div class='tl'><div><b>"+wn+"/"+wt+"</b><small>buổi tuần này</small></div><div><b>"+(wa||0)+"/"+wp+"</b><small>km tuần này</small></div><div><b>"+st+"</b><small>buổi liên tiếp</small></div></div>"}
+function homeTip(){var i=Math.round((TODAY-D[0].d)/DAY);if(i<0||i>=D.length)return"";var o=D[i],z=zones(CP),pp=[],s=o.s;
+if(o.t=="e"||o.t=="l"||/Pace E/.test(s))pp.push("E "+rng(z.e)+"/km");if(/Pace T/.test(s))pp.push("T "+rng(z.t)+"/km");if(/Pace I/.test(s))pp.push("I "+rng(z.i)+"/km");
+if(o.t=="x"||/HM/.test(s))pp.push("HM "+pc(z.hm)+"/km");if(o.t=="t")pp.push("Test 5K hết sức, đều tay");
+var w=null,wt="";try{w=JSON.parse(localStorage.getItem("hm26w"))}catch(e){}
+if(w&&w.c&&Date.now()-w.t<216e5&&o.t!="r"&&o.t!="s"){var tp=w.c.temperature_2m,pr=w.d&&w.d.p;if(pr>=60)wt="Khả năng mưa cao ("+Math.round(pr)+"%): mang áo mưa mỏng, chọn đường an toàn hoặc đổi giờ tập.";else if(tp>=32)wt="Trời nóng ("+Math.round(tp)+"°C): chạy sớm hoặc tối, mang nước, giảm cường độ nếu thấy choáng."}
+return"<div class='card'><div class='ds'><b>Gợi ý hôm nay</b></div>"+(pp.length?"<div class='ds'>Pace: "+pp.join(" · ")+"</div>":"")+"<div class='sub'>"+TIP[o.t]+(o.t=="l"||o.t=="x"?carb():"")+"</div>"+(wt?"<div class='sub' style='margin-top:4px'>"+wt+"</div>":"")+"</div>"}
+function today(){var p=CP,R=pd(p.race),i=Math.round((TODAY-D[0].d)/DAY),left=Math.round((R-TODAY)/DAY),N=D.length,me=ST.me,age=ageOf(),hh=new Date().getHours(),gr=hh<11?"Chào buổi sáng":hh<14?"Chào buổi trưa":hh<18?"Chào buổi chiều":"Chào buổi tối";
+var h="<h1>"+esc(p.name)+"</h1><div class='sub'>Giải ngày "+fY(R)+" ("+fL(R)+") · Mục tiêu "+hms(p.goal)+"</div><div class='card hero'>";
+h+="<div class='hi'>"+gr+",</div><div class='hn'>"+(me.name?esc(me.name):"Vận động viên")+"</div><div class='chips'>"+(age>0&&age<110?"<span class='chip'>"+age+" tuổi</span>":"")+"<span class='chip'>Mục tiêu "+hms(p.goal)+" · "+pc(p.goal/HMD)+"/km</span>"+(i>=0&&i<N?"<span class='chip'>Tuần "+(D[i].w+1)+"/"+(N/7)+" · "+esc(D[i].ph)+"</span>":"")+"</div>"+(me.name?"":"<div class='sub' style='margin-bottom:8px'>Nhập tên của bạn trong ⚙️ Cài đặt để hiện ở đây.</div>");
+h+=left>0?"<div class='big'>"+left+" ngày</div><div class='sub'>nữa đến ngày thi đấu"+(left>=7?" (khoảng "+Math.floor(left/7)+" tuần"+(left%7?" "+left%7+" ngày":"")+")":"")+"</div>":(left==0?"<div class='big'>Hôm nay thi!</div>":"<div class='big'>Đã xong</div>");
 h+="<div class='bar'><i id='pb'></i></div><div class='sub' id='pg' style='margin-top:6px'></div></div>";
 if(i<0)h+="<h2>Giáo án bắt đầu "+fD(D[0].d)+"</h2>"+dayHTML(0);
-else if(i<N)h+="<h2>Hôm nay · Tuần "+(D[i].w+1)+" · "+D[i].ph+"</h2>"+dayHTML(i)+(i<N-1?"<h2>Ngày mai</h2>"+dayHTML(i+1):"");
+else if(i<N)h+="<h2>Hôm nay · Tuần "+(D[i].w+1)+" · "+D[i].ph+"</h2>"+dayHTML(i)+"<div id='hp'></div>"+(i<N-1?"<h2>Ngày mai</h2>"+dayHTML(i+1):"");
 else{var has=ST.rs.some(function(r){return r.plan==p.id&&Math.abs(pd(r.date)-R)<=3*DAY});h+="<div class='card'>Giáo án đã kết thúc. "+(has?"Kết quả đã được ghi trong tab Giải.":"Hãy ghi lại kết quả thi đấu để dùng cho kế hoạch sau.")+(has?"":"<div class='df' style='margin-top:8px'><button class='bt' data-go='4'>Nhập kết quả thi đấu</button></div>")+"</div>"}
+h+="<h2>Tuần này</h2><div id='ht'></div><div class='df' style='margin-top:10px'><button class='bt' data-go='1'>📅 Lịch</button><button class='bt' data-go='2'>⏱ Pace</button><button class='bt' data-go='3'>🏁 Race Day</button><button class='bt' data-go='4'>🏅 Giải</button></div>";
 return h}
 function cal(){var N=D.length/7,cw=Math.floor(Math.round((TODAY-D[0].d)/DAY)/7),h="<h1>Lịch "+N+" tuần</h1><div class='sub'>"+fD(D[0].d)+" đến "+fY(pd(CP.race))+"</div>";
 for(var w=0;w<N;w++){var km=0;for(var q=0;q<7;q++)km+=D[w*7+q].km||0;var a=D[w*7].d,b=D[w*7+6].d;
@@ -229,6 +256,7 @@ ST.rs.slice().sort(function(a,b){return a.date<b.date?1:-1}).forEach(function(r)
 h+="<div class='card'><div class='dh'><b>"+esc(r.name)+"</b><span class='tp'>"+fY(pd(r.date))+"</span></div><div class='ds'>"+kmS(r.dist)+" km · <b>"+hms(r.time)+"</b> · "+pc(pace)+"/km"+gd+"</div>"+(r.sum?"<div class='sub'>Tập luyện: "+r.sum.n+"/"+r.sum.tot+" buổi, "+r.sum.km+" km thực tế, buổi dài nhất "+kmS(r.sum.lg)+" km, "+r.sum.wk+" tuần</div>":"")+(r.note?"<div class='ds'>"+esc(r.note).replace(/\n/g,"<br>")+"</div>":"")+"<div class='df' style='margin-top:8px'><button class='bt' data-re='"+r.id+"'>Sửa</button><button class='bt dg' data-rd='"+r.id+"'>Xóa</button></div></div>"});
 var ao="";[[0,"Không nhắc"],[15,"15 phút"],[30,"30 phút"],[60,"1 giờ"]].forEach(function(x){ao+="<option value='"+x[0]+"'"+(ST.ics.a==x[0]?" selected":"")+">"+x[1]+"</option>"});
 h+="<h2>Xuất lịch (.ics)</h2><div class='card fm'><div class='sub'>Tạo file lịch các buổi tập từ hôm nay đến ngày thi để thêm vào Lịch của điện thoại. Giờ theo múi giờ của máy.</div><div class='g2'><div><label>Giờ bắt đầu</label><input type='time' id='it' value='"+esc(ST.ics.t)+"'></div><div><label>Nhắc trước</label><select id='ia'>"+ao+"</select></div></div><div class='df'><button class='bt' id='ibx'>Xuất file .ics</button></div><div id='im' class='msg'></div></div>";
+h+=pushCard();
 h+="<h2>Sao lưu dữ liệu</h2><div class='card'><div class='sub'>Xuất rồi lưu vào Ghi chú. Dán lại và bấm Khôi phục khi đổi máy hoặc mất dữ liệu. Bản sao lưu gồm mọi kế hoạch, ghi chú và kết quả.</div><textarea id='bx' rows='6'></textarea><div class='df' style='margin-top:8px'><button class='bt' id='bxo'>Xuất</button><button class='bt' id='bxc'>Sao chép</button><button class='bt' id='bxr'>Khôi phục</button></div></div>";
 return h}
 function shoes(){var m={};ST.pl.forEach(function(p){for(var k in p.n)if(p.n[k].g)m[p.n[k].g]=1});E("shoes").innerHTML=Object.keys(m).map(function(g){return"<option value=\""+esc(g)+"\">"}).join("")}
@@ -266,6 +294,36 @@ L.push("END:VCALENDAR");return{n:c,t:L.map(fold).join("\r\n")+"\r\n"}}
 function dl(txt,fn){var f=null;try{f=new File([txt],fn,{type:"text/calendar"})}catch(e){}
 if(f&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:fn}).catch(function(){});return}
 var u=URL.createObjectURL(new Blob([txt],{type:"text/calendar"})),a=document.createElement("a");a.href=u;a.download=fn;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove()},4000)}
+/* ---- Nhắc bằng thông báo đẩy (Web Push qua Cloudflare Worker) ---- */
+var PK="hm26p",PSYNC=0;
+function pget(){try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}}
+function pset(o){try{localStorage.setItem(PK,JSON.stringify(o))}catch(e){}}
+function pcfg(){var c=pget();c.url=(E("pushu").value||"").trim().replace(/\/+$/,"");c.key=(E("pushk").value||"").trim();c.am=E("pusham").value||"05:00";c.pm=E("pushpm").value||"20:30";pset(c);return c}
+function u8(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";var r=atob(s),a=new Uint8Array(r.length);for(var i=0;i<r.length;i++)a[i]=r.charCodeAt(i);return a}
+function papi(path,body){var c=pget();return fetch(c.url+path,{method:body?"POST":"GET",headers:{"content-type":"application/json","x-api-key":c.key},body:body?JSON.stringify(body):undefined}).then(function(r){return r.json().then(function(j){return{s:r.status,j:j}})})}
+function pdays(){var o={};D.forEach(function(x){if(x.t=="r"||x.d<TODAY)return;o[ds(x.d)]={t:x.t=="x"?"Thi đấu · "+CP.name:TN[x.t]+(x.km&&x.t!="s"?" "+x.km+" km":""),s:x.s}});return o}
+function pushSup(){return("serviceWorker" in navigator)&&("PushManager" in window)&&("Notification" in window)}
+async function pushSub(){var c=pget();if(!c.url||!c.key)throw new Error("Nhập địa chỉ Worker và mã bí mật.");
+var reg=await navigator.serviceWorker.ready,s=await reg.pushManager.getSubscription();
+if(!s){var r=await papi("/config");if(r.s==401)throw new Error("Sai mã bí mật.");if(!r.j.pub)throw new Error(r.j.error||"Worker không trả khóa.");s=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:u8(r.j.pub)})}
+var r2=await papi("/subscribe",{sub:s.toJSON(),am:c.am,pm:c.pm,lat:21.3227,lon:105.4019,tz:-new Date().getTimezoneOffset(),days:pdays(),name:(ST.me&&ST.me.name)||""});
+if(!r2.j.ok)throw new Error(r2.j.error||("Lỗi "+r2.s));return s}
+function pushCard(){var c=pget(),sup=pushSup();
+return "<h2>Nhắc tập bằng thông báo đẩy</h2><div class='card fm'><div class='sub'>"+(sup?"Worker miễn phí trên Cloudflare gửi nhắc mỗi ngày, kể cả khi đã đóng app. Trên iPhone cần iOS 16.4+ và phải thêm app vào Màn hình chính, rồi mở từ biểu tượng đó.":"Trình duyệt này chưa hỗ trợ thông báo đẩy. Trên iPhone hãy thêm app vào Màn hình chính rồi mở lại từ biểu tượng.")+"</div><div><label>Địa chỉ Worker</label><input id='pushu' placeholder='https://my-race-push.ten-ban.workers.dev' autocomplete='off' autocapitalize='off' value='"+esc(c.url||"")+"'></div><div><label>Mã bí mật (API_KEY)</label><input id='pushk' type='password' autocomplete='off' value='"+esc(c.key||"")+"'></div><div class='g2'><div><label>Nhắc buổi hôm nay lúc</label><input type='time' id='pusham' value='"+esc(c.am||"05:00")+"'></div><div><label>Nhắc chuẩn bị ngày mai lúc</label><input type='time' id='pushpm' value='"+esc(c.pm||"20:30")+"'></div></div><div class='df'><button class='bt pri' id='pushon'>"+(c.on?"Cập nhật":"Bật nhắc")+"</button><button class='bt' id='pushtest'>Gửi thử</button><button class='bt dg' id='pushoff'>Tắt</button></div><div id='pushm' class='msg'></div></div>"}
+document.addEventListener("click",async function(e){var b=e.target.closest&&e.target.closest("#pushon,#pushtest,#pushoff");if(!b)return;var id=b.id;
+try{
+if(!pushSup()){msg("pushm","Thiết bị chưa hỗ trợ. Trên iPhone: Chia sẻ > Thêm vào Màn hình chính.",1);return}
+var c=pcfg();
+if(id=="pushon"){if(!c.url||!c.key){msg("pushm","Nhập địa chỉ Worker và mã bí mật.",1);return}
+if(Notification.permission!="granted"){var p=await Notification.requestPermission();if(p!="granted"){msg("pushm","Chưa được cấp quyền thông báo. Vào Cài đặt máy để bật.",1);return}}
+msg("pushm","Đang đăng ký…");await pushSub();c.on=1;pset(c);msg("pushm","Đã bật. Nhắc lúc "+c.am+" (hôm nay) và "+c.pm+" (ngày mai).");b.textContent="Cập nhật"}
+else if(id=="pushtest"){var reg=await navigator.serviceWorker.ready,s=await reg.pushManager.getSubscription();if(!s){msg("pushm","Hãy bấm Bật nhắc trước.",1);return}
+var r=await papi("/test",{endpoint:s.endpoint});msg("pushm",r.j.status>=200&&r.j.status<300?"Đã gửi thử. Thông báo sẽ hiện sau vài giây.":"Gửi thử lỗi: "+(r.j.error||r.j.status),!(r.j.status>=200&&r.j.status<300))}
+else{var reg2=await navigator.serviceWorker.ready,s2=await reg2.pushManager.getSubscription();if(s2){try{if(c.url&&c.key)await papi("/unsubscribe",{endpoint:s2.endpoint})}catch(x){}await s2.unsubscribe()}c.on=0;pset(c);msg("pushm","Đã tắt nhắc trên thiết bị này.")}
+}catch(x){msg("pushm",(x&&x.message)||"Không kết nối được Worker.",1)}});
+/* mỗi lần mở app: đồng bộ lại lịch (kế hoạch/tiến độ có thể đã đổi) */
+setTimeout(function(){var c=pget();if(c.on&&pushSup()&&Notification.permission=="granted"&&!PSYNC){PSYNC=1;pushSub().catch(function(){})}},3000);
+
 /* ---- sự kiện ---- */
 function upd(e){var x=e.target,nk=x.dataset&&x.dataset.nk,k=x.dataset&&x.dataset.k;
 if(x.dataset&&x.dataset.tm){if(e.type=="input")tin(e);return}
@@ -320,7 +378,7 @@ function wc(c){if(c==0)return["☀️","Trời quang"];if(c<=2)return["🌤️",
 function show(o,off){var c=o.c,w=wc(c.weather_code);E("wx1").textContent=w[0]+" "+Math.round(c.temperature_2m)+"°C";
 var l1="Cảm giác "+Math.round(c.apparent_temperature)+"° · Ẩm "+Math.round(c.relative_humidity_2m)+"% · Gió "+Math.round(c.wind_speed_10m)+" km/h"+(c.precipitation>0?" · Đang mưa":"");
 var f=o.f,h=wc(f.code);var l2=" "+w[1]+" · Hôm nay "+Math.round(o.d.min)+"–"+Math.round(o.d.max)+"°, xác suất mưa "+Math.round(o.d.p)+"% · "+f.lb+": "+Math.round(f.t)+"°, "+h[1].toLowerCase()+", xác suất mưa "+Math.round(f.p)+"%";
-var u=new Date(o.t);E("wx2").textContent=l1+" ·"+l2+(off?" (ngoại tuyến, cập nhật "+p2(u.getHours())+":"+p2(u.getMinutes())+")":"")}
+var u=new Date(o.t);E("wx2").innerHTML="<div>"+l1+"</div><div>"+l2.trim().replace(" · "+f.lb,"</div><div>"+f.lb)+"</div>"+(off?"<div>(ngoại tuyến, cập nhật "+p2(u.getHours())+":"+p2(u.getMinutes())+")</div>":"");try{calc()}catch(x){}}
 function load(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
 function pick(j){var n=new Date(),i=n.getHours()<5?5:29;return{t:Date.now(),c:j.current,d:{max:j.daily.temperature_2m_max[0],min:j.daily.temperature_2m_min[0],p:j.daily.precipitation_probability_max[0]||0},f:{lb:i==5?"5h sáng nay":"5h sáng mai",t:j.hourly.temperature_2m[i],p:j.hourly.precipitation_probability[i]||0,code:j.hourly.weather_code[i]}}}
 function get(){var u="https://api.open-meteo.com/v1/forecast?latitude="+LAT+"&longitude="+LON+"&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability,weather_code&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FBangkok&forecast_days=2";
