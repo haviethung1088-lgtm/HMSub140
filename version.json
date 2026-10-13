@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.24",
+  "ver": "1.2.26",
   "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,8 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.26: bỏ viền vàng thường trực của nút thu phóng trong Optimus; chỉ hiện viền khi nhấn, focus hoặc mở bảng chọn.",
+    "Bản 1.2.25: tinh chỉnh đồng hồ, nhiệt độ và tên vận động viên trong Optimus Prime theo phong cách kim loại cơ khí.",
     "Bản 1.2.24: mỗi lần nhập Gift code chỉ mở khóa giao diện giới hạn đang chọn; hướng dẫn không hiện mã.",
     "Bản 1.2.23: thêm ô Optimus Prime bị khóa; chạm vào để xem hướng dẫn mở bằng mã hoặc mục tiêu tập hai tuần.",
     "Bản 1.2.22: Gift code mở khóa giao diện giới hạn; hoàn thành buổi tập và đủ km trong hai tuần liền nhau cũng là một cách mở khóa.",
