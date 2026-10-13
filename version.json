@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.26",
+  "ver": "1.2.28",
   "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,8 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.28: giữ viền vàng ở nút About/Cài đặt đang chọn trong Optimus và đưa bảng thu phóng lên trên nội dung tab.",
+    "Bản 1.2.27: thêm giao diện giới hạn Bumblebee và Sword Art Online, mỗi giao diện có màu sắc, font và icon riêng.",
     "Bản 1.2.26: bỏ viền vàng thường trực của nút thu phóng trong Optimus; chỉ hiện viền khi nhấn, focus hoặc mở bảng chọn.",
     "Bản 1.2.25: tinh chỉnh đồng hồ, nhiệt độ và tên vận động viên trong Optimus Prime theo phong cách kim loại cơ khí.",
     "Bản 1.2.24: mỗi lần nhập Gift code chỉ mở khóa giao diện giới hạn đang chọn; hướng dẫn không hiện mã.",
