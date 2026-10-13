@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.32",
+  "ver": "1.2.33",
   "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.33: thêm hai giao diện giới hạn Iron Man và Avengers, mỗi giao diện có phong cách màu, icon và ảnh nền riêng.",
     "Bản 1.2.32: đổi ảnh Sword Art Online sang Kirito có thấy rõ phần vai và kiếm.",
     "Bản 1.2.31: thay hình nét bằng ảnh nhân vật thực tế làm nền chìm; bộ nhớ đệm ngoại tuyến kèm theo ba ảnh.",
     "Bản 1.2.30: thêm hình đầu giáp chìm riêng trong khung giờ/thời tiết cho Optimus, Bumblebee và Sword Art Online.",
