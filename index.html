@@ -55,24 +55,35 @@ header{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--ln);padd
 .np{margin-top:8px}.df select{padding:6px 8px;border:1px solid var(--ln);border-radius:8px;background:var(--bg);color:var(--tx);font-size:15px}
 .fm{display:grid;gap:8px}.fm label{display:block;font-size:12px;color:var(--mut);margin-bottom:2px}.fm input,.fm select{width:100%;padding:9px 10px;border:1px solid var(--ln);border-radius:8px;background:var(--bg);color:var(--tx);font-size:16px}.fm textarea{margin-top:0}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.g2>div{min-width:0}
+.lu{color:var(--mut);font-weight:400;font-size:12px;margin-left:4px}
+#gs{position:absolute;right:60px;top:2px;border:1px solid var(--ln);background:var(--card);border-radius:14px;padding:3px 9px;font-size:14px}#hdi{padding-right:104px}
+.sk{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.skb{height:52px;border:1px solid var(--ln);border-radius:12px;font-size:14px;font-weight:600}.skb.on{box-shadow:0 0 0 2px var(--pri)}
+.ac{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}.acb{width:36px;height:36px;border-radius:50%;border:2px solid var(--ln)}.acb.on{box-shadow:0 0 0 3px var(--tx)}
+.ks{min-width:0;max-width:74px}.fm .ks{max-width:none;flex:1}
 .msg{font-size:13px;margin-top:6px;color:var(--ok)}.msg.err{color:var(--x)}.bt.dg{color:var(--x)}
+:root{color-scheme:light dark}
+:root[data-skin="ocean"]{color-scheme:dark;--bg:#0b1a2b;--card:#12263d;--tx:#e6f0fa;--mut:#8fa8c2;--ln:#1f3a58;--pri:#4db3ff;--ok:#3dd6a3;--okbg:#0f3a33;--missbg:#3a2230}
+:root[data-skin="forest"]{color-scheme:light;--bg:#f2f0e6;--card:#fffdf5;--tx:#23301f;--mut:#6b7a5e;--ln:#ddd9c4;--pri:#2f7d4f;--ok:#2f7d4f;--okbg:#dcefd9;--missbg:#f8e3dc}
+:root[data-skin="sunset"]{color-scheme:dark;--bg:#1d1226;--card:#2a1a38;--tx:#fbeee6;--mut:#c3a3b8;--ln:#44284f;--pri:#ff8a5b;--ok:#5fd39a;--okbg:#1f3d3a;--missbg:#4a2030}
+:root[data-skin="carbon"]{color-scheme:dark;--bg:#000;--card:#111;--tx:#f2f2f2;--mut:#9a9a9a;--ln:#262626;--pri:#ff5a36;--ok:#35d07f;--okbg:#0d2c1c;--missbg:#2e1117}
 </style>
 <body>
 <header><div id="hbar"><div id="clk"><b id="tm">--:--:--</b><span id="dt"></span></div><div id="wx1"></div></div><div id="wx2">Đang tải thời tiết…</div>
-<div id="hrow"><div id="hdi"></div><button id="zr" type="button" aria-label="Đặt lại cỡ chuẩn">100%</button></div></header>
+<div id="hrow"><div id="hdi"></div><button id="gs" type="button" aria-label="Cài đặt">⚙️</button><button id="zr" type="button" aria-label="Đặt lại cỡ chuẩn">100%</button></div></header>
 <main>
 <section id="s0" class="on"></section>
 <section id="s1"></section>
 <section id="s2"></section>
 <section id="s3"></section>
 <section id="s4"></section>
+<section id="s5"></section>
 </main>
 <nav>
 <button class="on" data-t="0"><b>🏃</b>Hôm nay</button>
 <button data-t="1"><b>📅</b>Lịch</button>
-<button data-t="2"><b>⏱</b>Pace</button>
-<button data-t="3"><b>🏁</b>Ngày thi</button>
 <button data-t="4"><b>🏅</b>Giải</button>
+<button data-t="2"><b>⏱</b>Pace</button>
+<button data-t="3"><b>🏁</b>Race Day</button>
 </nav>
 <datalist id="shoes"></datalist>
 <script>
@@ -104,13 +115,49 @@ function fD(d){return d.getDate()+"/"+(d.getMonth()+1)}
 function fY(d){return fD(d)+"/"+d.getFullYear()}
 function hms(s){s=Math.round(s);var h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return h?h+":"+p2(m)+":"+p2(x):m+":"+p2(x)}
 function pc(s){s=Math.round(s);return Math.floor(s/60)+":"+p2(s%60)}
-function pt(s,m){var a=String(s).trim().replace(/[hH'’]/g,":").replace(/["”]/g,"").split(":").filter(function(x){return x!==""}).map(Number);if(!a.length||a.some(isNaN))return 0;if(a.length>=3)return a[0]*3600+a[1]*60+a[2];if(a.length==2)return m=="h"?a[0]*3600+a[1]*60:a[0]*60+a[1];return a[0]*60}
+function pt(s,m){s=String(s).trim();var a=s.split(":").map(Number),g=s.replace(/\D/g,"").length;if(a.some(isNaN)||a.length<2||a.length>3)return 0;if(a.length==3){if(g==4&&m=="h")return a[1]<60?a[0]*3600+a[1]*60:0;return g==6&&a[1]<60&&a[2]<60?a[0]*3600+a[1]*60+a[2]:0}if(a[1]>=60||g!=4)return 0;return m=="h"?a[0]*3600+a[1]*60:a[0]*60+a[1]}
 function day0(){var t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate())}
 function kmS(x){return String(Math.round(x*100)/100).replace(".",",")}
+var OI="",OD="";for(var i=0;i<=100;i++)OI+='<option value="'+i+'">'+i+'</option>';for(i=0;i<100;i++)OD+='<option value="'+p2(i)+'">'+p2(i)+'</option>';
+function kp(v){v=num(v);var i=Math.floor(v),d=Math.round((v-i)*100);if(d>=100){i++;d=0}if(i>100){i=100;d=0}return[i,d]}
+function kso(o,v){return o.replace('value="'+v+'"','value="'+v+'" selected')}
+function ksel(aI,aD,v,blank){var has=!blank||String(v==null?"":v)!=="",a=kp(v);return'<select class="ks" '+aI+'>'+(blank?'<option value="">km</option>':"")+(has?kso(OI,a[0]):OI)+'</select>,<select class="ks" '+aD+'>'+(has?kso(OD,p2(a[1])):OD)+'</select>'}
+function hmsF(s){s=Math.round(s);return p2(Math.floor(s/3600))+":"+p2(Math.floor(s%3600/60))+":"+p2(s%60)}
+function mmss(s){s=Math.round(s);return p2(Math.floor(s/60))+":"+p2(s%60)}
+function rdist(){return num(E("rk_i").value+"."+E("rk_d").value)}
+function tmode(el){var m=el.dataset.tm;return m=="auto"?(rdist()>10?"hms":"ms"):m}
+function tfmt(d,m,tr){var s;if(m=="hms"){s=d.slice(0,2);if(d.length>2)s+=":"+d.slice(2,4);if(d.length>4)s+=":"+d.slice(4,6);if(tr&&(d.length==2||d.length==4))s+=":"}else{s=d.slice(0,2);if(d.length>2)s+=":"+d.slice(2,4);if(tr&&d.length==2)s+=":"}return s}
+function tin(e){var el=e.target,m=tmode(el),d=el.value.replace(/\D/g,"").slice(0,m=="hms"?6:4),del=(e.inputType||"").indexOf("delete")==0;if(del&&el._pd!=null&&d.length==el._pd&&d.length>0)d=d.slice(0,-1);if(!del&&m=="hms"&&d.length==1&&+d>=3)d="0"+d;el.value=tfmt(d,m,!del);el._pd=d.length;el._m=m}
+function remask(){var t=E("rt");if(!t)return;var m=tmode(t),d=t.value.replace(/\D/g,"").slice(0,m=="hms"?6:4);if(t._m&&t._m!=m)d="";t._m=m;t.value=tfmt(d,m,false);t._pd=d.length;t.placeholder=m=="hms"?"01:41:32":"21:30"}
+function setRk(v){var a=kp(v);E("rk_i").value=a[0];E("rk_d").value=p2(a[1]);remask()}
+function jdFromDate(dd,mm,yy){var a=Math.floor((14-mm)/12),y=yy+4800-a,m=mm+12*a-3,jd=dd+Math.floor((153*m+2)/5)+365*y+Math.floor(y/4)-Math.floor(y/100)+Math.floor(y/400)-32045;if(jd<2299161)jd=dd+Math.floor((153*m+2)/5)+365*y+Math.floor(y/4)-32083;return jd}
+function newMoonDay(k,tz){var T=k/1236.85,T2=T*T,T3=T2*T,dr=Math.PI/180,J=2415020.75933+29.53058868*k+0.0001178*T2-0.000000155*T3;J+=0.00033*Math.sin((166.56+132.87*T-0.009173*T2)*dr);
+var M=359.2242+29.10535608*k-0.0000333*T2-0.00000347*T3,Mp=306.0253+385.81691806*k+0.0107306*T2+0.00001236*T3,F=21.2964+390.67050646*k-0.0016528*T2-0.00000239*T3,
+C=(0.1734-0.000393*T)*Math.sin(M*dr)+0.0021*Math.sin(2*dr*M)-0.4068*Math.sin(Mp*dr)+0.0161*Math.sin(dr*2*Mp)-0.0004*Math.sin(dr*3*Mp)+0.0104*Math.sin(dr*2*F)-0.0051*Math.sin(dr*(M+Mp))-0.0074*Math.sin(dr*(M-Mp))+0.0004*Math.sin(dr*(2*F+M))-0.0004*Math.sin(dr*(2*F-M))-0.0006*Math.sin(dr*(2*F+Mp))+0.0010*Math.sin(dr*(2*F-Mp))+0.0005*Math.sin(dr*(2*Mp+M)),
+dt=T<-11?0.001+0.000839*T+0.0002261*T2-0.00000845*T3-0.000000081*T*T3:-0.000278+0.000265*T+0.000262*T2;
+return Math.floor(J+C-dt+0.5+tz/24)}
+function sunLong(jdn,tz){var T=(jdn-2451545.5-tz/24)/36525,T2=T*T,dr=Math.PI/180,M=357.52910+35999.05030*T-0.0001559*T2-0.00000048*T*T2,L0=280.46645+36000.76983*T+0.0003032*T2,
+DL=(1.914600-0.004817*T-0.000014*T2)*Math.sin(dr*M)+(0.019993-0.000101*T)*Math.sin(dr*2*M)+0.000290*Math.sin(dr*3*M),L=(L0+DL)*dr;L-=Math.PI*2*Math.floor(L/(Math.PI*2));return Math.floor(L/Math.PI*6)}
+function lunarM11(yy,tz){var off=jdFromDate(31,12,yy)-2415021,k=Math.floor(off/29.530588853),nm=newMoonDay(k,tz);if(sunLong(nm,tz)>=9)nm=newMoonDay(k-1,tz);return nm}
+function leapOff(a11,tz){var k=Math.floor((a11-2415021.076998695)/29.530588853+0.5),last=0,i=1,arc=sunLong(newMoonDay(k+i,tz),tz);do{last=arc;i++;arc=sunLong(newMoonDay(k+i,tz),tz)}while(arc!=last&&i<14);return i-1}
+function s2l(dd,mm,yy,tz){var dn=jdFromDate(dd,mm,yy),k=Math.floor((dn-2415021.076998695)/29.530588853),ms=newMoonDay(k+1,tz);if(ms>dn)ms=newMoonDay(k,tz);var a11=lunarM11(yy,tz),b11=a11,ly;if(a11>=ms){ly=yy;a11=lunarM11(yy-1,tz)}else{ly=yy+1;b11=lunarM11(yy+1,tz)}
+var ld=dn-ms+1,diff=Math.floor((ms-a11)/29),leap=0,lm=diff+11;if(b11-a11>365){var lo=leapOff(a11,tz);if(diff>=lo){lm=diff-1+11;if(diff==lo)leap=1}}if(lm>12)lm-=12;if(lm>=11&&diff<4)ly-=1;return[ld,lm,ly,leap]}
+
+var LC={};function fL(d){var k=fk(d);if(!LC[k]){var a=s2l(d.getDate(),d.getMonth()+1,d.getFullYear(),7);LC[k]="âm "+a[0]+"/"+a[1]+(a[3]?" nhuận":"")}return LC[k]}
+var SK=[["auto","🌓 Tự động","var(--card)","var(--tx)"],["ocean","Đại dương","#0b1a2b","#e6f0fa"],["forest","Rừng sớm","#f2f0e6","#23301f"],["sunset","Hoàng hôn","#1d1226","#fbeee6"],["carbon","Than đen","#000000","#f2f2f2"]];
+var AC=[["","Theo giao diện"],["#ff7a1a","Cam"],["#1fae6b","Xanh lá"],["#8b5cf6","Tím"],["#e8457c","Hồng"],["#2f8bff","Xanh dương"]];
+function applyUI(){var r=document.documentElement,u=ST.ui;if(u.skin&&u.skin!="auto")r.setAttribute("data-skin",u.skin);else r.removeAttribute("data-skin");if(u.acc)r.style.setProperty("--pri",u.acc);else r.style.removeProperty("--pri")}
+function setTab(){var m=ST.me,u=ST.ui,h="<h1>Cài đặt</h1><div class='sub'>Hồ sơ người tập và giao diện</div>";
+h+="<h2>Hồ sơ người tập</h2><div class='card'><div class='fm'><div><label>Họ và tên</label><input id='mn' autocomplete='off' value='"+esc(m.name)+"'></div><div class='g2'><div><label>Năm sinh</label><input id='my' inputmode='numeric' maxlength='4' value='"+esc(m.by)+"'></div><div><label>Chiều cao (cm)</label><input id='mh' inputmode='numeric' maxlength='3' value='"+esc(m.h)+"'></div></div><div class='g2'><div><label>Cân nặng (kg)</label><input id='mw' inputmode='decimal' value='"+esc(m.w)+"'></div><div></div></div><div><label>Ghi chú (mục tiêu cá nhân, tiền sử chấn thương…)</label><textarea id='mo' rows='3'>"+esc(m.note)+"</textarea></div></div><div class='df' style='margin-top:8px'><button class='bt' id='mbs'>Lưu hồ sơ</button></div><div id='mm' class='msg'></div></div>";
+h+="<h2>Giao diện</h2><div class='card'><div class='sub'>Chọn giao diện và màu nhấn, áp dụng ngay. Dữ liệu tập luyện không thay đổi.</div><div class='sk'>";
+SK.forEach(function(x){h+="<button class='skb"+(u.skin==x[0]?" on":"")+"' data-sk='"+x[0]+"' style='background:"+x[2]+";color:"+x[3]+"'>"+(u.skin==x[0]?"✓ ":"")+x[1]+"</button>"});
+h+="</div><div class='sub' style='margin-top:12px'>Màu nhấn</div><div class='ac'>";
+AC.forEach(function(x){h+="<button class='acb"+((u.acc||"")==x[0]?" on":"")+"' data-ac='"+x[0]+"' aria-label='"+x[1]+"' title='"+x[1]+"' style='background:"+(x[0]||"conic-gradient(var(--pri),var(--ok),var(--q),var(--pri))")+"'></button>"});
+return h+"</div></div>"}
 function weeks(S,R){return Math.ceil(((R-S)/DAY+1)/7)}
 /* ---- dữ liệu ---- */
 function mig(o){if(o&&o.pl&&o.pl.length)return o;var v=(o&&o.v)||{},k=(o&&o.k)||{};return{ver:2,cur:"p1",pl:[{id:"p1",name:"HM sub 1:40",start:"2026-10-12",race:"2026-12-27",goal:6000,alt:6120,v:v,k:k,n:{}}],rs:[],ics:{t:"05:00",a:15}}}
-function fix(o){o.rs=o.rs||[];o.ics=o.ics||{t:"05:00",a:15};o.pl.forEach(function(p){p.v=p.v||{};p.k=p.k||{};p.n=p.n||{};p.alt=p.alt||p.goal+120});return o}
+function fix(o){o.rs=o.rs||[];o.me=o.me||{name:"",by:"",h:"",w:"",note:""};o.ui=o.ui||{skin:"auto",acc:""};o.ics=o.ics||{t:"05:00",a:15};o.pl.forEach(function(p){p.v=p.v||{};p.k=p.k||{};p.n=p.n||{};p.alt=p.alt||p.goal+120});return o}
 function load(){var o=null;try{o=JSON.parse(localStorage.getItem(KEY))}catch(e){}return fix(mig(o))}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}}
 function cur(){for(var i=0;i<ST.pl.length;i++)if(ST.pl[i].id==ST.cur)return ST.pl[i];ST.cur=ST.pl[0].id;return ST.pl[0]}
@@ -125,14 +172,14 @@ function sumFor(p){var DD=build(p),n=0,tot=0,km=0,lg=0;DD.forEach(function(o){if
 /* ---- hiển thị ---- */
 function notePanel(k){var n=CP.n[k]||{},o='<option value="">—</option>';for(var i=1;i<=10;i++)o+='<option value="'+i+'"'+(n.r==i?" selected":"")+">"+i+"</option>";
 return '<div class="np" hidden><div class="df"><span>Mức nặng (RPE)</span><select data-nk="'+k+'" data-nf="r">'+o+'</select><input list="shoes" placeholder="Giày" data-nk="'+k+'" data-nf="g" value="'+esc(n.g||"")+'" style="width:auto;flex:1;min-width:0"></div><textarea rows="2" placeholder="Cảm giác, đau chỗ nào, thời tiết…" data-nk="'+k+'" data-nf="t">'+esc(n.t||"")+"</textarea></div>"}
-function dayHTML(i){var o=D[i],dt=o.d,dn=DOW[dt.getDay()]+" "+fD(dt),dn2=CP.v[o.k]?" done":"",kv=CP.k[o.k]||"",past=dt<TODAY&&o.t!="r",ms=past&&!CP.v[o.k]?" miss":"",nt=CP.n[o.k]||{},has=nt.r||nt.g||nt.t;
-var f=o.t=="r"?"":'<div class="df">'+(o.km?"KH "+o.km+" km":"")+(o.km?'<input inputmode="decimal" placeholder="km thực" data-k="'+o.k+'" value="'+esc(kv)+'">':"")+'<button class="nb'+(has?" has":"")+'" data-k="'+o.k+'" aria-label="Ghi chú">📝</button><button class="ck" data-k="'+o.k+'">✔</button></div>'+notePanel(o.k);
-return '<div class="d t-'+o.t+dn2+ms+'" data-k="'+o.k+'" data-p="'+(past?1:0)+'"><div class="dh"><b>'+dn+'</b><span class="tp">'+TN[o.t]+'</span></div><div class="ds">'+esc(o.s)+'</div>'+f+'</div>'}
+function dayHTML(i){var o=D[i],dt=o.d,dn=DOW[dt.getDay()]+" "+fD(dt),lu=" ("+fL(dt)+")",dn2=CP.v[o.k]?" done":"",kv=CP.k[o.k]||"",past=dt<TODAY&&o.t!="r",ms=past&&!CP.v[o.k]?" miss":"",nt=CP.n[o.k]||{},has=nt.r||nt.g||nt.t;
+var f=o.t=="r"?"":'<div class="df">'+(o.km?"KH "+o.km+" km":"")+(o.km?ksel('data-k="'+o.k+'" data-kp="i"','data-k="'+o.k+'" data-kp="d"',kv,true):"")+'<button class="nb'+(has?" has":"")+'" data-k="'+o.k+'" aria-label="Ghi chú">📝</button><button class="ck" data-k="'+o.k+'">✔</button></div>'+notePanel(o.k);
+return '<div class="d t-'+o.t+dn2+ms+'" data-k="'+o.k+'" data-p="'+(past?1:0)+'"><div class="dh"><span><b>'+dn+'</b><small class="lu">'+lu+'</small></span><span class="tp">'+TN[o.t]+'</span></div><div class="ds">'+esc(o.s)+'</div>'+f+'</div>'}
 function prog(){var n=0,tot=0,km=0,pk=0,ms=0;D.forEach(function(o){if(o.t!="r"){tot++;if(CP.v[o.k])n++;else if(o.d<TODAY)ms++}km+=num(CP.k[o.k]);pk+=o.km||0});return{n:n,tot:tot,km:km,pk:pk,ms:ms}}
 function calc(){var g=prog(),el=E("pg");if(el){el.innerHTML=g.n+"/"+g.tot+" buổi · "+g.km.toFixed(1)+" km thực tế (kế hoạch "+Math.round(g.pk)+" km)"+(g.ms?" · bỏ lỡ "+g.ms+" buổi":"");E("pb").style.width=(100*g.n/Math.max(1,g.tot))+"%"}
 for(var w=0;w<D.length/7;w++){var e=E("wk"+w);if(!e)continue;var a=0,p=0;for(var q=0;q<7;q++){var o=D[w*7+q];p+=o.km||0;a+=num(CP.k[o.k])}p=Math.round(p*10)/10;e.textContent=a>0?(Math.round(a*10)/10)+" / "+p+" km":p+" km"}}
 function today(){var p=CP,R=pd(p.race),i=Math.round((TODAY-D[0].d)/DAY),left=Math.round((R-TODAY)/DAY),N=D.length;
-var h="<h1>"+esc(p.name)+"</h1><div class='sub'>Giải ngày "+fY(R)+" · Mục tiêu "+hms(p.goal)+"</div><div class='card'>";
+var me=ST.me,age=me.by?TODAY.getFullYear()-me.by:0,h="<h1>"+esc(p.name)+"</h1><div class='sub'>Giải ngày "+fY(R)+" ("+fL(R)+") · Mục tiêu "+hms(p.goal)+"</div><div class='card'>"+(me.name?"<div class='sub' style='margin-bottom:6px'>Xin chào, <b>"+esc(me.name)+"</b>"+(age>0&&age<110?" · "+age+" tuổi":"")+"</div>":"");
 h+=left>0?"<div class='big'>"+left+" ngày</div><div class='sub'>nữa đến ngày thi đấu</div>":(left==0?"<div class='big'>Hôm nay thi!</div>":"<div class='big'>Đã xong</div>");
 h+="<div class='bar'><i id='pb'></i></div><div class='sub' id='pg' style='margin-top:6px'></div></div>";
 if(i<0)h+="<h2>Giáo án bắt đầu "+fD(D[0].d)+"</h2>"+dayHTML(0);
@@ -147,21 +194,21 @@ function paceTab(){var z=zones(CP);
 return "<h1>Pace và ký hiệu</h1><div class='sub'>Tính từ mục tiêu "+hms(CP.goal)+" ("+pc(z.hm)+"/km)</div>"+
 "<div class='card'><table><tr><th>Vùng</th><th>Pace /km</th><th>Dùng cho</th></tr><tr><td><b>E</b></td><td>"+rng(z.e)+"</td><td>Chạy nhẹ, long run, KĐ, HN</td></tr><tr><td><b>HM</b></td><td>"+pc(z.hm)+"</td><td>Pace thi đấu</td></tr><tr><td><b>T</b></td><td>"+rng(z.t)+"</td><td>Tempo, gắng sức vừa</td></tr><tr><td><b>I</b></td><td>"+rng(z.i)+"</td><td>Chạy lặp 1000–2000 m</td></tr></table></div>"+
 "<div class='card'><b>Ký hiệu.</b> KĐ: khởi động chạy nhẹ. HN: hạ nhiệt chạy nhẹ. Strides: nước rút 20 giây thả lỏng, nghỉ 40–60 giây. Km mỗi buổi là ước tính gồm KĐ, HN và đoạn nghỉ.</div>"+
-"<h2>Chốt mục tiêu sau test 5K</h2><div class='card fm'><div class='sub'>Nhập thời gian test 5K để ước tính bán marathon (công thức Riegel, chỉ tham khảo).</div><div class='df'><input id='tb' placeholder='21:30' style='width:100px'><button class='bt' id='tbc'>Tính</button><button class='bt' id='tbs'>Lưu kết quả</button></div><div id='tbo' class='sub'></div><div class='sub'>Đau nhói kéo dài vài ngày thì nghỉ và hỏi chuyên gia.</div></div>"+
+"<h2>Chốt mục tiêu sau test 5K</h2><div class='card fm'><div class='sub'>Nhập thời gian test 5K để ước tính bán marathon (công thức Riegel, chỉ tham khảo).</div><div class='df'><input id='tb' data-tm='ms' inputmode='numeric' autocomplete='off' placeholder='21:30' style='width:100px'><button class='bt' id='tbc'>Tính</button><button class='bt' id='tbs'>Lưu kết quả</button></div><div id='tbo' class='sub'></div><div class='sub'>Đau nhói kéo dài vài ngày thì nghỉ và hỏi chuyên gia.</div></div>"+
 "<h2>Bổ trợ</h2><div class='card'><b>Thứ 4 (sức mạnh, 30–40 phút):</b> squat 3×8, RDL 3×8, lunge 3×10/chân, nâng gót 3×15, plank 3×40 giây.<br><b>Thứ 6 (nhẹ, 25–30 phút):</b> mobility hông và cổ chân, glute bridge 3×12, side plank 3×30 giây/bên, bird dog 3×10/bên, giãn cơ.<br>Tuần áp chót giảm còn 2 hiệp. Tuần cuối chỉ mobility và giãn cơ nhẹ.</div>"}
 function raceTab(){var A=CP.goal,B=CP.alt,pA=A/HMD,pB=B/HMD,rows="";[5,10,15,20].forEach(function(k){rows+="<tr><td>"+k+" km</td><td>"+hms(pA*k)+"</td><td>"+hms(pB*k)+"</td></tr>"});rows+="<tr><td><b>Đích</b></td><td><b>"+hms(A)+"</b></td><td><b>"+hms(B)+"</b></td></tr>";
-return "<h1>Ngày thi đấu "+fD(pd(CP.race))+"</h1><div class='sub'>"+esc(CP.name)+" · Bán marathon 21,0975 km</div><div class='card'><table><tr><th>Mốc</th><th>Mục tiêu A</th><th>Dự phòng B</th></tr>"+rows+"</table></div>"+
+return "<h1>Ngày thi đấu "+fD(pd(CP.race))+"</h1><div class='sub'>"+esc(CP.name)+" · Bán marathon 21,0975 km · "+fY(pd(CP.race))+" ("+fL(pd(CP.race))+")</div><div class='card'><table><tr><th>Mốc</th><th>Mục tiêu A</th><th>Dự phòng B</th></tr>"+rows+"</table></div>"+
 "<div class='card'><b>3 km đầu:</b> không nhanh hơn pace mục tiêu dù thấy nhẹ.<br><b>Km 4–16:</b> giữ đều "+pc(pA)+"/km theo đồng hồ và cảm giác.<br><b>Từ km 17:</b> còn sức thì tăng dần nhẹ, nặng chân thì giữ pace, đừng tụt quá 10 giây/km.</div>"+
 "<div class='card'><b>Ăn:</b> bữa sáng nhẹ giàu tinh bột 2,5–3 giờ trước giờ chạy. Hai ngày trước tăng tinh bột, bớt đồ nhiều chất xơ hoặc lạ.<br><b>Trên đường:</b> khoảng 2 gel (25–30 g carb) quanh km 6–7 và km 13–14, kèm nước ở trạm. Chỉ dùng loại đã thử trong long run.<br><b>Không thử gì mới</b> (giày, áo, gel) vào ngày thi.</div>"}
 function sugg(){var b=null;ST.rs.forEach(function(r){if(r.dist>=3&&r.time>0&&(!b||r.date>b.date))b=r});return b?{r:b,t:Math.round(b.time*Math.pow(HMD/b.dist,1.06)/10)*10}:null}
 function planTab(){var p=CP,sg=sugg(),h="<h1>Giải chạy</h1><div class='sub'>Kế hoạch, kết quả, lịch và sao lưu</div>";
-h+="<h2>Kế hoạch hiện tại</h2><div class='card'><div class='fm'><div><label>Tên giải</label><input id='pn' value='"+esc(p.name)+"'></div><div class='g2'><div><label>Ngày bắt đầu tập</label><input type='date' id='ps' value='"+p.start+"'></div><div><label>Ngày thi</label><input type='date' id='pr' value='"+p.race+"'></div></div><div class='g2'><div><label>Mục tiêu A (h:mm:ss)</label><input id='pa' value='"+hms(p.goal)+"'></div><div><label>Dự phòng B</label><input id='pb2' value='"+hms(p.alt)+"'></div></div></div><div class='sub' id='pi' style='margin-top:6px'></div>";
+h+="<h2>Kế hoạch hiện tại</h2><div class='card'><div class='fm'><div><label>Tên giải</label><input id='pn' value='"+esc(p.name)+"'></div><div class='g2'><div><label>Ngày bắt đầu tập</label><input type='date' id='ps' value='"+p.start+"'></div><div><label>Ngày thi</label><input type='date' id='pr' value='"+p.race+"'></div></div><div class='g2'><div><label>Mục tiêu A (h:mm:ss)</label><input id='pa' data-tm='hms' inputmode='numeric' autocomplete='off' placeholder='01:40:00' value='"+hmsF(p.goal)+"'></div><div><label>Dự phòng B</label><input id='pb2' data-tm='hms' inputmode='numeric' autocomplete='off' placeholder='01:42:00' value='"+hmsF(p.alt)+"'></div></div></div><div class='sub' id='pi' style='margin-top:6px'></div>";
 if(sg)h+="<div class='sub' style='margin-top:6px'>Gợi ý từ “"+esc(sg.r.name)+"” ("+fY(pd(sg.r.date))+", "+kmS(sg.r.dist)+" km, "+hms(sg.r.time)+"): bán marathon khoảng <b>"+hms(sg.t)+"</b> (Riegel, tham khảo). <a href='#' id='sg' style='color:var(--pri)'>Dùng làm mục tiêu A</a></div>";
 h+="<div class='df' style='margin-top:8px'><button class='bt' id='pbs'>Lưu kế hoạch này</button><button class='bt' id='pbn'>Tạo kế hoạch mới</button></div><div class='sub' style='margin-top:6px'>“Tạo kế hoạch mới” dùng các thông tin trên (hãy đổi tên và ngày) và bắt đầu với dữ liệu tập trống.</div><div id='pm' class='msg'></div></div>";
 h+="<h2>Các kế hoạch</h2>";ST.pl.forEach(function(q){var DD=build(q),s=sumFor(q);h+="<div class='card'><div class='dh'><b>"+esc(q.name)+"</b><span class='tp'>"+(q.id==ST.cur?"Đang dùng":"")+"</span></div><div class='sub'>"+fY(DD[0].d)+" – "+fY(pd(q.race))+" · Mục tiêu "+hms(q.goal)+" · "+s.n+"/"+s.tot+" buổi</div>";
 if(q.id!=ST.cur||ST.pl.length>1)h+="<div class='df' style='margin-top:8px'>"+(q.id!=ST.cur?"<button class='bt' data-pu='"+q.id+"'>Dùng kế hoạch này</button>":"")+(ST.pl.length>1?"<button class='bt dg' data-pd='"+q.id+"'>Xóa</button>":"")+"</div>";h+="</div>"});
 var po="<option value=''>Không thuộc kế hoạch nào</option>";ST.pl.forEach(function(q){po+="<option value='"+q.id+"'"+(q.id==ST.cur?" selected":"")+">"+esc(q.name)+"</option>"});
-h+="<h2>Kết quả thi đấu</h2><div class='card'><div class='sub'>Ghi lại kết quả mỗi giải và các bài test để làm cơ sở cho kế hoạch sau.</div><div class='fm' style='margin-top:8px'><input type='hidden' id='rid'><div><label>Tên giải hoặc bài chạy</label><input id='rn' value='"+esc(p.name)+"'></div><div class='g2'><div><label>Ngày</label><input type='date' id='rd' value='"+(pd(p.race)<=TODAY?p.race:ds(TODAY))+"'></div><div><label>Cự ly (km)</label><input id='rk' inputmode='decimal' value='21.0975'></div></div><div class='df'><button class='bt' data-km='5'>5K</button><button class='bt' data-km='10'>10K</button><button class='bt' data-km='21.0975'>HM</button><button class='bt' data-km='42.195'>FM</button></div><div class='g2'><div><label>Thời gian (h:mm:ss)</label><input id='rt' placeholder='1:41:32'></div><div><label>Thuộc kế hoạch</label><select id='rp'>"+po+"</select></div></div><div><label>Ghi chú (chiến thuật, cảm nhận, pace từng đoạn)</label><textarea id='rx' rows='3'></textarea></div></div><div class='df' style='margin-top:8px'><button class='bt' id='rbs'>Lưu kết quả</button><button class='bt' id='rbc'>Xóa form</button></div><div id='rm' class='msg'></div></div>";
+h+="<h2>Kết quả thi đấu</h2><div class='card'><div class='sub'>Ghi lại kết quả mỗi giải và các bài test để làm cơ sở cho kế hoạch sau.</div><div class='fm' style='margin-top:8px'><input type='hidden' id='rid'><div><label>Tên giải hoặc bài chạy</label><input id='rn' value='"+esc(p.name)+"'></div><div class='g2'><div><label>Ngày</label><input type='date' id='rd' value='"+(pd(p.race)<=TODAY?p.race:ds(TODAY))+"'></div><div><label>Cự ly (km)</label><div class='df'>"+ksel("id='rk_i'","id='rk_d'",21.0975,false)+"</div></div></div><div class='df'><button class='bt' data-km='5'>5K</button><button class='bt' data-km='10'>10K</button><button class='bt' data-km='21.0975'>HM</button><button class='bt' data-km='42.195'>FM</button></div><div class='g2'><div><label>Thời gian (h:mm:ss)</label><input id='rt' data-tm='auto' inputmode='numeric' autocomplete='off' placeholder='01:41:32'></div><div><label>Thuộc kế hoạch</label><select id='rp'>"+po+"</select></div></div><div><label>Ghi chú (chiến thuật, cảm nhận, pace từng đoạn)</label><textarea id='rx' rows='3'></textarea></div></div><div class='df' style='margin-top:8px'><button class='bt' id='rbs'>Lưu kết quả</button><button class='bt' id='rbc'>Xóa form</button></div><div id='rm' class='msg'></div></div>";
 ST.rs.slice().sort(function(a,b){return a.date<b.date?1:-1}).forEach(function(r){var pace=r.time/r.dist,gd="";if(r.g){var df=r.time-r.g;gd=" · "+(df<=0?"nhanh hơn":"chậm hơn")+" mục tiêu "+hms(Math.abs(df))}
 h+="<div class='card'><div class='dh'><b>"+esc(r.name)+"</b><span class='tp'>"+fY(pd(r.date))+"</span></div><div class='ds'>"+kmS(r.dist)+" km · <b>"+hms(r.time)+"</b> · "+pc(pace)+"/km"+gd+"</div>"+(r.sum?"<div class='sub'>Tập luyện: "+r.sum.n+"/"+r.sum.tot+" buổi, "+r.sum.km+" km thực tế, buổi dài nhất "+kmS(r.sum.lg)+" km, "+r.sum.wk+" tuần</div>":"")+(r.note?"<div class='ds'>"+esc(r.note).replace(/\n/g,"<br>")+"</div>":"")+"<div class='df' style='margin-top:8px'><button class='bt' data-re='"+r.id+"'>Sửa</button><button class='bt dg' data-rd='"+r.id+"'>Xóa</button></div></div>"});
 var ao="";[[0,"Không nhắc"],[15,"15 phút"],[30,"30 phút"],[60,"1 giờ"]].forEach(function(x){ao+="<option value='"+x[0]+"'"+(ST.ics.a==x[0]?" selected":"")+">"+x[1]+"</option>"});
@@ -170,7 +217,7 @@ h+="<h2>Sao lưu dữ liệu</h2><div class='card'><div class='sub'>Xuất rồi
 return h}
 function shoes(){var m={};ST.pl.forEach(function(p){for(var k in p.n)if(p.n[k].g)m[p.n[k].g]=1});E("shoes").innerHTML=Object.keys(m).map(function(g){return"<option value=\""+esc(g)+"\">"}).join("")}
 function hd(){var s=document.querySelector("section.on"),t=s&&s.querySelector("h1"),b=t&&t.nextElementSibling;E("hdi").innerHTML=t?"<h1>"+t.innerHTML+"</h1>"+(b&&b.classList.contains("sub")?"<div class='sub'>"+b.innerHTML+"</div>":""):""}
-function renderAll(){CP=cur();D=build(CP);TODAY=day0();E("s0").innerHTML=today();E("s1").innerHTML=cal();E("s2").innerHTML=paceTab();E("s3").innerHTML=raceTab();E("s4").innerHTML=planTab();shoes();
+function renderAll(){CP=cur();D=build(CP);TODAY=day0();E("s0").innerHTML=today();E("s1").innerHTML=cal();E("s2").innerHTML=paceTab();E("s3").innerHTML=raceTab();E("s4").innerHTML=planTab();E("s5").innerHTML=setTab();shoes();
 var c=document.querySelector('#s1 .d[data-k="'+fk(TODAY)+'"]');if(c)c.classList.add("today");calc();planInfo();hd()}
 function goTab(n){document.querySelectorAll("nav button").forEach(function(x){x.classList.toggle("on",+x.dataset.t==n)});document.querySelectorAll("section").forEach(function(x,j){x.classList.toggle("on",j==n)});hd();document.querySelector("main").scrollTop=0;if(n==1){var c=document.querySelector("#s1 .d.today");if(c)c.scrollIntoView({block:"center"})}}
 function paint(k){var dn=!!CP.v[k];document.querySelectorAll('.d[data-k="'+k+'"]').forEach(function(x){x.classList.toggle("done",dn);x.classList.toggle("miss",x.dataset.p=="1"&&!dn)})}
@@ -183,8 +230,8 @@ if(!name)return{err:"Nhập tên giải."};if(!s||!r)return{err:"Chọn ngày b�
 if(g<3600||g>14400)return{err:"Mục tiêu A không hợp lệ (ví dụ 1:40:00)."};if(!b)b=g+120;if(b<=g)return{err:"Dự phòng B phải chậm hơn mục tiêu A."};
 return{name:name,start:ds(new Date(R.getFullYear(),R.getMonth(),R.getDate()-(7*N-1))),race:r,goal:g,alt:b}}
 /* ---- kết quả ---- */
-function saveRes(){var id=E("rid").value,name=E("rn").value.trim(),date=E("rd").value,dist=num(E("rk").value),tm=pt(E("rt").value,dist>10?"h":"r"),pid=E("rp").value;
-if(!name||!date||dist<=0||tm<=0){msg("rm","Nhập đủ tên, ngày, cự ly và thời gian.",1);return}if(tm/dist<100||tm/dist>1200){msg("rm","Thời gian không hợp lệ so với cự ly (kiểm tra định dạng h:mm:ss).",1);return}
+function saveRes(){var id=E("rid").value,name=E("rn").value.trim(),date=E("rd").value,dist=rdist(),tm=pt(E("rt").value,dist>10?"h":"r"),pid=E("rp").value;
+if(Math.abs(dist-HMD)<.006)dist=HMD;if(Math.abs(dist-42.195)<.006)dist=42.195;if(!name||!date||dist<=0||tm<=0){msg("rm","Nhập đủ tên, ngày, cự ly và thời gian.",1);return}if(tm/dist<100||tm/dist>1200){msg("rm","Thời gian không hợp lệ so với cự ly (kiểm tra định dạng h:mm:ss).",1);return}
 addRes(id,name,date,dist,tm,pid,E("rx").value.trim());renderAll();msg("rm","Đã lưu kết quả.")}
 function addRes(id,name,date,dist,tm,pid,note){var p=null;ST.pl.forEach(function(q){if(q.id==pid)p=q});var r={id:id||"r"+Date.now(),plan:pid,name:name,date:date,dist:dist,time:tm,note:note};if(p){r.sum=sumFor(p);if(Math.abs(dist-HMD)<.1)r.g=p.goal}
 var f=false;ST.rs=ST.rs.map(function(x){if(x.id==r.id){f=true;return r}return x});if(!f)ST.rs.push(r);save()}
@@ -205,23 +252,31 @@ if(f&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({file
 var u=URL.createObjectURL(new Blob([txt],{type:"text/calendar"})),a=document.createElement("a");a.href=u;a.download=fn;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove()},4000)}
 /* ---- sự kiện ---- */
 function upd(e){var x=e.target,nk=x.dataset&&x.dataset.nk,k=x.dataset&&x.dataset.k;
-if(k&&x.tagName=="INPUT"){CP.k[k]=x.value;save();document.querySelectorAll('input[data-k="'+k+'"]').forEach(function(y){if(y!=x)y.value=x.value});calc();return}
+if(x.dataset&&x.dataset.tm){if(e.type=="input")tin(e);return}
+if(x.id=="rk_i"||x.id=="rk_d"){remask();return}
+if(k&&x.dataset.kp){var c0=x.closest(".df"),iv=c0.querySelector('[data-kp="i"]').value,dv=c0.querySelector('[data-kp="d"]').value,val=(iv===""&&dv==="00")?"":(iv===""?0:iv)+","+dv,a0=kp(val);CP.k[k]=val;save();document.querySelectorAll('select[data-k="'+k+'"]').forEach(function(y){y.value=y.dataset.kp=="i"?(val===""?"":a0[0]):(val===""?"00":p2(a0[1]))});calc();return}
 if(nk){var f=x.dataset.nf,n=CP.n[nk]=CP.n[nk]||{};if(x.value)n[f]=x.value;else delete n[f];if(!n.r&&!n.g&&!n.t)delete CP.n[nk];save();
 document.querySelectorAll('[data-nk="'+nk+'"][data-nf="'+f+'"]').forEach(function(y){if(y!=x)y.value=x.value});var h=!!CP.n[nk];document.querySelectorAll('.nb[data-k="'+nk+'"]').forEach(function(b){b.classList.toggle("has",h)});shoes();return}
 if(x.id=="ps"||x.id=="pr")planInfo();
 if(x.id=="it"||x.id=="ia"){ST.ics.t=E("it").value||"05:00";ST.ics.a=+E("ia").value;save()}}
-document.addEventListener("input",upd);document.addEventListener("change",upd);
+document.addEventListener("focusin",function(e){var x=e.target;if(x.dataset&&x.dataset.tm)x._pd=x.value.replace(/\D/g,"").length});document.addEventListener("input",upd);document.addEventListener("change",upd);
 document.addEventListener("click",function(e){var t=e.target,b,id=t.id;
 if(b=t.closest(".ck")){var k=b.dataset.k;CP.v[k]=!CP.v[k];save();paint(k);calc();return}
 if(b=t.closest(".nb")){var np=b.closest(".d").querySelector(".np");np.hidden=!np.hidden;return}
 if(b=t.closest("nav button")){goTab(+b.dataset.t);return}
+if(id=="gs"){goTab(5);return}
+if(b=t.closest("[data-sk]")){ST.ui.skin=b.dataset.sk;save();applyUI();E("s5").innerHTML=setTab();return}
+if(b=t.closest("[data-ac]")){ST.ui.acc=b.dataset.ac;save();applyUI();E("s5").innerHTML=setTab();return}
+if(id=="mbs"){var by=E("my").value.trim(),mh=E("mh").value.trim(),mw=E("mw").value.trim().replace(",","."),yr=new Date().getFullYear();
+if(by&&(!/^\d{4}$/.test(by)||+by<1930||+by>yr)){msg("mm","Năm sinh không hợp lệ.",1);return}if(mh&&(!/^\d{2,3}$/.test(mh)||+mh<100||+mh>230)){msg("mm","Chiều cao nên trong khoảng 100–230 cm.",1);return}if(mw&&(isNaN(+mw)||+mw<20||+mw>250)){msg("mm","Cân nặng không hợp lệ.",1);return}
+ST.me={name:E("mn").value.trim(),by:by,h:mh,w:mw,note:E("mo").value.trim()};save();renderAll();msg("mm","Đã lưu hồ sơ.");return}
 if(b=t.closest("[data-go]")){goTab(+b.dataset.go);return}
-if(b=t.closest("[data-km]")){E("rk").value=b.dataset.km;return}
+if(b=t.closest("[data-km]")){setRk(+b.dataset.km);return}
 if(b=t.closest("[data-pu]")){ST.cur=b.dataset.pu;save();renderAll();goTab(0);return}
 if(b=t.closest("[data-pd]")){var q=null;ST.pl.forEach(function(x){if(x.id==b.dataset.pd)q=x});if(q&&ST.pl.length>1&&confirm("Xóa kế hoạch “"+q.name+"” cùng toàn bộ dữ liệu tập của nó? Kết quả thi đấu đã ghi vẫn được giữ.")){ST.pl=ST.pl.filter(function(x){return x!=q});if(ST.cur==q.id)ST.cur=ST.pl[0].id;save();renderAll()}return}
-if(b=t.closest("[data-re]")){var r=null;ST.rs.forEach(function(x){if(x.id==b.dataset.re)r=x});if(r){E("rid").value=r.id;E("rn").value=r.name;E("rd").value=r.date;E("rk").value=r.dist;E("rt").value=hms(r.time);E("rp").value=r.plan||"";E("rx").value=r.note||"";E("rbs").textContent="Lưu chỉnh sửa";E("rn").scrollIntoView({block:"center"})}return}
+if(b=t.closest("[data-re]")){var r=null;ST.rs.forEach(function(x){if(x.id==b.dataset.re)r=x});if(r){E("rid").value=r.id;E("rn").value=r.name;E("rd").value=r.date;setRk(r.dist);E("rt").value=r.dist>10?hmsF(r.time):mmss(r.time);E("rp").value=r.plan||"";E("rx").value=r.note||"";E("rbs").textContent="Lưu chỉnh sửa";E("rn").scrollIntoView({block:"center"})}return}
 if(b=t.closest("[data-rd]")){if(confirm("Xóa kết quả này?")){ST.rs=ST.rs.filter(function(x){return x.id!=b.dataset.rd});save();renderAll()}return}
-if(id=="sg"){e.preventDefault();var g=sugg();if(g){E("pa").value=hms(g.t);E("pb2").value=hms(g.t+120)}return}
+if(id=="sg"){e.preventDefault();var g=sugg();if(g){E("pa").value=hmsF(g.t);E("pb2").value=hmsF(g.t+120)}return}
 if(id=="pbs"||id=="pbn"){var o=readPlan();if(o.err){msg("pm",o.err,1);return}
 if(id=="pbs"){for(var f in o)CP[f]=o[f];save();renderAll();msg("pm","Đã lưu kế hoạch. Dữ liệu tick và km giữ theo từng ngày.")}
 else{var dup=ST.pl.some(function(x){return x.name==o.name&&x.race==o.race});if(dup){msg("pm","Đã có kế hoạch cùng tên và ngày thi. Hãy đổi tên hoặc ngày.",1);return}o.id="p"+Date.now();o.v={};o.k={};o.n={};ST.pl.push(o);ST.cur=o.id;save();renderAll();msg("pm","Đã tạo và chuyển sang kế hoạch mới.")}return}
@@ -236,11 +291,11 @@ if(id=="bxo"){var L=["HM26 · "+CP.name+" · tick và km thực tế"];D.forEach
 else if(id=="bxc"&&bx.value){bx.select();bx.setSelectionRange(0,999999);try{navigator.clipboard.writeText(bx.value)}catch(x){}try{document.execCommand("copy")}catch(x){}}
 else if(id=="bxr"){var m=bx.value.split("HM26DATA:")[1];try{var q2=JSON.parse(m);if(q2&&((q2.pl&&q2.pl.length)||(q2.v&&q2.k))){ST=fix(mig(q2));save();location.reload()}else{throw 1}}catch(x){alert("Không đọc được dữ liệu. Hãy dán đủ cả dòng HM26DATA.")}}});
 document.addEventListener("visibilitychange",function(){if(!document.hidden&&day0().getTime()!=TODAY.getTime())renderAll()});
-ST=load();renderAll();
+ST=load();applyUI();renderAll();
 
 (function(){var LAT=21.3227,LON=105.4019,KEY="hm26w",E=function(i){return document.getElementById(i)};
 function p2(n){return(n<10?"0":"")+n}
-function tick(){var t=new Date();E("tm").textContent=p2(t.getHours())+":"+p2(t.getMinutes())+":"+p2(t.getSeconds());E("dt").textContent=DOW[t.getDay()]+", "+t.getDate()+"/"+(t.getMonth()+1)+"/"+t.getFullYear()}
+function tick(){var t=new Date();E("tm").textContent=p2(t.getHours())+":"+p2(t.getMinutes())+":"+p2(t.getSeconds());E("dt").textContent=DOW[t.getDay()]+", "+t.getDate()+"/"+(t.getMonth()+1)+"/"+t.getFullYear()+" ("+fL(t)+")"}
 tick();setInterval(tick,1000);
 function wc(c){if(c==0)return["☀️","Trời quang"];if(c<=2)return["🌤️","Ít mây"];if(c==3)return["☁️","Nhiều mây"];if(c==45||c==48)return["🌫️","Sương mù"];if(c>=51&&c<=57)return["🌦️","Mưa phùn"];if((c>=61&&c<=67)||(c>=80&&c<=82))return["🌧️","Mưa"];if(c>=95)return["⛈️","Dông"];return["🌡️","—"]}
 function show(o,off){var c=o.c,w=wc(c.weather_code);E("wx1").textContent=w[0]+" "+Math.round(c.temperature_2m)+"°C";
