@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.14",
+  "ver": "1.2.16",
   "date": "2026-10-13",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,8 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.16: biểu tượng thời tiết ban đêm đổi sang trăng theo trạng thái ngày/đêm của dự báo.",
+    "Bản 1.2.15: đổi tiêu đề mục Người thiết kế thành Bản quyền thuộc về.",
     "Bản 1.2.14: đưa icon About, Cài đặt và thu phóng về cao độ cũ; vẫn giữ nút trong suốt trên nền tiêu đề.",
     "Bản 1.2.13: bỏ nền và viền riêng quanh About/Cài đặt/thu phóng.",
     "Bản 1.2.12: tăng độ đậm nền bong bóng tiêu đề; thu nhỏ thẻ giao diện và nút màu nhấn.",
