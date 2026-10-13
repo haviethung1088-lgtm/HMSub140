@@ -1,0 +1,16 @@
+{
+  "ver": "1.1.0",
+  "date": "2026-10-13",
+  "owner": {
+    "name": "Hùng",
+    "phone": "",
+    "email": ""
+  },
+  "notes": [
+    "Đổi “Ngày thi” thành “Ngày thi đấu”.",
+    "Lời chào và tên vận động viên nằm cố định ở tiêu đề Trang chủ; thông tin giải tự co chữ cho vừa một dòng.",
+    "Thu phóng theo các mức cố định 50, 75, 85, 100, 125, 175, 200%.",
+    "Xuất lịch, nhắc tập và sao lưu chuyển vào Cài đặt.",
+    "Thêm mục Giới thiệu: phiên bản, người thiết kế, hướng dẫn, kiểm tra cập nhật."
+  ]
+}

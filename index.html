@@ -98,10 +98,29 @@ nav button.on b{transform:scale(1.15)}
 .wc .bx{position:relative;width:100%;border-radius:4px 4px 0 0;background:var(--ln)}.wc .bx i{position:absolute;left:18%;right:18%;bottom:0;border-radius:3px 3px 0 0;background:var(--ok)}
 .wc em{font-style:normal;font-size:9px;color:var(--mut);line-height:1.3;white-space:nowrap}.wc small{font-size:10px;color:var(--mut);line-height:1.5}.wc .cw small{color:var(--pri);font-weight:700}.wc .cw .bx{box-shadow:0 0 0 2px var(--pri)}
 .wl{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-top:6px}.wl span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px;background:var(--ln)}.wl span.a::before{background:var(--ok)}
+
+/* v1.1: header gọn, chọn zoom, Giới thiệu */
+#hdi{padding-right:148px}
+#ab{position:absolute;right:104px;top:2px;border:1px solid var(--ln);background:var(--card);border-radius:14px;padding:3px 9px;font-size:14px}
+#ab i{position:absolute;top:-3px;right:-3px;width:11px;height:11px;border-radius:50%;background:var(--x);border:2px solid var(--bg)}#ab i[hidden]{display:none}
+#zp{position:absolute;right:0;top:36px;z-index:70;display:grid;grid-template-columns:repeat(4,auto);gap:6px;padding:10px;background:var(--card);border:1px solid var(--ln);border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.28)}#zp[hidden]{display:none}
+.zt{grid-column:1/-1;font-size:12px;color:var(--mut)}
+#zp button{height:42px;min-width:58px;border:1px solid var(--ln);border-radius:10px;background:var(--bg);color:var(--tx);font-size:15px}
+#zp button.on{border-color:var(--pri);color:var(--pri);font-weight:700;box-shadow:0 0 0 1px var(--pri)}
+.fit{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#hdi h1.fit{margin:0 0 2px}
+.rn b.fit{font-size:30px;line-height:1.25}.rn span.fit{font-size:14px}
+#ub{flex:0 0 auto;display:flex;align-items:center;gap:8px;width:calc(100% - 28px);max-width:612px;margin:6px auto 0;padding:8px 10px 8px 12px;border-radius:12px;background:var(--pri);color:#fff;font-size:13px;font-weight:600}#ub[hidden]{display:none}
+#ub span{flex:1;min-width:0}#ub button{border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.18);color:#fff;border-radius:9px;height:30px;padding:0 12px;font-size:13px}
+.abh{display:flex;gap:12px;align-items:center}.abh img{width:60px;height:60px;border-radius:14px;flex:0 0 auto}
+.gd summary::after{content:"+";color:var(--mut);font-weight:400;font-size:18px}.gd[open] summary::after{content:"−"}
+.gd .dt{padding:0 2px 10px}
+#hdi .sub{margin-right:-148px}
+.abt td:first-child{white-space:nowrap;color:var(--mut);width:1%;padding-right:14px}
 </style>
 <body>
 <header><div id="ban"><div id="hbar"><div id="clk"><b id="tm">--:--:--</b><span id="dt"></span></div><div id="wx1"></div></div><div id="wx2">Đang tải thời tiết…</div></div>
-<div id="hrow"><div id="hdi"></div><button id="gs" type="button" aria-label="Cài đặt">⚙️</button><button id="zr" type="button" aria-label="Đặt lại cỡ chuẩn">100%</button></div></header>
+<div id="hrow"><div id="hdi"></div><button id="ab" type="button" aria-label="Giới thiệu và hướng dẫn">ℹ️<i id="abd" hidden></i></button><button id="gs" type="button" aria-label="Cài đặt">⚙️</button><button id="zr" type="button" aria-label="Chọn tỷ lệ thu phóng">100%</button><div id="zp" hidden><div class="zt">Tỷ lệ thu phóng</div><button type="button" data-z="50">50%</button><button type="button" data-z="75">75%</button><button type="button" data-z="85">85%</button><button type="button" data-z="100">100%</button><button type="button" data-z="125">125%</button><button type="button" data-z="175">175%</button><button type="button" data-z="200">200%</button></div></div></header>
+<div id="ub" hidden></div>
 <main>
 <section id="s0" class="on"></section>
 <section id="s1"></section>
@@ -109,6 +128,7 @@ nav button.on b{transform:scale(1.15)}
 <section id="s3"></section>
 <section id="s4"></section>
 <section id="s5"></section>
+<section id="s6"></section>
 </main>
 <nav>
 <button class="on" data-t="0"><b>🏠</b>Trang chủ</button>
@@ -133,7 +153,7 @@ var W=[
 [["q","KĐ 2 + 4×1000 m Pace I, nghỉ jog 90s + HN 2",9],["q","KĐ 2 + 5 km Pace HM + HN 2",9],["e","Pace E",6],["l","Pace E đều",20]],
 [["q","KĐ 2 + 6×1000 m Pace I, nghỉ jog 90s + HN 2",11],["q","KĐ 2 + 7 km Pace HM + HN 2",11],["e","Pace E + 4 strides",6],["l","Pace E, 12 km giữa (km 6–18) Pace HM. Buổi dài cuối",24]],
 [["q","KĐ 2 + 4×1000 m Pace I, nghỉ jog 2 phút + HN 2",9],["q","KĐ 2 + 5 km Pace HM + HN 2",9],["e","Pace E + 4 strides",5],["l","Pace E, 4 km giữa Pace HM",15]],
-[["q","KĐ 2 + 3 km Pace HM + HN 2",7],["e","Pace E + 4 strides",5],["e","Shakeout 20–25 phút + 3 strides. Chuẩn bị đồ, ngủ sớm",3],["x","BÁN MARATHON 21,1 km. Xem tab Ngày thi",21.1]]];
+[["q","KĐ 2 + 3 km Pace HM + HN 2",7],["e","Pace E + 4 strides",5],["e","Shakeout 20–25 phút + 3 strides. Chuẩn bị đồ, ngủ sớm",3],["x","BÁN MARATHON 21,1 km. Xem tab Ngày thi đấu",21.1]]];
 var SA="Sức mạnh 30–40 phút (squat, RDL, lunge, nâng gót, plank)",SB="Bổ trợ nhẹ 25–30 phút (mobility, glute bridge, side plank, bird dog)";
 var PT=0,HMD=21.0975,DAY=864e5,KEY="hm26",ST={},CP,D=[],TODAY;
 function E(i){return document.getElementById(i)}
@@ -187,12 +207,12 @@ function zoneTable(z){var hx=hrmax(),P=[["E",rng(z.e),[65,79],"Chạy nhẹ, lon
 P.forEach(function(r){h+="<tr><td><b>"+r[0]+"</b></td><td>"+r[1]+"</td>"+(hx?"<td>"+Math.round(hx.v*r[2][0]/100)+"–"+Math.round(hx.v*r[2][1]/100)+"</td>":"")+"<td>"+r[3]+"</td></tr>"});
 h+="</table><div class='sub' style='margin-top:6px'>"+(hx?"Nhịp tim (lần/phút) tính từ HRmax "+hx.v+(hx.own?" (số anh đã nhập)":" (ước tính 208 − 0,7 × tuổi, anh "+ageOf()+" tuổi)")+". Chỉ để tham khảo; trời nóng, thiếu ngủ hay uống cà phê đều làm nhịp tim cao hơn bình thường.":"Nhập ngày sinh ở Cài đặt (biểu tượng bánh răng) để hiện vùng nhịp tim.")+"</div></div>";
 var w=num(ST.me.w);if(w>0){var lr=0,wm=0,q,o,sm,n=D.length/7;for(var a=0;a<n;a++){sm=0;for(q=0;q<7;q++){o=D[a*7+q];sm+=o.km||0;if(o.t!="x"&&(o.km||0)>lr)lr=o.km}if(sm>wm)wm=sm}
-var kc=function(km){return Math.round(w*km/10)*10};h+="<div class='card'><b>Năng lượng tiêu hao ước tính</b> (khoảng 1 kcal mỗi kg mỗi km"+(ageOf()>0?", "+ageOf()+" tuổi":"")+", cân nặng "+w.toFixed(1).replace(".",",")+" kg)<br>Buổi dài nhất "+kmS(lr)+" km: khoảng "+kc(lr).toLocaleString("vi-VN")+" kcal<br>Tuần cao điểm "+Math.round(wm)+" km: khoảng "+kc(wm).toLocaleString("vi-VN")+" kcal<br>Ngày thi 21,1 km: khoảng "+kc(HMD).toLocaleString("vi-VN")+" kcal</div>"}
+var kc=function(km){return Math.round(w*km/10)*10};h+="<div class='card'><b>Năng lượng tiêu hao ước tính</b> (khoảng 1 kcal mỗi kg mỗi km"+(ageOf()>0?", "+ageOf()+" tuổi":"")+", cân nặng "+w.toFixed(1).replace(".",",")+" kg)<br>Buổi dài nhất "+kmS(lr)+" km: khoảng "+kc(lr).toLocaleString("vi-VN")+" kcal<br>Tuần cao điểm "+Math.round(wm)+" km: khoảng "+kc(wm).toLocaleString("vi-VN")+" kcal<br>Ngày thi đấu "+kmS(dk(CP).k)+" km: khoảng "+kc(dk(CP).k).toLocaleString("vi-VN")+" kcal</div>"}
 return h}
 function markUI(){document.querySelectorAll(".skb").forEach(function(b){var on=b.dataset.sk==ST.ui.skin;b.classList.toggle("on",on);b.textContent=(on?"✓ ":"")+b.dataset.nm});document.querySelectorAll(".acb").forEach(function(b){b.classList.toggle("on",(ST.ui.acc||"")==b.dataset.ac)})}
 function actTab(){var i=-1;document.querySelectorAll("section").forEach(function(x,j){if(x.classList.contains("on"))i=j});return i}
 function setTab(){var m=ST.me,u=ST.ui,hc=+m.h||0,hi=hc?Math.floor(hc/100):"",hd=hc?p2(hc%100):"",wk=num(m.w),wi=wk?Math.floor(wk):"",wd=wk?Math.round((wk-wi)*10):"";if(wd===10){wi++;wd=0}
-var h="<h1>Cài đặt</h1><div class='sub'>Hồ sơ người tập và giao diện</div>";
+var h="<h1>Cài đặt</h1><div class='sub'>Hồ sơ, giao diện, xuất lịch, nhắc tập và sao lưu</div>";
 h+="<h2>Hồ sơ người tập</h2><div class='card'><div class='sub'>Dùng để tính vùng nhịp tim và năng lượng tiêu hao trong tab Pace và Race Day.</div><div class='fm' style='margin-top:8px'><div><label>Họ và tên</label><input id='mn' autocomplete='off' value='"+esc(m.name)+"'></div><div><label>Ngày tháng năm sinh</label><input type='date' id='md' min='1930-01-01' max='"+ds(TODAY)+"' value='"+esc(m.dob||"")+"'></div>"+
 "<div class='g2'><div><label>Chiều cao (m)</label><div class='df'><select class='ks' id='mh_i'>"+ro(1,2,hi,0,"m")+"</select>,<select class='ks' id='mh_d'>"+ro(0,99,hd,1)+"</select></div></div><div><label>Cân nặng (kg)</label><div class='df'><select class='ks' id='mw_i'>"+ro(30,200,wi,0,"kg")+"</select>,<select class='ks' id='mw_d'>"+ro(0,9,wd,0)+"</select></div></div></div>"+
 "<div><label>Nhịp tim tối đa đã đo (lần/phút, nếu có)</label><select id='mhr'>"+ro(120,230,m.hr,0,"Ước tính theo tuổi")+"</select></div><div><label>Ghi chú (mục tiêu cá nhân, tiền sử chấn thương…)</label><textarea id='mo' rows='3'>"+esc(m.note)+"</textarea></div></div></div>";
@@ -200,7 +220,7 @@ h+="<h2>Giao diện</h2><div class='card'><div class='sub'>Chọn giao diện v�
 SK.forEach(function(x){h+="<button class='skb"+(u.skin==x[0]?" on":"")+"' data-sk='"+x[0]+"' data-nm='"+x[1]+"' style='background:"+x[2]+";color:"+x[3]+"'>"+(u.skin==x[0]?"✓ ":"")+x[1]+"</button>"});
 h+="</div><div class='sub' style='margin-top:12px'>Màu nhấn</div><div class='ac'>";
 AC.forEach(function(x){h+="<button class='acb"+((u.acc||"")==x[0]?" on":"")+"' data-ac='"+x[0]+"' aria-label='"+x[1]+"' title='"+x[1]+"' style='background:"+(x[0]||"conic-gradient(var(--pri),var(--ok),var(--q),var(--pri))")+"'></button>"});
-return h+"</div></div><div id='mm' class='msg'></div><div class='sticky'><button class='bt pri' id='mbs'>Lưu và thoát</button><button class='bt' id='mbc'>Đóng</button></div>"}
+return h+"</div></div>"+icsCard()+pushCard()+backupCard()+"<div id='mm' class='msg'></div><div class='sticky'><button class='bt pri' id='mbs'>Lưu và thoát</button><button class='bt' id='mbc'>Đóng</button></div>"}
 function weeks(S,R){return Math.ceil(((R-S)/DAY+1)/7)}
 /* ---- dữ liệu ---- */
 function mig(o){if(o&&o.pl&&o.pl.length)return o;var v=(o&&o.v)||{},k=(o&&o.k)||{};return{ver:2,cur:"p1",pl:[{id:"p1",name:"HM sub 1:40",start:"2026-10-12",race:"2026-12-27",goal:6000,alt:6120,v:v,k:k,n:{}}],rs:[],ics:{t:"05:00",a:15}}}
@@ -242,7 +262,7 @@ var W5=[
 [["q","KĐ 2 + 4×1000 m Pace HM, nghỉ jog 2 phút + HN 2",10],["q","KĐ 2 + 5 km Pace T + HN 2",9],["e","Pace E + 4 strides",6],["l","Pace E đều",11]],
 [["q","KĐ 2 + 5×800 m Pace I, nghỉ jog 2 phút + HN 2",10],["q","KĐ 2 + 6 km Pace T + HN 2",10],["e","Pace E + 4 strides",6],["l","Pace E đều",12]],
 [["q","KĐ 2 + 3×1000 m Pace HM, nghỉ jog 2 phút + HN 2",8],["e","Pace E + 4 strides",7],["e","Pace E",5],["l","Pace E đều",10]],
-[["q","KĐ 2 + 3×400 m Pace HM, nghỉ jog 90s + HN 2",6],["e","Pace E + 4 strides",4],["e","Shakeout 20–25 phút + 3 strides. Chuẩn bị đồ, ngủ sớm",3],["x","THI 5K. Xem tab Ngày thi",5]]];
+[["q","KĐ 2 + 3×400 m Pace HM, nghỉ jog 90s + HN 2",6],["e","Pace E + 4 strides",4],["e","Shakeout 20–25 phút + 3 strides. Chuẩn bị đồ, ngủ sớm",3],["x","THI 5K. Xem tab Ngày thi đấu",5]]];
 var PH5=["Nền","Nền + tốc độ","Xây dựng","Giảm tải + Test","Đỉnh tải 1","Đỉnh tải 2","Taper","Taper và thi đấu"];
 var W10=[
 [["e","Pace E + 6 strides",7],["q","KĐ 2 + 4 km Pace T + HN 2",8],["e","Pace E",6],["l","Pace E đều",10]],
@@ -254,7 +274,7 @@ var W10=[
 [["e","Pace E + 6 strides",6],["q","KĐ 2 + 4×1000 m Pace HM, nghỉ jog 90s + HN 2",9],["e","Pace E",6],["l","Pace E đều",10]],
 [["q","KĐ 2 + 6×1000 m Pace HM, nghỉ jog 90s + HN 2",12],["q","KĐ 2 + 8 km Pace T + HN 2",12],["e","Pace E + 4 strides",7],["l","Pace E, 5 km giữa (km 5–10) Pace HM",15]],
 [["q","KĐ 2 + 4×1000 m Pace HM, nghỉ jog 90s + HN 2",9],["e","Pace E + 4 strides",7],["e","Pace E",6],["l","Pace E đều",12]],
-[["q","KĐ 2 + 3×400 m Pace HM, nghỉ jog 90s + HN 2",6],["e","Pace E + 4 strides",5],["e","Shakeout 20–25 phút + 3 strides. Chuẩn bị đồ, ngủ sớm",3],["x","THI 10K. Xem tab Ngày thi",10]]];
+[["q","KĐ 2 + 3×400 m Pace HM, nghỉ jog 90s + HN 2",6],["e","Pace E + 4 strides",5],["e","Shakeout 20–25 phút + 3 strides. Chuẩn bị đồ, ngủ sớm",3],["x","THI 10K. Xem tab Ngày thi đấu",10]]];
 var PH10=["Nền","Nền + tốc độ","Xây dựng","Giảm tải + Test","Xây dựng","Đỉnh tải 1","Giảm tải","Đỉnh tải 2","Taper","Taper và thi đấu"];
 var W42=[
 [["e","Pace E + 6 strides",8],["q","KĐ 2 + 3 km Pace T + HN 2",7],["e","Pace E",6],["l","Pace E đều",12]],
@@ -274,7 +294,7 @@ var W42=[
 [["e","Pace E + 4 strides",10],["q","KĐ 2 + 8 km Pace HM + HN 2",12],["e","Pace E",9],["l","Pace E, 10 km giữa (km 10–20) Pace HM. Buổi dài cuối",32]],
 [["e","Pace E + 4 strides",9],["q","KĐ 2 + 6 km Pace HM + HN 2",10],["e","Pace E",8],["l","Pace E đều",19]],
 [["e","Pace E + 4 strides",8],["q","KĐ 2 + 4 km Pace HM + HN 2",8],["e","Pace E",6],["l","Pace E đều",13]],
-[["q","KĐ 2 + 4 km Pace HM + HN 2",8],["e","Pace E + 4 strides",6],["e","Shakeout 20–25 phút + 3 strides. Chuẩn bị đồ, ngủ sớm",4],["x","MARATHON 42,2 km. Xem tab Ngày thi",42.195]]];
+[["q","KĐ 2 + 4 km Pace HM + HN 2",8],["e","Pace E + 4 strides",6],["e","Shakeout 20–25 phút + 3 strides. Chuẩn bị đồ, ngủ sớm",4],["x","MARATHON 42,2 km. Xem tab Ngày thi đấu",42.195]]];
 var PH42=["Nền","Nền","Nền","Giảm tải + Test","Xây dựng","Xây dựng","Xây dựng","Giảm tải","Xây dựng + pace thi đấu","Xây dựng + pace thi đấu","Xây dựng + pace thi đấu","Giảm tải","Đỉnh tải","Đỉnh tải","Đỉnh tải cuối","Taper 3 tuần","Taper 2 tuần","Taper và thi đấu"];
 var TPL={"21":{w:W,ph:PH},"5":{w:W5,ph:PH5},"10":{w:W10,ph:PH10},"42":{w:W42,ph:PH42}};
 function basis(p){var k=p.dist||"21",B={
@@ -313,15 +333,15 @@ if(m[3]=="HM")tip.push("Đây là pace thi đấu: giữ đều các lần, cả
 else tip.push("Pace T là mức \"khó nhưng kiểm soát được\": nói được vài từ, không thở dốc.","Chia đều pace các lần, không lao nhanh ở lần đầu.","Jog nhẹ để nhịp tim hạ xuống trước lần kế tiếp.")}
 else if(/progression/.test(s)){m=s.match(/([\d,]+) km progression/);mn.push("Chạy "+(m?m[1]:"")+" km tăng dần: bắt đầu ở pace E ("+Ez+"/km), mỗi km nhanh hơn một chút, km cuối chạm pace "+(/xuống T/.test(s)?"T ("+Tz:"HM ("+Hz)+"/km).");tip.push("Km đầu phải thật dễ, đừng vội.","Không vượt pace HM ở cuối buổi.","Kết thúc với cảm giác vẫn còn dư sức.")}
 else if(m=s.match(/([\d,]+) km Pace (T|HM)/)){if(m[2]=="T"){mn.push("Chạy liên tục "+m[1]+" km ở pace T ("+Tz+"/km), sau khi khởi động xong.");tip.push("Km đầu hơi dè dặt để vào nhịp, rồi giữ pace đều đến hết.","Hơi thở dồn nhưng không loạn, nói được vài từ.","Chọn đoạn đường bằng phẳng, hạn chế dừng đèn đỏ.")}
-else{mn.push("Chạy liên tục "+m[1]+" km ở pace thi đấu HM ("+Hz+"/km).");tip.push("Mục tiêu là làm quen cảm giác pace ngày thi: nhẹ nhàng và đều.","Thử luôn nước, gel, giày và đồ định mặc ngày thi.")}}
+else{mn.push("Chạy liên tục "+m[1]+" km ở pace thi đấu HM ("+Hz+"/km).");tip.push("Mục tiêu là làm quen cảm giác pace ngày thi đấu: nhẹ nhàng và đều.","Thử luôn nước, gel, giày và đồ định mặc ngày thi đấu.")}}
 else if(o.t=="l"){mn.push("Chạy dài "+kmS(o.km)+" km, nền ở pace E ("+Ez+"/km)"+hrr(65,79)+".");
 if(m=s.match(/(\d+) km cuối Pace HM/))mn.push("Sau đó "+m[1]+" km cuối tăng lên pace HM ("+Hz+"/km).");
 else if(m=s.match(/(\d+) km giữa \(km (\d+)[–-](\d+)\) Pace HM/))mn.push("Từ km "+m[2]+" đến km "+m[3]+" chạy pace HM ("+Hz+"/km), các đoạn còn lại pace E.");
 else if(m=s.match(/(\d+) km giữa Pace HM/))mn.push("Đoạn giữa buổi chạy "+m[1]+" km ở pace HM ("+Hz+"/km), phần còn lại pace E.");
-tip.push("Ăn nhẹ giàu carbo trước buổi 1–2 giờ; mang nước hoặc gel, uống nhấp nhỏ mỗi 20–25 phút.","Phần pace E phải thật thoải mái; chỉ tăng tốc đúng đoạn quy định.","Mặc giày và đồ giống ngày thi.","Sau buổi ăn carbo và đạm trong 30–60 phút, ngủ đủ giấc.");
+tip.push("Ăn nhẹ giàu carbo trước buổi 1–2 giờ; mang nước hoặc gel, uống nhấp nhỏ mỗi 20–25 phút.","Phần pace E phải thật thoải mái; chỉ tăng tốc đúng đoạn quy định.","Mặc giày và đồ giống ngày thi đấu.","Sau buổi ăn carbo và đạm trong 30–60 phút, ngủ đủ giấc.");
 if(/Buổi dài cuối/.test(s))tip.push("Đây là buổi dài nhất của giáo án. Sau đó tải giảm dần (taper), hãy chạy tự tin nhưng không cố vượt.")}
 else if(o.t=="t"){mn.push("Chạy 5 km hết sức nhưng đều tay (nửa sau không chậm hơn nửa đầu) và ghi lại giờ.");tip.push("Hôm trước nghỉ nhẹ và ăn đủ carbo; chọn đường bằng phẳng, trời mát.","400 m đầu hơi dè dặt để khỏi hụt hơi.","Nhập kết quả ở tab Race Day để ước tính giờ thi.")}
-else if(/Shakeout/.test(s)){mn.push("Chạy rất nhẹ 20–25 phút để chân linh hoạt.");tip.push("Buổi cuối trước ngày thi: chuẩn bị đồ, số báo danh, giày, gel.","Ăn tối giàu carbo, ngủ sớm.","Không thử bất cứ thứ gì mới.")}
+else if(/Shakeout/.test(s)){mn.push("Chạy rất nhẹ 20–25 phút để chân linh hoạt.");tip.push("Buổi cuối trước ngày thi đấu: chuẩn bị đồ, số báo danh, giày, gel.","Ăn tối giàu carbo, ngủ sớm.","Không thử bất cứ thứ gì mới.")}
 else{mn.push("Chạy nhẹ "+kmS(o.km)+" km ở pace E ("+Ez+"/km)"+hrr(65,79)+".");tip.push("Nói được thành câu, thở thoải mái.","Không đuổi pace dù thấy khỏe: ngày nhẹ chạy đúng nhẹ thì ngày khó mới hiệu quả.","Ưu tiên mặt đường bằng phẳng, mềm nếu có.")}
 if(o.t=="q")tip.push("Hôm trước ngủ đủ và ăn đủ carbo, hôm sau chạy nhẹ để hồi phục.","Đi theo pace và cảm giác, nhịp tim thường lên chậm hơn pace.","Trời nóng thì giảm pace một chút thay vì cố giữ.");
 how=how.concat(mn);
@@ -330,7 +350,7 @@ if(m=s.match(/HN ([\d,]+)/))how.push("Hạ nhiệt "+m[1]+" km: chạy thật ch
 var li=function(x){return"<li>"+x+"</li>"};
 var out="<details class='dtl'><summary>Chi tiết &amp; lưu ý</summary><div class='dt'><b>Cách tập</b><ul>"+how.map(li).join("")+"</ul><b>Lưu ý để hiệu quả</b><ul>"+tip.map(li).join("")+"</ul></div></details>";return dk(CP).lb=="HM"?out:out.replace(/\bHM\b/g,dk(CP).lb)}
 document.addEventListener("click",function(e){var w=e.target.closest&&e.target.closest(".wd[data-dk]");if(!w)return;var k=w.dataset.dk;goTab(1);var el=document.querySelector('#s1 .d[data-k="'+k+'"]');if(el){var dt=el.closest("details");if(dt)dt.open=true;setTimeout(function(){el.scrollIntoView({block:"center"});el.classList.add("flash");setTimeout(function(){el.classList.remove("flash")},1800)},60)}});
-var TIP={r:"Ngày nghỉ: ngủ đủ 7–9 giờ, đi bộ nhẹ, uống đủ nước và ăn đủ đạm.",e:"Chạy nhẹ vẫn nói được thành câu. Đừng đuổi pace, mục tiêu là tích lũy quãng đường.",q:"Khởi động đủ, giữ đúng pace từng phần, chạy hồi phục thật chậm giữa các lần.",l:"Ăn nhẹ trước 1–2 giờ, mang nước hoặc gel. Tập ăn uống giống ngày thi.",t:"Hôm trước nghỉ đủ, khởi động kỹ, chạy hết sức đều. Ghi giờ ngay sau buổi tập.",s:"Tập chậm, đúng kỹ thuật, dừng trước khi kiệt sức. Không tập nặng sát buổi chạy chất lượng.",x:"Ngày thi: 2 km đầu chậm hơn mục tiêu 5–10 giây mỗi km, uống nước đều, đừng thử đồ mới."};
+var TIP={r:"Ngày nghỉ: ngủ đủ 7–9 giờ, đi bộ nhẹ, uống đủ nước và ăn đủ đạm.",e:"Chạy nhẹ vẫn nói được thành câu. Đừng đuổi pace, mục tiêu là tích lũy quãng đường.",q:"Khởi động đủ, giữ đúng pace từng phần, chạy hồi phục thật chậm giữa các lần.",l:"Ăn nhẹ trước 1–2 giờ, mang nước hoặc gel. Tập ăn uống giống ngày thi đấu.",t:"Hôm trước nghỉ đủ, khởi động kỹ, chạy hết sức đều. Ghi giờ ngay sau buổi tập.",s:"Tập chậm, đúng kỹ thuật, dừng trước khi kiệt sức. Không tập nặng sát buổi chạy chất lượng.",x:"Ngày thi đấu: 2 km đầu chậm hơn mục tiêu 5–10 giây mỗi km, uống nước đều, đừng thử đồ mới."};
 function wkChart(){var N=D.length/7,pl=[],ac=[],mx=1,cw=Math.floor(Math.round((TODAY-D[0].d)/DAY)/7),h="",tp=0,ta=0,pk=0,pkw=0;
 for(var w=0;w<N;w++){var a=0,p=0;for(var q=0;q<7;q++){var o=D[w*7+q];p+=o.km||0;a+=num(CP.k[o.k])}p=Math.round(p*10)/10;a=Math.round(a*10)/10;pl.push(p);ac.push(a);if(p>mx)mx=p;if(a>mx)mx=a;if(p>pk){pk=p;pkw=w}if(w<=cw){tp+=p;ta+=a}}
 var H=84,lb=N<=14;h+="<div class='wc'>";
@@ -353,9 +373,9 @@ if(o.t=="x"||/HM/.test(s))pp.push(hz(dk(CP).lb,pc(z.hm),dk(CP).hr[0],dk(CP).hr[1
 var w=null,wt="";try{w=JSON.parse(localStorage.getItem("hm26w"))}catch(e){}
 if(w&&w.c&&Date.now()-w.t<216e5&&o.t!="r"&&o.t!="s"){var tp=w.c.temperature_2m,pr=w.d&&w.d.p;if(pr>=60)wt="Khả năng mưa cao ("+Math.round(pr)+"%): mang áo mưa mỏng, chọn đường an toàn hoặc đổi giờ tập.";else if(tp>=32)wt="Trời nóng ("+Math.round(tp)+"°C): chạy sớm hoặc tối, mang nước, giảm cường độ nếu thấy choáng."}
 return"<div class='card'><div class='ds'><b>Gợi ý hôm nay</b></div>"+(pp.length?"<div class='ds'><b>Pace"+(hx?" · nhịp tim":"")+"</b><br>"+pp.join("<br>")+"</div>":"")+(hx&&pp.length?"<div class='sub'>HRmax "+hx.v+(hx.own?" (số anh đã nhập)":" (ước tính theo tuổi, anh "+ageOf()+" tuổi)")+".</div>":"")+"<div class='sub'>"+TIP[o.t]+(o.t=="l"||o.t=="x"?carb():"")+"</div>"+(wt?"<div class='sub' style='margin-top:4px'>"+wt+"</div>":"")+"</div>"}
-function today(){var p=CP,R=pd(p.race),i=Math.round((TODAY-D[0].d)/DAY),left=Math.round((R-TODAY)/DAY),N=D.length,me=ST.me,age=ageOf(),hh=new Date().getHours(),gr=hh<11?"Chào buổi sáng":hh<14?"Chào buổi trưa":hh<18?"Chào buổi chiều":"Chào buổi tối";
-var h="<h1>"+esc(p.name)+"</h1><div class='sub'>Giải ngày "+fY(R)+" ("+fL(R)+")</div><div class='card hero'>";
-h+="<div class='hi'>"+gr+",</div><div class='hn'>"+(me.name?esc(me.name):"Vận động viên")+"</div><div class='rn'><b>🏁 "+esc(p.name)+"</b><span>Ngày chạy: "+DOW[R.getDay()]+", "+fY(R)+" ("+fL(R)+")</span></div><div class='chips'>"+"<span class='chip'>"+dn(p)+"</span><span class='chip'>Mục tiêu "+hms(p.goal)+" · "+pc(p.goal/dk(p).k)+"/km</span>"+(volF(p)!=1?"<span class='chip'>Khối lượng ×"+kmS(volF(p))+"</span>":"")+(i>=0&&i<N?"<span class='chip'>Tuần "+(D[i].w+1)+"/"+(N/7)+" · "+esc(D[i].ph)+"</span>":"")+"</div>"+(me.name?"":"<div class='sub' style='margin-bottom:8px'>Nhập tên của bạn trong ⚙️ Cài đặt để hiện ở đây.</div>");
+function today(){var p=CP,R=pd(p.race),i=Math.round((TODAY-D[0].d)/DAY),left=Math.round((R-TODAY)/DAY),N=D.length,me=ST.me,age=ageOf();
+var h="<h1>"+greetTxt()+"</h1><div class='card hero'>";
+h+="<div class='rn'><b class='fit' data-wrap='1' data-max='30' data-min='12'>🏁 "+esc(p.name)+"</b><span class='fit' data-wrap='1' data-max='14' data-min='10'>Ngày thi đấu: "+DOW[R.getDay()]+", "+fY(R)+" ("+fL(R)+")</span></div><div class='chips'>"+"<span class='chip'>"+dn(p)+"</span><span class='chip'>Mục tiêu "+hms(p.goal)+" · "+pc(p.goal/dk(p).k)+"/km</span>"+(volF(p)!=1?"<span class='chip'>Khối lượng ×"+kmS(volF(p))+"</span>":"")+(i>=0&&i<N?"<span class='chip'>Tuần "+(D[i].w+1)+"/"+(N/7)+" · "+esc(D[i].ph)+"</span>":"")+"</div>"+(me.name?"":"<div class='sub' style='margin-bottom:8px'>Nhập tên của bạn trong ⚙️ Cài đặt để hiện lời chào ở tiêu đề phía trên.</div>");
 h+=left>0?"<div class='big'>"+left+" ngày</div><div class='sub'>nữa đến ngày thi đấu"+(left>=7?" (khoảng "+Math.floor(left/7)+" tuần"+(left%7?" "+left%7+" ngày":"")+")":"")+"</div>":(left==0?"<div class='big'>Hôm nay thi!</div>":"<div class='big'>Đã xong</div>");
 h+="<div class='bar'><i id='pb'></i></div><div class='sub' id='pg' style='margin-top:6px'></div></div>";
 if(i<0)h+="<h2>Giáo án bắt đầu "+fD(D[0].d)+"</h2>"+dayHTML(0);
@@ -376,12 +396,12 @@ basis(CP)+"<h2>Bổ trợ</h2><div class='card'><b>Thứ 4 (sức mạnh, 30–4
 function raceTab(){var d=dk(CP),K=d.k,A=CP.goal,B=CP.alt,pA=A/K,pB=B/K,rows="",key=CP.dist||"21",mk={"5":[1,2,3,4],"10":[2,4,6,8],"21":[5,10,15,20],"42":[5,10,15,20,25,30,35,40]}[key]||[5,10,15,20];
 mk.forEach(function(k){rows+="<tr><td>"+k+" km</td><td>"+hms(pA*k)+"</td><td>"+hms(pB*k)+"</td></tr>"});rows+="<tr><td><b>Đích</b></td><td><b>"+hms(A)+"</b></td><td><b>"+hms(B)+"</b></td></tr>";
 var P=pc(pA),ST_={"5":"<b>Km đầu:</b> không nhanh hơn pace mục tiêu dù thấy nhẹ.<br><b>Km 2–4:</b> giữ đều "+P+"/km, thở ổn định.<br><b>Km cuối:</b> dồn sức, còn dư thì tăng tốc.","10":"<b>2 km đầu:</b> không nhanh hơn pace mục tiêu dù thấy nhẹ.<br><b>Km 3–8:</b> giữ đều "+P+"/km theo đồng hồ và cảm giác.<br><b>2 km cuối:</b> còn sức thì tăng dần.","21":"<b>3 km đầu:</b> không nhanh hơn pace mục tiêu dù thấy nhẹ.<br><b>Km 4–16:</b> giữ đều "+P+"/km theo đồng hồ và cảm giác.<br><b>Từ km 17:</b> còn sức thì tăng dần nhẹ, nặng chân thì giữ pace, đừng tụt quá 10 giây/km.","42":"<b>5 km đầu:</b> chậm hơn mục tiêu 5–10 giây/km, đừng chạy theo đám đông.<br><b>Km 6–30:</b> giữ đều "+P+"/km.<br><b>Từ km 32:</b> giữ pace, đừng tụt quá 15 giây/km. Còn sức mới tăng ở 5 km cuối."},
-FD={"5":"<b>Ăn:</b> bữa nhẹ giàu tinh bột 2–3 giờ trước giờ chạy, khởi động kỹ 10–15 phút. Cự ly ngắn không cần gel, chỉ uống nước nếu khát.<br><b>Không thử gì mới</b> (giày, áo) vào ngày thi.","10":"<b>Ăn:</b> bữa sáng nhẹ giàu tinh bột 2,5–3 giờ trước giờ chạy, khởi động 10–15 phút. Thường không cần gel, uống nước ở trạm nếu khát.<br><b>Không thử gì mới</b> (giày, áo, gel) vào ngày thi.","21":"<b>Ăn:</b> bữa sáng nhẹ giàu tinh bột 2,5–3 giờ trước giờ chạy. Hai ngày trước tăng tinh bột, bớt đồ nhiều chất xơ hoặc lạ."+carb()+"<br><b>Trên đường:</b> khoảng 2 gel (25–30 g carb) quanh km 6–7 và km 13–14, kèm nước ở trạm. Chỉ dùng loại đã thử trong long run.<br><b>Không thử gì mới</b> (giày, áo, gel) vào ngày thi.","42":"<b>Ăn:</b> bữa sáng nhẹ giàu tinh bột khoảng 3 giờ trước giờ chạy. Ba ngày trước tăng tinh bột, bớt đồ nhiều chất xơ hoặc lạ."+carb()+"<br><b>Trên đường:</b> khoảng 30–60 g carb mỗi giờ (một gel mỗi 40–45 phút) kèm nước ở trạm, bắt đầu từ khoảng km 8. Chỉ dùng loại đã thử trong long run.<br><b>Không thử gì mới</b> (giày, áo, gel) vào ngày thi."};
+FD={"5":"<b>Ăn:</b> bữa nhẹ giàu tinh bột 2–3 giờ trước giờ chạy, khởi động kỹ 10–15 phút. Cự ly ngắn không cần gel, chỉ uống nước nếu khát.<br><b>Không thử gì mới</b> (giày, áo) vào ngày thi đấu.","10":"<b>Ăn:</b> bữa sáng nhẹ giàu tinh bột 2,5–3 giờ trước giờ chạy, khởi động 10–15 phút. Thường không cần gel, uống nước ở trạm nếu khát.<br><b>Không thử gì mới</b> (giày, áo, gel) vào ngày thi đấu.","21":"<b>Ăn:</b> bữa sáng nhẹ giàu tinh bột 2,5–3 giờ trước giờ chạy. Hai ngày trước tăng tinh bột, bớt đồ nhiều chất xơ hoặc lạ."+carb()+"<br><b>Trên đường:</b> khoảng 2 gel (25–30 g carb) quanh km 6–7 và km 13–14, kèm nước ở trạm. Chỉ dùng loại đã thử trong long run.<br><b>Không thử gì mới</b> (giày, áo, gel) vào ngày thi đấu.","42":"<b>Ăn:</b> bữa sáng nhẹ giàu tinh bột khoảng 3 giờ trước giờ chạy. Ba ngày trước tăng tinh bột, bớt đồ nhiều chất xơ hoặc lạ."+carb()+"<br><b>Trên đường:</b> khoảng 30–60 g carb mỗi giờ (một gel mỗi 40–45 phút) kèm nước ở trạm, bắt đầu từ khoảng km 8. Chỉ dùng loại đã thử trong long run.<br><b>Không thử gì mới</b> (giày, áo, gel) vào ngày thi đấu."};
 return "<h1>Ngày thi đấu "+fD(pd(CP.race))+"</h1><div class='sub'>"+esc(CP.name)+" · "+d.nm+" "+(key=="21"?"21,0975":key=="42"?"42,195":K)+" km · "+fY(pd(CP.race))+" ("+fL(pd(CP.race))+")</div><div class='card'><table><tr><th>Mốc</th><th>Mục tiêu A</th><th>Dự phòng B</th></tr>"+rows+"</table></div>"+
 "<div class='card'>"+(ST_[key]||ST_["21"])+"</div><div class='card'>"+(FD[key]||FD["21"])+"</div>"}
 function sugg(kk){kk=kk||dk(CP).k;var b=null;ST.rs.forEach(function(r){if(r.dist>=3&&r.time>0&&(!b||r.date>b.date))b=r});return b?{r:b,t:Math.round(b.time*Math.pow(kk/b.dist,1.06)/10)*10}:null}
-function planTab(){var p=CP,sg=sugg(),h="<h1>Giải chạy</h1><div class='sub'>Kế hoạch, kết quả, lịch và sao lưu</div>";
-h+="<h2>Kế hoạch hiện tại</h2><div class='card'><div class='fm'><div><label>Tên giải</label><input id='pn' value='"+esc(p.name)+"'></div><div class='g2'><div><label>Ngày bắt đầu tập</label><input type='date' id='ps' value='"+p.start+"'></div><div><label>Ngày thi</label><input type='date' id='pr' value='"+p.race+"'></div></div><div><label>Cự ly</label><select id='pdist' data-prev='"+(p.dist||"21")+"'>"+distOpts(p)+"</select></div><div class='g2'><div><label>Mục tiêu A (h:mm:ss)</label><input id='pa' data-tm='hms' inputmode='numeric' autocomplete='off' placeholder='01:40:00' value='"+hmsF(p.goal)+"'></div><div><label>Dự phòng B</label><input id='pb2' data-tm='hms' inputmode='numeric' autocomplete='off' placeholder='01:42:00' value='"+hmsF(p.alt)+"'></div></div><div><label>Khối lượng tập (số km mỗi tuần)</label><select id='pv'>"+volOpts(p)+"</select></div></div><div class='sub' id='pi' style='margin-top:6px'></div><div class='sub' id='pvi' style='margin-top:4px'></div>";
+function planTab(){var p=CP,sg=sugg(),h="<h1>Giải chạy</h1><div class='sub'>Kế hoạch và kết quả thi đấu</div>";
+h+="<h2>Kế hoạch hiện tại</h2><div class='card'><div class='fm'><div><label>Tên giải</label><input id='pn' value='"+esc(p.name)+"'></div><div class='g2'><div><label>Ngày bắt đầu tập</label><input type='date' id='ps' value='"+p.start+"'></div><div><label>Ngày thi đấu</label><input type='date' id='pr' value='"+p.race+"'></div></div><div><label>Cự ly</label><select id='pdist' data-prev='"+(p.dist||"21")+"'>"+distOpts(p)+"</select></div><div class='g2'><div><label>Mục tiêu A (h:mm:ss)</label><input id='pa' data-tm='hms' inputmode='numeric' autocomplete='off' placeholder='01:40:00' value='"+hmsF(p.goal)+"'></div><div><label>Dự phòng B</label><input id='pb2' data-tm='hms' inputmode='numeric' autocomplete='off' placeholder='01:42:00' value='"+hmsF(p.alt)+"'></div></div><div><label>Khối lượng tập (số km mỗi tuần)</label><select id='pv'>"+volOpts(p)+"</select></div></div><div class='sub' id='pi' style='margin-top:6px'></div><div class='sub' id='pvi' style='margin-top:4px'></div>";
 if(sg)h+="<div class='sub' style='margin-top:6px'>Gợi ý từ “"+esc(sg.r.name)+"” ("+fY(pd(sg.r.date))+", "+kmS(sg.r.dist)+" km, "+hms(sg.r.time)+"): cự ly <span id='sgl'>"+dk(p).lb+"</span> khoảng <b id='sgt'>"+hms(sg.t)+"</b> (Riegel, tham khảo). <a href='#' id='sg' style='color:var(--pri)'>Dùng làm mục tiêu A</a></div>";
 h+="<div class='df' style='margin-top:8px'><button class='bt' id='pbs'>Lưu kế hoạch này</button><button class='bt' id='pbn'>Tạo kế hoạch mới</button></div><div class='sub' style='margin-top:6px'>“Tạo kế hoạch mới” dùng các thông tin trên (hãy đổi tên và ngày) và bắt đầu với dữ liệu tập trống.</div><div id='pm' class='msg'></div></div>";
 h+="<h2>Các kế hoạch</h2>";ST.pl.forEach(function(q){var DD=build(q),s=sumFor(q);h+="<div class='card'><div class='dh'><b>"+esc(q.name)+"</b><span class='tp'>"+(q.id==ST.cur?"Đang dùng":"")+"</span></div><div class='sub'>"+fY(DD[0].d)+" – "+fY(pd(q.race))+" · "+dk(q).lb+" · Mục tiêu "+hms(q.goal)+" · "+s.n+"/"+s.tot+" buổi</div>";
@@ -390,23 +410,33 @@ var po="<option value=''>Không thuộc kế hoạch nào</option>";ST.pl.forEac
 h+="<h2>Kết quả thi đấu</h2><div class='card'><div class='sub'>Ghi lại kết quả mỗi giải và các bài test để làm cơ sở cho kế hoạch sau.</div><div class='fm' style='margin-top:8px'><input type='hidden' id='rid'><div><label>Tên giải hoặc bài chạy</label><input id='rn' value='"+esc(p.name)+"'></div><div class='g2'><div><label>Ngày</label><input type='date' id='rd' value='"+(pd(p.race)<=TODAY?p.race:ds(TODAY))+"'></div><div><label>Cự ly (km)</label><div class='df'>"+ksel("id='rk_i'","id='rk_d'",21.0975,false)+"</div></div></div><div class='df'><button class='bt' data-km='5'>5K</button><button class='bt' data-km='10'>10K</button><button class='bt' data-km='21.0975'>HM</button><button class='bt' data-km='42.195'>FM</button></div><div class='g2'><div><label>Thời gian (h:mm:ss)</label><input id='rt' data-tm='auto' inputmode='numeric' autocomplete='off' placeholder='01:41:32'></div><div><label>Thuộc kế hoạch</label><select id='rp'>"+po+"</select></div></div><div><label>Ghi chú (chiến thuật, cảm nhận, pace từng đoạn)</label><textarea id='rx' rows='3'></textarea></div></div><div class='df' style='margin-top:8px'><button class='bt' id='rbs'>Lưu kết quả</button><button class='bt' id='rbc'>Xóa form</button></div><div id='rm' class='msg'></div></div>";
 ST.rs.slice().sort(function(a,b){return a.date<b.date?1:-1}).forEach(function(r){var pace=r.time/r.dist,gd="";if(r.g){var df=r.time-r.g;gd=" · "+(df<=0?"nhanh hơn":"chậm hơn")+" mục tiêu "+hms(Math.abs(df))}
 h+="<div class='card'><div class='dh'><b>"+esc(r.name)+"</b><span class='tp'>"+fY(pd(r.date))+"</span></div><div class='ds'>"+kmS(r.dist)+" km · <b>"+hms(r.time)+"</b> · "+pc(pace)+"/km"+gd+"</div>"+(r.sum?"<div class='sub'>Tập luyện: "+r.sum.n+"/"+r.sum.tot+" buổi, "+r.sum.km+" km thực tế, buổi dài nhất "+kmS(r.sum.lg)+" km, "+r.sum.wk+" tuần</div>":"")+(r.note?"<div class='ds'>"+esc(r.note).replace(/\n/g,"<br>")+"</div>":"")+"<div class='df' style='margin-top:8px'><button class='bt' data-re='"+r.id+"'>Sửa</button><button class='bt dg' data-rd='"+r.id+"'>Xóa</button></div></div>"});
-var ao="";[[0,"Không nhắc"],[15,"15 phút"],[30,"30 phút"],[60,"1 giờ"]].forEach(function(x){ao+="<option value='"+x[0]+"'"+(ST.ics.a==x[0]?" selected":"")+">"+x[1]+"</option>"});
-h+="<h2>Xuất lịch (.ics)</h2><div class='card fm'><div class='sub'>Tạo file lịch các buổi tập từ hôm nay đến ngày thi để thêm vào Lịch của điện thoại. Giờ theo múi giờ của máy.</div><div class='g2'><div><label>Giờ bắt đầu</label><input type='time' id='it' value='"+esc(ST.ics.t)+"'></div><div><label>Nhắc trước</label><select id='ia'>"+ao+"</select></div></div><div class='df'><button class='bt' id='ibx'>Xuất file .ics</button></div><div id='im' class='msg'></div></div>";
-h+=pushCard();
-h+="<h2>Sao lưu dữ liệu</h2><div class='card'><div class='sub'>Xuất rồi lưu vào Ghi chú. Dán lại và bấm Khôi phục khi đổi máy hoặc mất dữ liệu. Bản sao lưu gồm mọi kế hoạch, ghi chú và kết quả.</div><textarea id='bx' rows='6'></textarea><div class='df' style='margin-top:8px'><button class='bt' id='bxo'>Xuất</button><button class='bt' id='bxc'>Sao chép</button><button class='bt' id='bxr'>Khôi phục</button></div></div>";
+return h}
+function icsCard(){var h="";var ao="";[[0,"Không nhắc"],[15,"15 phút"],[30,"30 phút"],[60,"1 giờ"]].forEach(function(x){ao+="<option value='"+x[0]+"'"+(ST.ics.a==x[0]?" selected":"")+">"+x[1]+"</option>"});
+h+="<h2>Xuất lịch (.ics)</h2><div class='card fm'><div class='sub'>Tạo file lịch các buổi tập từ hôm nay đến ngày thi đấu để thêm vào Lịch của điện thoại. Giờ theo múi giờ của máy.</div><div class='g2'><div><label>Giờ bắt đầu</label><input type='time' id='it' value='"+esc(ST.ics.t)+"'></div><div><label>Nhắc trước</label><select id='ia'>"+ao+"</select></div></div><div class='df'><button class='bt' id='ibx'>Xuất file .ics</button></div><div id='im' class='msg'></div></div>";
+return h}
+function backupCard(){var h="";h+="<h2>Sao lưu dữ liệu</h2><div class='card'><div class='sub'>Xuất rồi lưu vào Ghi chú. Dán lại và bấm Khôi phục khi đổi máy hoặc mất dữ liệu. Bản sao lưu gồm mọi kế hoạch, ghi chú và kết quả, không gồm cấu hình thông báo đẩy.</div><textarea id='bx' rows='6'></textarea><div class='df' style='margin-top:8px'><button class='bt' id='bxo'>Xuất</button><button class='bt' id='bxc'>Sao chép</button><button class='bt' id='bxr'>Khôi phục</button></div></div>";
 return h}
 function shoes(){var m={};ST.pl.forEach(function(p){for(var k in p.n)if(p.n[k].g)m[p.n[k].g]=1});E("shoes").innerHTML=Object.keys(m).map(function(g){return"<option value=\""+esc(g)+"\">"}).join("")}
-function hd(){var s=document.querySelector("section.on"),t=s&&s.querySelector("h1"),b=t&&t.nextElementSibling;E("hdi").innerHTML=t?"<h1>"+t.innerHTML+"</h1>"+(b&&b.classList.contains("sub")?"<div class='sub'>"+b.innerHTML+"</div>":""):""}
-function renderAll(){CP=cur();D=build(CP);TODAY=day0();E("s0").innerHTML=today();E("s1").innerHTML=cal();E("s2").innerHTML=paceTab();E("s3").innerHTML=raceTab();E("s4").innerHTML=planTab();E("s5").innerHTML=setTab();shoes();
+var LGT="";
+function greetTxt(){var hh=new Date().getHours(),n=((ST.me&&ST.me.name)||"").trim();return(hh>=4&&hh<11?"Chào buổi sáng":hh>=11&&hh<14?"Chào buổi trưa":hh>=14&&hh<18?"Chào buổi chiều":"Chào buổi tối")+", "+esc(n||"Vận động viên")}
+function fit1(el){var mx=+el.dataset.max||24,mn=+el.dataset.min||11,z=mx;el.style.whiteSpace="";el.style.overflow="";el.style.fontSize=z+"px";if(!el.clientWidth)return;while(z>mn&&el.scrollWidth>el.clientWidth+1){z-=.5;el.style.fontSize=z+"px"}if(el.dataset.wrap&&el.scrollWidth>el.clientWidth+1){el.style.whiteSpace="normal";el.style.overflow="visible"}}
+function fitAll(){document.querySelectorAll(".fit").forEach(fit1)}
+window.addEventListener("resize",fitAll);
+function hd(){var s=document.querySelector("section.on"),t=s&&s.querySelector("h1"),b=t&&t.nextElementSibling;
+if(s&&s.id=="s0"){LGT=greetTxt();E("hdi").innerHTML="<h1 class='fit' data-wrap='1' data-max='22' data-min='13'>"+LGT+"</h1>"}
+else E("hdi").innerHTML=t?"<h1>"+t.innerHTML+"</h1>"+(b&&b.classList.contains("sub")?"<div class='sub'>"+b.innerHTML+"</div>":""):"";
+try{fitAll()}catch(x){}}
+setInterval(function(){if(actTab()==0&&greetTxt()!=LGT)hd()},20000);
+function renderAll(){CP=cur();D=build(CP);TODAY=day0();E("s0").innerHTML=today();E("s1").innerHTML=cal();E("s2").innerHTML=paceTab();E("s3").innerHTML=raceTab();E("s4").innerHTML=planTab();E("s5").innerHTML=setTab();E("s6").innerHTML=abTab();shoes();
 var c=document.querySelector('#s1 .d[data-k="'+fk(TODAY)+'"]');if(c)c.classList.add("today");calc();planInfo();volInfo();hd()}
 function goTab(n){document.querySelectorAll("nav button").forEach(function(x){x.classList.toggle("on",+x.dataset.t==n)});document.querySelectorAll("section").forEach(function(x,j){x.classList.toggle("on",j==n)});hd();document.querySelector("main").scrollTop=0;if(n==1){var c=document.querySelector("#s1 .d.today");if(c)c.scrollIntoView({block:"center"})}}
 function paint(k){var dn=!!CP.v[k];document.querySelectorAll('.d[data-k="'+k+'"]').forEach(function(x){x.classList.toggle("done",dn);x.classList.toggle("miss",x.dataset.p=="1"&&!dn)})}
 function msg(id,t,err){var e=E(id);if(!e)return;e.textContent=t;e.classList.toggle("err",!!err)}
 /* ---- kế hoạch ---- */
-function planInfo(){var el=E("pi");if(!el)return;var s=E("ps").value,r=E("pr").value;if(!s||!r){el.textContent="";return}var S=pd(s),R=pd(r),N=weeks(S,R);if(R<=S||N<6||N>20){el.textContent="Khoảng từ ngày bắt đầu đến ngày thi cần 6–20 tuần (hiện "+N+" tuần).";return}
-var st=new Date(R.getFullYear(),R.getMonth(),R.getDate()-(7*N-1));el.textContent="Kế hoạch "+N+" tuần, bắt đầu "+fY(st)+(N<11?". Rút gọn từ mẫu 11 tuần (bỏ bớt các tuần đầu).":N>11?". Kéo dài từ mẫu 11 tuần (thêm tuần ổn định nền ở đầu).":".")+(R.getDay()!=0?" Ngày thi không phải Chủ nhật nên các buổi sẽ lệch ngày trong tuần so với mẫu.":"")}
+function planInfo(){var el=E("pi");if(!el)return;var s=E("ps").value,r=E("pr").value;if(!s||!r){el.textContent="";return}var S=pd(s),R=pd(r),N=weeks(S,R);if(R<=S||N<6||N>20){el.textContent="Khoảng từ ngày bắt đầu đến ngày thi đấu cần 6–20 tuần (hiện "+N+" tuần).";return}
+var st=new Date(R.getFullYear(),R.getMonth(),R.getDate()-(7*N-1));el.textContent="Kế hoạch "+N+" tuần, bắt đầu "+fY(st)+(N<11?". Rút gọn từ mẫu 11 tuần (bỏ bớt các tuần đầu).":N>11?". Kéo dài từ mẫu 11 tuần (thêm tuần ổn định nền ở đầu).":".")+(R.getDay()!=0?" Ngày thi đấu không phải Chủ nhật nên các buổi sẽ lệch ngày trong tuần so với mẫu.":"")}
 function readPlan(){var name=E("pn").value.trim(),s=E("ps").value,r=E("pr").value,g=pt(E("pa").value,"h"),b=E("pb2").value.trim()?pt(E("pb2").value,"h"):0;
-if(!name)return{err:"Nhập tên giải."};if(!s||!r)return{err:"Chọn ngày bắt đầu và ngày thi."};var S=pd(s),R=pd(r),N=weeks(S,R);if(R<=S||N<6||N>20)return{err:"Khoảng từ ngày bắt đầu đến ngày thi cần 6–20 tuần."};
+if(!name)return{err:"Nhập tên giải."};if(!s||!r)return{err:"Chọn ngày bắt đầu và ngày thi đấu."};var S=pd(s),R=pd(r),N=weeks(S,R);if(R<=S||N<6||N>20)return{err:"Khoảng từ ngày bắt đầu đến ngày thi đấu cần 6–20 tuần."};
 var dst=E("pdist").value,dd=DS[dst]||DS["21"];if(g<dd.mn||g>dd.mx)return{err:"Mục tiêu A không hợp lệ cho cự ly "+dd.lb+" (ví dụ "+hmsF(dst=="5"?1200:dst=="10"?2520:dst=="42"?12600:6000)+")."};if(!b)b=g+Math.max(10,Math.round(g*.02/10)*10);if(b<=g)return{err:"Dự phòng B phải chậm hơn mục tiêu A."};
 return{name:name,start:ds(new Date(R.getFullYear(),R.getMonth(),R.getDate()-(7*N-1))),race:r,goal:g,alt:b,dist:dst,vol:E("pv").value==="auto"?"auto":+E("pv").value}}
 /* ---- kết quả ---- */
@@ -460,6 +490,58 @@ else{var reg2=await navigator.serviceWorker.ready,s2=await reg2.pushManager.getS
 /* mỗi lần mở app: đồng bộ lại lịch (kế hoạch/tiến độ có thể đã đổi) */
 setTimeout(function(){var c=pget();if(c.on&&pushSup()&&Notification.permission=="granted"&&!PSYNC){PSYNC=1;pushSub().catch(function(){})}},3000);
 
+/* ---- Giới thiệu, hướng dẫn, cập nhật phiên bản ---- */
+var APP={ver:"1.1.0",date:"2026-10-13"},OWN={name:"Hùng",phone:"",email:""},AK="hm26a",UPD=null,LCK=0,
+NOTES=["Đổi “Ngày thi” thành “Ngày thi đấu”.","Lời chào và tên vận động viên nằm cố định ở tiêu đề Trang chủ; thông tin giải tự co chữ cho vừa một dòng.","Thu phóng theo các mức cố định 50, 75, 85, 100, 125, 175, 200%.","Xuất lịch, nhắc tập và sao lưu chuyển vào ⚙️ Cài đặt.","Thêm mục Giới thiệu (ℹ️): phiên bản, người thiết kế, hướng dẫn, kiểm tra cập nhật."],
+GUIDE=[
+["Cài app lên iPhone","Mở trang của app bằng <b>Safari</b> → nút Chia sẻ → <b>Thêm vào Màn hình chính</b> → mở app từ biểu tượng vừa tạo. Sau lần đầu app chạy được cả khi mất mạng (riêng thời tiết và kiểm tra cập nhật cần internet). Thông báo đẩy cần iOS 16.4 trở lên."],
+["Trang chủ","Tiêu đề trên cùng là lời chào theo giờ kèm tên của anh (đặt ở ⚙️ Cài đặt → Hồ sơ). Thẻ giải chạy ghi tên giải, ngày thi đấu, cự ly, mục tiêu và số ngày còn lại. Bên dưới là buổi tập hôm nay, ngày mai, gợi ý pace và nhịp tim, dải 7 ngày của tuần (bấm một ngày để nhảy sang Lịch) và biểu đồ km theo tuần."],
+["Lịch: tick buổi tập, nhập km, ghi chú","Mở từng tuần để xem các ngày. Bấm <b>✔</b> khi tập xong, chọn <b>km thực tế</b> bằng hai ô số, bấm <b>📝</b> để ghi mức nặng (RPE), giày và cảm giác. Mục <b>Chi tiết &amp; lưu ý</b> hướng dẫn cách tập từng buổi. Ngày đã qua mà chưa tick sẽ hiện màu “bỏ lỡ”."],
+["Giải: tạo và sửa kế hoạch","Ở tab Giải, anh nhập tên giải, ngày bắt đầu, <b>ngày thi đấu</b>, cự ly, mục tiêu A và dự phòng B, khối lượng tập. <b>Lưu kế hoạch này</b> để sửa kế hoạch đang dùng (tick và km giữ nguyên), <b>Tạo kế hoạch mới</b> để thêm giải khác. Phần Kết quả thi đấu dùng để ghi giờ chạy các giải và bài test, làm cơ sở gợi ý mục tiêu về sau."],
+["Pace và Ngày thi đấu","Tab <b>Pace</b> cho vùng pace E/T/I và pace thi đấu (cùng nhịp tim nếu đã nhập ngày sinh), cùng công cụ chốt mục tiêu sau test 5K. Tab <b>Race Day</b> cho bảng mốc thời gian, chiến thuật chạy và gợi ý dinh dưỡng của cự ly đang chọn."],
+["Cài đặt ⚙️","Gồm: Hồ sơ người tập (tên, ngày sinh, chiều cao, cân nặng, nhịp tim tối đa), Giao diện (nền và màu nhấn), <b>Xuất lịch .ics</b> để đưa các buổi tập vào Lịch của iPhone, <b>Nhắc tập bằng thông báo đẩy</b> (cần Cloudflare Worker, xem HANDOFF.md) và <b>Sao lưu dữ liệu</b>. Sửa hồ sơ xong nhớ bấm Lưu và thoát."],
+["Thu phóng cỡ chữ","Bấm nút phần trăm ở góc phải tiêu đề, chọn một trong các mức 50, 75, 85, 100, 125, 175, 200%. Cũng có thể chụm hai ngón tay trên nội dung, app tự nhảy tới mức gần nhất. Mức đã chọn được nhớ cho lần sau."],
+["Sao lưu và đổi máy","Vào ⚙️ Cài đặt → Sao lưu dữ liệu: bấm <b>Xuất</b>, <b>Sao chép</b> rồi dán vào Ghi chú. Trên máy mới, dán lại đúng văn bản đó và bấm <b>Khôi phục</b>. Nên sao lưu sau mỗi tuần tập. Cấu hình thông báo đẩy không nằm trong bản sao lưu, phải bật lại trên máy mới."],
+["Cập nhật phiên bản","Khi mở app có internet, app tự kiểm tra bản mới. Nếu có, biểu tượng ℹ️ hiện chấm đỏ và có thanh thông báo. Vào mục này, bấm <b>Cập nhật ngay</b>. Dữ liệu tập luyện không bị mất khi cập nhật."],
+["Lưu ý an toàn","Giáo án, pace và nhịp tim chỉ là ước tính để tham khảo. Đau nhói kéo dài, chóng mặt, tức ngực hay có bệnh nền thì nên dừng tập và hỏi ý kiến bác sĩ hoặc huấn luyện viên."]];
+function vnum(v){return String(v||"").split(".").map(function(x){return parseInt(x,10)||0})}
+function vcmp(a,b){a=vnum(a);b=vnum(b);for(var i=0;i<4;i++){var x=a[i]||0,y=b[i]||0;if(x!=y)return x>y?1:-1}return 0}
+function okVer(v){return typeof v=="string"&&/^\d+(\.\d+){0,3}$/.test(v)}
+function sv(x){return typeof x=="string"?x.trim().slice(0,120):""}
+function fmtDate(x){return/^\d{4}-\d{2}-\d{2}$/.test(x||"")?fY(pd(x)):esc(sv(x))}
+function abData(){var c=null;try{c=JSON.parse(localStorage.getItem(AK))}catch(e){}return c&&c.j&&typeof c.j=="object"?c.j:null}
+function owner(){var j=abData(),o=(j&&j.owner)||{};return{name:sv(o.name)||OWN.name,phone:sv(o.phone)||OWN.phone,email:sv(o.email)||OWN.email}}
+function ownCard(){var o=owner(),ph=o.phone?(/^[+\d\s().-]{6,20}$/.test(o.phone)?"<a href='tel:"+esc(o.phone.replace(/[^\d+]/g,""))+"' style='color:var(--pri)'>"+esc(o.phone)+"</a>":esc(o.phone)):"<span class='sub'>Chưa cập nhật</span>",
+em=o.email?(/^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/.test(o.email)?"<a href='mailto:"+esc(o.email)+"' style='color:var(--pri)'>"+esc(o.email)+"</a>":esc(o.email)):"<span class='sub'>Chưa cập nhật</span>";
+return"<table class='abt'><tr><td>Họ tên</td><td><b>"+esc(o.name)+"</b></td></tr><tr><td>Điện thoại</td><td>"+ph+"</td></tr><tr><td>Email</td><td>"+em+"</td></tr></table><div class='sub' style='margin-top:6px'>Thông tin này do chủ sở hữu quản lý trong file version.json của app trên GitHub. Người dùng khác không sửa được trong app.</div>"}
+function upCard(){var u=UPD,h="",nw=!!(u&&u.ok&&u.newer);
+if(nw)h+="<div class='sub'>🔔 Có bản mới <b>"+esc(u.j.ver)+"</b> (ngày "+fmtDate(u.j.date)+"). Bấm Cập nhật ngay để dùng.</div>";
+else if(u&&u.ok)h+="<div class='sub'>✅ Đang dùng bản mới nhất ("+esc(APP.ver)+").</div>";
+else if(u)h+="<div class='sub'>Không kiểm tra được. Cần kết nối internet.</div>";
+else h+="<div class='sub'>Bấm Kiểm tra cập nhật để xem có bản mới không (cần internet).</div>";
+var nt=nw?u.j.notes:NOTES;if(Array.isArray(nt)&&nt.length)h+="<div class='dt'><b>"+(nw?"Có gì mới":"Bản "+esc(APP.ver)+" có gì")+"</b><ul>"+nt.slice(0,8).map(function(x){return"<li>"+esc(sv(x)||x)+"</li>"}).join("")+"</ul></div>";
+return h+"<div class='df' style='margin-top:8px'><button class='bt' id='upchk'>Kiểm tra cập nhật</button><button class='bt"+(nw?" pri":"")+"' id='upnow'>"+(nw?"Cập nhật ngay":"Tải lại bản mới nhất")+"</button></div><div id='upm' class='msg'></div>"}
+function abTab(){var ic=(document.querySelector('link[rel="apple-touch-icon"]')||{}).href||"";
+var h="<h1>Giới thiệu</h1><div class='sub'>Phiên bản, người thiết kế, hướng dẫn sử dụng</div>";
+h+="<div class='card'><div class='abh'>"+(ic?"<img src='"+esc(ic)+"' alt=''>":"")+"<div><b style='font-size:20px'>My Race</b><div class='sub'>Lịch tập chạy bộ. Miễn phí, chạy ngay trên trình duyệt.</div></div></div><table class='abt' style='margin-top:8px'><tr><td>Phiên bản</td><td><b>"+esc(APP.ver)+"</b></td></tr><tr><td>Ngày cập nhật</td><td>"+fmtDate(APP.date)+"</td></tr><tr><td>Dữ liệu</td><td>Lưu ngay trên máy, nhớ sao lưu ở ⚙️ Cài đặt</td></tr></table></div>";
+h+="<h2>Cập nhật phiên bản</h2><div class='card' id='upc'>"+upCard()+"</div><h2>Người thiết kế</h2><div class='card' id='owc'>"+ownCard()+"</div><h2>Hướng dẫn sử dụng</h2>";
+GUIDE.forEach(function(g){h+="<details class='gd'><summary>"+g[0]+"</summary><div class='dt'>"+g[1]+"</div></details>"});
+return h+"<div class='sticky'><button class='bt' id='abc'>Đóng</button></div>"}
+function markUpd(){var d=E("abd"),c=E("upc"),o=E("owc");if(d)d.hidden=!(UPD&&UPD.ok&&UPD.newer);if(c)c.innerHTML=upCard();if(o)o.innerHTML=ownCard()}
+function checkUpd(quiet){LCK=Date.now();return fetch("version.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 1;return r.json()}).then(function(j){if(!j||!okVer(j.ver))throw 1;try{localStorage.setItem(AK,JSON.stringify({t:Date.now(),j:j}))}catch(e){}UPD={ok:1,j:j,newer:vcmp(j.ver,APP.ver)>0};markUpd();return UPD}).catch(function(){if(!quiet){UPD={ok:0};markUpd()}return null})}
+function showUb(v){var b=E("ub");b.innerHTML="<span>🔔 Có phiên bản mới "+esc(v)+"</span><button type='button' id='ubg'>Xem</button><button type='button' id='ubx' aria-label='Đóng'>✕</button>";b.hidden=false}
+function hideUb(){var b=E("ub");b.hidden=true;try{if(UPD&&UPD.j)localStorage.setItem("hm26un",UPD.j.ver)}catch(e){}}
+function autoUpd(){if(LCK&&Date.now()-LCK<216e5)return;checkUpd(true).then(function(u){if(u&&u.ok&&u.newer){var k="";try{k=localStorage.getItem("hm26un")}catch(e){}if(k!=u.j.ver)showUb(u.j.ver)}})}
+async function doUpd(){msg("upm","Đang tải bản mới nhất…");try{var j=await(await fetch("version.json",{cache:"no-store"})).json();if(!j||!okVer(j.ver))throw 1;
+await Promise.all([location.pathname,"index.html","sw.js","version.json","manifest.webmanifest"].map(function(f){return fetch(f,{cache:"reload"}).catch(function(){return null})}));
+try{var rg=await navigator.serviceWorker.getRegistration();if(rg)await rg.update()}catch(x){}}catch(x){msg("upm","Không cập nhật được. Hãy kiểm tra kết nối internet rồi thử lại.",1);return}
+location.reload()}
+document.addEventListener("click",function(e){var t=e.target;if(!t.closest)return;
+if(t.closest("#upchk")){msg("upm","Đang kiểm tra…");checkUpd(false);return}
+if(t.closest("#upnow")){doUpd();return}
+if(t.closest("#ubg")){hideUb();if(actTab()!=5&&actTab()!=6)PT=actTab();goTab(6);return}
+if(t.closest("#ubx")){hideUb()}});
+(function(){var c=abData();if(c&&okVer(c.ver))UPD={ok:1,j:c,newer:vcmp(c.ver,APP.ver)>0}})();
 /* ---- sự kiện ---- */
 function upd(e){var x=e.target,nk=x.dataset&&x.dataset.nk,k=x.dataset&&x.dataset.k;
 if(x.dataset&&x.dataset.tm){if(e.type=="input")tin(e);if(x.id=="pa")volInfo();return}
@@ -475,7 +557,8 @@ document.addEventListener("click",function(e){var t=e.target,b,id=t.id;
 if(b=t.closest(".ck")){var k=b.dataset.k;CP.v[k]=!CP.v[k];save();paint(k);calc();return}
 if(b=t.closest(".nb")){var np=b.closest(".d").querySelector(".np");np.hidden=!np.hidden;return}
 if(b=t.closest("nav button")){goTab(+b.dataset.t);return}
-if(id=="gs"){var at=actTab();if(at!=5)PT=at;goTab(5);return}
+if(t.closest("#gs")||t.closest("#ab")){var at=actTab(),tg=t.closest("#ab")?6:5;if(at!=5&&at!=6)PT=at;goTab(tg);if(tg==6)checkUpd(true);return}
+if(id=="abc"){goTab(PT>=0&&PT<5?PT:0);return}
 if(b=t.closest("[data-sk]")){ST.ui.skin=b.dataset.sk;save();applyUI();markUI();return}
 if(b=t.closest("[data-ac]")){ST.ui.acc=b.dataset.ac;save();applyUI();markUI();return}
 if(id=="mbc"){goTab(PT>=0&&PT!=5?PT:0);return}
@@ -493,9 +576,9 @@ if(b=t.closest("[data-rd]")){if(confirm("Xóa kết quả này?")){ST.rs=ST.rs.f
 if(id=="sg"){e.preventDefault();var g=sugg((DS[E("pdist").value]||DS["21"]).k);if(g){E("pa").value=hmsF(g.t);E("pb2").value=hmsF(g.t+Math.max(10,Math.round(g.t*.02/10)*10));volInfo()}return}
 if(id=="pbs"||id=="pbn"){var o=readPlan();if(o.err){msg("pm",o.err,1);return}
 if(id=="pbs"){for(var f in o)CP[f]=o[f];save();renderAll();msg("pm","Đã lưu kế hoạch. Dữ liệu tick và km giữ theo từng ngày.")}
-else{var dup=ST.pl.some(function(x){return x.name==o.name&&x.race==o.race});if(dup){msg("pm","Đã có kế hoạch cùng tên và ngày thi. Hãy đổi tên hoặc ngày.",1);return}o.id="p"+Date.now();o.v={};o.k={};o.n={};ST.pl.push(o);ST.cur=o.id;save();renderAll();msg("pm","Đã tạo và chuyển sang kế hoạch mới.")}return}
+else{var dup=ST.pl.some(function(x){return x.name==o.name&&x.race==o.race});if(dup){msg("pm","Đã có kế hoạch cùng tên và ngày thi đấu. Hãy đổi tên hoặc ngày.",1);return}o.id="p"+Date.now();o.v={};o.k={};o.n={};ST.pl.push(o);ST.cur=o.id;save();renderAll();msg("pm","Đã tạo và chuyển sang kế hoạch mới.")}return}
 if(id=="rbs"){saveRes();return}if(id=="rbc"){renderAll();return}
-if(id=="ibx"){var c=mkIcs();if(!c.n){msg("im","Không còn buổi tập nào từ hôm nay đến ngày thi.",1);return}dl(c.t,"hm-"+CP.race+".ics");msg("im","Đã tạo "+c.n+" buổi. Chọn Lịch (hoặc Thêm vào Lịch) trong bảng chia sẻ để nhập.");return}
+if(id=="ibx"){var c=mkIcs();if(!c.n){msg("im","Không còn buổi tập nào từ hôm nay đến ngày thi đấu.",1);return}dl(c.t,"hm-"+CP.race+".ics");msg("im","Đã tạo "+c.n+" buổi. Chọn Lịch (hoặc Thêm vào Lịch) trong bảng chia sẻ để nhập.");return}
 if(id=="tbc"||id=="tbs"){var s5=pt(E("tb").value,"r"),o5=E("tbo");if(s5<720||s5>2400){o5.textContent="Nhập thời gian 5K dạng mm:ss, ví dụ 21:30.";return}var es=s5*Math.pow(dk(CP).k/5,1.06);
 if(id=="tbs"){addRes("","Test 5K · "+CP.name,ds(TODAY),5,s5,CP.id,"");renderAll();E("tbo").textContent="Đã lưu vào Kết quả thi đấu (tab Giải).";return}
 var kk=dk(CP).k,tl=Math.max(6,Math.round(60*kk/HMD)),st=kk<=10?10:60,v=es<=CP.goal+tl?"Giữ mục tiêu A.":(es<=CP.alt+tl?"Giữ A, sẵn sàng chuyển B nếu nặng giữa chặng.":"Nên cân nhắc đặt mục tiêu chính quanh "+hms(Math.ceil(es/st)*st)+" (sửa trong tab Giải).");
@@ -504,8 +587,8 @@ var bx=E("bx");
 if(id=="bxo"){var L=["HM26 · "+CP.name+" · tick và km thực tế"];D.forEach(function(o){if(CP.v[o.k]||CP.k[o.k])L.push(fD(o.d)+" "+(CP.v[o.k]?"✔":"–")+" "+(CP.k[o.k]?CP.k[o.k]+" km":""))});ST.rs.forEach(function(r){L.push("KQ "+r.name+" "+fY(pd(r.date))+" "+kmS(r.dist)+" km "+hms(r.time))});L.push("HM26DATA:"+JSON.stringify(ST));bx.value=L.join(String.fromCharCode(10))}
 else if(id=="bxc"&&bx.value){bx.select();bx.setSelectionRange(0,999999);try{navigator.clipboard.writeText(bx.value)}catch(x){}try{document.execCommand("copy")}catch(x){}}
 else if(id=="bxr"){var m=bx.value.split("HM26DATA:")[1];try{var q2=JSON.parse(m);if(q2&&((q2.pl&&q2.pl.length)||(q2.v&&q2.k))){ST=fix(mig(q2));save();location.reload()}else{throw 1}}catch(x){alert("Không đọc được dữ liệu. Hãy dán đủ cả dòng HM26DATA.")}}});
-document.addEventListener("visibilitychange",function(){if(!document.hidden&&day0().getTime()!=TODAY.getTime())renderAll()});
-ST=load();applyUI();renderAll();
+document.addEventListener("visibilitychange",function(){if(document.hidden)return;if(day0().getTime()!=TODAY.getTime())renderAll();else if(actTab()==0&&greetTxt()!=LGT)hd();autoUpd()});
+ST=load();applyUI();renderAll();markUpd();setTimeout(autoUpd,4000);
 
 (function(){var LAT=21.3227,LON=105.4019,KEY="hm26w",E=function(i){return document.getElementById(i)};
 function p2(n){return(n<10?"0":"")+n}
@@ -523,13 +606,18 @@ fetch(u).then(function(r){if(!r.ok)throw 1;return r.json()}).then(function(j){va
 function init(){var o=load();if(o&&Date.now()-o.t<6e5){show(o,false)}else{if(o)show(o,true);get()}}
 init();setInterval(get,9e5);
 document.addEventListener("visibilitychange",function(){if(!document.hidden){tick();var o=load();if(!o||Date.now()-o.t>6e5)get()}})})();
-(function(){var M=document.querySelector("main"),z=1,Z=0,d0=0,z0=1;try{Z=parseFloat(localStorage.getItem("hm26z"))||1}catch(e){}
-var R=document.getElementById("zr");function set(v){z=Math.max(.8,Math.min(2.5,v));document.documentElement.style.setProperty("--z",z);R.textContent=Math.round(z*100)+"%";R.classList.toggle("on",Math.abs(z-1)>.01)}set(Z||1);
-R.addEventListener("click",function(){set(1);try{localStorage.setItem("hm26z",1)}catch(x){}});
+(function(){var M=document.querySelector("main"),LV=[50,75,85,100,125,175,200],z=0,d0=0,z0=100,R=document.getElementById("zr"),P=document.getElementById("zp");
+function snap(v){var b=LV[0];LV.forEach(function(x){if(Math.abs(Math.log(x/v))<Math.abs(Math.log(b/v)))b=x});return b}
+function save(){try{localStorage.setItem("hm26z2",z)}catch(x){}}
+function set(v,sv,f){var n=snap(Math.max(1,v||100));if(n==z&&!f)return;z=n;document.documentElement.style.setProperty("--z",z/100);R.textContent=z+"%";R.classList.toggle("on",z!=100);P.querySelectorAll("button[data-z]").forEach(function(b){b.classList.toggle("on",+b.dataset.z==z)});if(sv)save();try{fitAll()}catch(x){}}
+var s0=100;try{s0=parseFloat(localStorage.getItem("hm26z2"))||(parseFloat(localStorage.getItem("hm26z"))||1)*100}catch(e){}set(s0,0,1);
+R.addEventListener("click",function(e){e.stopPropagation();P.hidden=!P.hidden});
+P.addEventListener("click",function(e){e.stopPropagation();var b=e.target.closest("button[data-z]");if(b){set(+b.dataset.z,1);P.hidden=true}});
+document.addEventListener("click",function(e){if(!P.hidden&&!P.contains(e.target))P.hidden=true});
 function dist(t){var a=t[0],b=t[1];return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)}
 M.addEventListener("touchstart",function(e){if(e.touches.length==2){d0=dist(e.touches);z0=z}},{passive:true});
 M.addEventListener("touchmove",function(e){if(e.touches.length==2&&d0){e.preventDefault();set(z0*dist(e.touches)/d0)}},{passive:false});
-M.addEventListener("touchend",function(e){if(e.touches.length<2&&d0){d0=0;try{localStorage.setItem("hm26z",z)}catch(x){}}});
+M.addEventListener("touchend",function(e){if(e.touches.length<2&&d0){d0=0;save()}});
 ["gesturestart","gesturechange","gestureend"].forEach(function(n){document.addEventListener(n,function(e){e.preventDefault()},{passive:false})})})();
 try{if("serviceWorker" in navigator&&location.protocol!="file:")navigator.serviceWorker.register("sw.js")}catch(e){}
 </script>
