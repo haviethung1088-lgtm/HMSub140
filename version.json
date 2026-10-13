@@ -1,13 +1,14 @@
 {
-  "ver": "1.2.1",
+  "ver": "1.2.2",
   "date": "2026-10-13",
   "owner": {
-    "name": "Hà Việt Hùng",
-    "phone": "0968xxx888",
-    "email": "haviethung1088@gmail.com"
+    "name": "Hùng",
+    "phone": "",
+    "email": ""
   },
   "notes": [
-    "Sửa lỗi cú pháp gây treo app khi khởi động (bản vá 1.2.1).",
+    "Bản 1.2.2: sửa dòng tên giải bị cắt ở các mức thu phóng và hiện tượng trang trượt ngang khi cuộn.",
+    "Điều chỉnh thẻ màu giao diện cho thanh trạng thái Safari/iPhone.",
     "Sao lưu thành file JSON, chia sẻ/tải file, nhắc hàng tuần và xác nhận trước khi khôi phục.",
     "Mạng yếu: ưu tiên bản đã lưu, tải mới ngầm; tự cập nhật khi có phiên bản mới.",
     "Sửa thông tin độ dài giáo án theo cự ly; vị trí thời tiết có thể nhập hoặc lấy GPS.",
