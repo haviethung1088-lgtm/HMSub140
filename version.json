@@ -1,12 +1,13 @@
 {
-  "ver": "1.2.16",
-  "date": "2026-10-13",
+  "ver": "1.2.17",
+  "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
     "phone": "0968xxx888",
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.17: thay icon About và Cài đặt bằng biểu tượng vector đồng bộ, hiện đại hơn.",
     "Bản 1.2.16: biểu tượng thời tiết ban đêm đổi sang trăng theo trạng thái ngày/đêm của dự báo.",
     "Bản 1.2.15: đổi tiêu đề mục Người thiết kế thành Bản quyền thuộc về.",
     "Bản 1.2.14: đưa icon About, Cài đặt và thu phóng về cao độ cũ; vẫn giữ nút trong suốt trên nền tiêu đề.",
