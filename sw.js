@@ -1,5 +1,5 @@
 /* My Race – Service Worker: offline + Web Push */
-var V = "myrace-v2";
+var V = "myrace-v3";
 var ASSETS = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png"];
 
 self.addEventListener("install", function (e) {
@@ -10,19 +10,30 @@ self.addEventListener("activate", function (e) {
     return Promise.all(ks.filter(function (k) { return k !== V; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
-/* Mạng trước, lỗi mạng thì dùng bản đã lưu. Chỉ xử lý file cùng nguồn (thời tiết Open-Meteo đi thẳng ra mạng). */
+/* Dùng bản đã lưu trước, tải bản mới ngầm để app mở nhanh khi mạng yếu. */
 self.addEventListener("fetch", function (e) {
   var r = e.request;
   var u = new URL(r.url);
   if (r.method !== "GET" || u.origin !== self.location.origin) return;
   /* version.json luôn đi thẳng ra mạng để biết chính xác có bản mới hay không (mất mạng thì báo lỗi, không dùng bản cũ) */
   if (/\/version\.json$/.test(u.pathname)) return;
-  e.respondWith(fetch(r).then(function (res) {
-    if (res && res.ok) { var cp = res.clone(); caches.open(V).then(function (c) { c.put(r, cp); }); }
-    return res;
-  }).catch(function () {
-    return caches.match(r).then(function (m) { return m || caches.match("./"); });
+  function network() {
+    return fetch(r).then(function (res) {
+      if (res && res.ok) return caches.open(V).then(function (c) { return c.put(r, res.clone()).then(function () { return res; }); });
+      return res;
+    }).catch(function () { return null; });
+  }
+  /* cache:reload được dùng chủ động khi app phát hiện bản mới; cập nhật cache trước khi tải lại trang. */
+  if (r.cache === "reload") {
+    e.respondWith(network().then(function (res) { return res || caches.match(r).then(function (m) { return m || caches.match("./"); }); }));
+    return;
+  }
+  var fresh = network();
+  e.respondWith(caches.match(r).then(function (cached) {
+    if (cached) return cached;
+    return fresh.then(function (res) { return res || caches.match("./"); });
   }));
+  e.waitUntil(fresh.then(function () {}));
 });
 
 /* Nhận thông báo đẩy từ Worker */

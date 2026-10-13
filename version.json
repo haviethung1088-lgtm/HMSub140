@@ -1,16 +1,16 @@
 {
-  "ver": "1.1.0",
+  "ver": "1.2.0",
   "date": "2026-10-13",
   "owner": {
-    "name": "Hà Việt Hùng",
-    "phone": "0968xxx888",
-    "email": "haviethung1088@gmail.com"
+    "name": "Hùng",
+    "phone": "",
+    "email": ""
   },
   "notes": [
-    "Đổi “Ngày thi” thành “Ngày thi đấu”.",
-    "Lời chào và tên vận động viên nằm cố định ở tiêu đề Trang chủ; thông tin giải tự co chữ cho vừa một dòng.",
-    "Thu phóng theo các mức cố định 50, 75, 85, 100, 125, 175, 200%.",
-    "Xuất lịch, nhắc tập và sao lưu chuyển vào Cài đặt.",
-    "Thêm mục Giới thiệu: phiên bản, người thiết kế, hướng dẫn, kiểm tra cập nhật."
+    "Sao lưu thành file JSON, chia sẻ/tải file, nhắc hàng tuần và xác nhận trước khi khôi phục.",
+    "Mạng yếu: ưu tiên bản đã lưu, tải mới ngầm; tự cập nhật khi có phiên bản mới.",
+    "Sửa thông tin độ dài giáo án theo cự ly; vị trí thời tiết có thể nhập hoặc lấy GPS.",
+    "Thêm màu theme cho thanh trình duyệt và iPhone; tinh chỉnh lời chào, tên vận động viên và tên giải.",
+    "Điều chỉnh long run bán marathon: mẫu cơ sở đỉnh 19 km, khối lượng cao được giới hạn 20 km."
   ]
 }
