@@ -1,13 +1,14 @@
 {
-  "ver": "1.2.2",
+  "ver": "1.2.4",
   "date": "2026-10-13",
   "owner": {
-    "name": "Hùng",
-    "phone": "",
-    "email": ""
+    "name": "Hà Việt Hùng",
+    "phone": "0968xxx88",
+    "email": "haviethung1088@gmail.com"
   },
   "notes": [
-    "Bản 1.2.2: sửa dòng tên giải bị cắt ở các mức thu phóng và hiện tượng trang trượt ngang khi cuộn.",
+    "Bản 1.2.4: thêm hai giao diện Đỏ Burgundy (Dark Cherry) và Băng Thanh (Glacier / Light Blue); cập nhật thông tin chủ sở hữu.",
+    "Bản 1.2.3: bỏ bù chiều rộng gây tràn màn hình ở mức zoom thấp; giữ hàng nút cố định trong khung.",
     "Điều chỉnh thẻ màu giao diện cho thanh trạng thái Safari/iPhone.",
     "Sao lưu thành file JSON, chia sẻ/tải file, nhắc hàng tuần và xác nhận trước khi khôi phục.",
     "Mạng yếu: ưu tiên bản đã lưu, tải mới ngầm; tự cập nhật khi có phiên bản mới.",

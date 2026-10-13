@@ -42,7 +42,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:7px 4px;b
 nav{flex:0 0 auto;display:flex;background:var(--card);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px)}
 nav button{flex:1;border:0;background:none;color:var(--mut);padding:10px 0 8px;font-size:12px}
 nav button b{display:block;font-size:20px;font-weight:400}nav button.on{color:var(--pri);font-weight:600}
-section{display:none;zoom:var(--z,1);width:calc(100% / var(--z,1));max-width:none}section.on{display:block}
+section{display:none;zoom:var(--z,1);width:100%;max-width:100%}section.on{display:block}
 section>h1:first-child,section>h1:first-child+.sub{display:none}
 header{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--ln);padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px}
 #hbar{max-width:640px;margin:0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
@@ -61,7 +61,7 @@ header{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--ln);padd
 #gs{position:absolute;right:60px;top:2px;border:1px solid var(--ln);background:var(--card);border-radius:14px;padding:3px 9px;font-size:14px}#hdi{padding-right:104px}
 .sk{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.skb{height:52px;border:1px solid var(--ln);border-radius:12px;font-size:14px;font-weight:600}.skb.on{box-shadow:0 0 0 2px var(--pri)}
 .ac{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}.acb{width:36px;height:36px;border-radius:50%;border:2px solid var(--ln)}.acb.on{box-shadow:0 0 0 3px var(--tx)}
-.sticky{position:sticky;bottom:0;display:flex;gap:8px;padding:10px 0 4px;background:var(--bg)}.bt.pri{background:var(--pri);color:#fff;border-color:var(--pri)}
+.sticky{position:sticky;bottom:0;display:flex;gap:8px;width:100%;max-width:100%;padding:10px 0 4px;background:var(--bg);overflow:hidden}.sticky>.bt{flex:1 1 0;min-width:0;white-space:nowrap}.bt.pri{background:var(--pri);color:#fff;border-color:var(--pri)}
 .ks{min-width:0;max-width:74px}.fm .ks{max-width:none;flex:1}
 .msg{font-size:13px;margin-top:6px;color:var(--ok)}.msg.err{color:var(--x)}.bt.dg{color:var(--x)}
 :root{color-scheme:light dark}
@@ -69,6 +69,8 @@ header{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--ln);padd
 :root[data-skin="forest"]{color-scheme:light;--bg:#f2f0e6;--card:#fffdf5;--tx:#23301f;--mut:#6b7a5e;--ln:#ddd9c4;--pri:#2f7d4f;--ok:#2f7d4f;--okbg:#dcefd9;--missbg:#f8e3dc}
 :root[data-skin="sunset"]{color-scheme:dark;--bg:#1d1226;--card:#2a1a38;--tx:#fbeee6;--mut:#c3a3b8;--ln:#44284f;--pri:#ff8a5b;--ok:#5fd39a;--okbg:#1f3d3a;--missbg:#4a2030}
 :root[data-skin="carbon"]{color-scheme:dark;--bg:#000;--card:#111;--tx:#f2f2f2;--mut:#9a9a9a;--ln:#262626;--pri:#ff5a36;--ok:#35d07f;--okbg:#0d2c1c;--missbg:#2e1117}
+:root[data-skin="burgundy"]{color-scheme:dark;--bg:#211018;--card:#321923;--tx:#f7e9ec;--mut:#c2a5ad;--ln:#51313e;--pri:#a52b4b;--ok:#61d69a;--okbg:#173a2c;--missbg:#49202e}
+:root[data-skin="glacier"]{color-scheme:light;--bg:#edf6fa;--card:#fff;--tx:#1c2e38;--mut:#6e8490;--ln:#d5e5ed;--pri:#78b9d2;--ok:#279b69;--okbg:#dff3e9;--missbg:#fdeeee}
 
 #ban{max-width:640px;margin:0 auto 8px;padding:10px 14px;border-radius:16px;color:#fff;background:linear-gradient(135deg,rgba(0,0,0,.22),rgba(0,0,0,.52)),var(--pri);box-shadow:0 2px 10px rgba(0,0,0,.18)}
 #ban #hbar{max-width:none;align-items:center}
@@ -198,7 +200,7 @@ function s2l(dd,mm,yy,tz){var dn=jdFromDate(dd,mm,yy),k=Math.floor((dn-2415021.0
 var ld=dn-ms+1,diff=Math.floor((ms-a11)/29),leap=0,lm=diff+11;if(b11-a11>365){var lo=leapOff(a11,tz);if(diff>=lo){lm=diff-1+11;if(diff==lo)leap=1}}if(lm>12)lm-=12;if(lm>=11&&diff<4)ly-=1;return[ld,lm,ly,leap]}
 
 var LC={};function fL(d){var k=fk(d);if(!LC[k]){var a=s2l(d.getDate(),d.getMonth()+1,d.getFullYear(),7);LC[k]="Âm lịch "+a[0]+"/"+a[1]+(a[3]?" nhuận":"")}return LC[k]}
-var SK=[["auto","🌓 Tự động","var(--card)","var(--tx)"],["ocean","Đại dương","#0b1a2b","#e6f0fa"],["forest","Rừng sớm","#f2f0e6","#23301f"],["sunset","Hoàng hôn","#1d1226","#fbeee6"],["carbon","Than đen","#000000","#f2f2f2"]];
+var SK=[["auto","🌓 Tự động","var(--card)","var(--tx)"],["ocean","Đại dương","#0b1a2b","#e6f0fa"],["forest","Rừng sớm","#f2f0e6","#23301f"],["sunset","Hoàng hôn","#1d1226","#fbeee6"],["carbon","Than đen","#000000","#f2f2f2"],["burgundy","🍒 Đỏ Burgundy (Dark Cherry)","#211018","#f7e9ec"],["glacier","🧊 Băng Thanh (Glacier / Light Blue)","#edf6fa","#1c2e38"]];
 var AC=[["","Theo giao diện"],["#ff7a1a","Cam"],["#1fae6b","Xanh lá"],["#8b5cf6","Tím"],["#e8457c","Hồng"],["#2f8bff","Xanh dương"]];
 function applyUI(){var r=document.documentElement,u=ST.ui;if(u.skin&&u.skin!="auto")r.setAttribute("data-skin",u.skin);else r.removeAttribute("data-skin");if(u.acc)r.style.setProperty("--pri",u.acc);else r.style.removeProperty("--pri");var tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=getComputedStyle(r).getPropertyValue("--bg").trim()||"#f4f6fa"}
 function ro(a,b,sel,pad,blank){var o=blank!=null?'<option value="">'+blank+'</option>':"";for(var i=a;i<=b;i++){var v=pad?p2(i):String(i);o+='<option value="'+v+'"'+(sel!=null&&sel!==""&&String(sel)==v?" selected":"")+">"+v+"</option>"}return o}
@@ -506,8 +508,8 @@ else{var reg2=await navigator.serviceWorker.ready,s2=await reg2.pushManager.getS
 setTimeout(function(){var c=pget();if(c.on&&pushSup()&&Notification.permission=="granted"&&!PSYNC){PSYNC=1;pushSub().catch(function(){})}},3000);
 
 /* ---- Giới thiệu, hướng dẫn, cập nhật phiên bản ---- */
-var APP={ver:"1.2.2",date:"2026-10-13"},OWN={name:"Hùng",phone:"",email:""},AK="hm26a",UPD=null,LCK=0,UPDATING=false,
-NOTES=["Sao lưu thành file JSON, chia sẻ/tải file, nhắc hàng tuần và xác nhận trước khi khôi phục.","Mạng yếu: ưu tiên bản đã lưu, tải mới ngầm; tự cập nhật khi có phiên bản mới.","Sửa thông tin độ dài giáo án theo cự ly; vị trí thời tiết có thể nhập hoặc lấy GPS.","Thêm màu theme cho thanh trình duyệt và iPhone; tinh chỉnh lời chào, tên vận động viên và tên giải.","Điều chỉnh long run bán marathon, đỉnh 19 km, dựa trên giáo án tham khảo công khai."],
+var APP={ver:"1.2.4",date:"2026-10-13"},OWN={name:"Hà Việt Hùng",phone:"0968xxx88",email:"haviethung1088@gmail.com"},AK="hm26a",UPD=null,LCK=0,UPDATING=false,
+NOTES=["Thêm giao diện Đỏ Burgundy (Dark Cherry) và Băng Thanh (Glacier / Light Blue).","Cập nhật thông tin chủ sở hữu trong mục Giới thiệu.","Sao lưu thành file JSON, chia sẻ/tải file, nhắc hàng tuần và xác nhận trước khi khôi phục.","Mạng yếu: ưu tiên bản đã lưu, tải mới ngầm; tự cập nhật khi có phiên bản mới.","Sửa thông tin độ dài giáo án theo cự ly; vị trí thời tiết có thể nhập hoặc lấy GPS.","Tinh chỉnh lời chào, tên vận động viên và tên giải."],
 GUIDE=[
 ["Cài app lên iPhone","Mở trang của app bằng <b>Safari</b> → nút Chia sẻ → <b>Thêm vào Màn hình chính</b> → mở app từ biểu tượng vừa tạo. Sau lần đầu app chạy được cả khi mất mạng (riêng thời tiết và kiểm tra cập nhật cần internet). Thông báo đẩy cần iOS 16.4 trở lên."],
 ["Trang chủ","Tiêu đề trên cùng là lời chào theo giờ kèm tên của anh (đặt ở ⚙️ Cài đặt → Hồ sơ). Thẻ giải chạy ghi tên giải, ngày thi đấu, cự ly, mục tiêu và số ngày còn lại. Bên dưới là buổi tập hôm nay, ngày mai, gợi ý pace và nhịp tim, dải 7 ngày của tuần (bấm một ngày để nhảy sang Lịch) và biểu đồ km theo tuần."],
