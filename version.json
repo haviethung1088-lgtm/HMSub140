@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.22",
+  "ver": "1.2.24",
   "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,7 +7,9 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
-    "Bản 1.2.22: đổi Gift code mặc định thành 261218; mở khóa giao diện giới hạn bằng mã hoặc hoàn thành buổi tập và đủ km trong hai tuần liền nhau.",
+    "Bản 1.2.24: mỗi lần nhập Gift code chỉ mở khóa giao diện giới hạn đang chọn; hướng dẫn không hiện mã.",
+    "Bản 1.2.23: thêm ô Optimus Prime bị khóa; chạm vào để xem hướng dẫn mở bằng mã hoặc mục tiêu tập hai tuần.",
+    "Bản 1.2.22: Gift code mở khóa giao diện giới hạn; hoàn thành buổi tập và đủ km trong hai tuần liền nhau cũng là một cách mở khóa.",
     "Bản 1.2.21: thêm giao diện Optimus Prime gồm đồng hồ, bảng màu và icon điều hướng riêng; mở khóa bằng Gift code.",
     "Bản 1.2.20: chọn ngẫu nhiên lời chúc sinh nhật từ nhiều câu và giữ ổn định trong lần mở app.",
     "Bản 1.2.19: thẻ thông tin giải chạy trên Trang chủ dùng cùng tông nền với tiêu đề và tên vận động viên.",
