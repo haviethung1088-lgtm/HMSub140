@@ -1,12 +1,14 @@
 {
-  "ver": "1.2.6",
+  "ver": "1.2.8",
   "date": "2026-10-13",
   "owner": {
     "name": "Hà Việt Hùng",
-    "phone": "0968xxx88",
+    "phone": "0968xxx888",
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.8: đổi tên cự ly thành Half Marathon và Full Marathon; trạng thái phiên bản gọn, phần ghi chú và nút cập nhật nằm trong Xem chi tiết.",
+    "Bản 1.2.7: sửa số điện thoại chủ sở hữu; ngày kế hoạch hiển thị dạng dd/mm/yyyy; sửa co chữ tên giải ở các mức thu phóng.",
     "Bản 1.2.6: thời tiết tự cập nhật mỗi 10 phút, cập nhật ngay sau khi lưu GPS và làm mới khi quay lại app nếu dữ liệu đã cũ.",
     "Bản 1.2.5: thêm năm giao diện Space Black, Cosmic Orange, Lavender, Sage và Mist Blue.",
     "Bản 1.2.4: thêm hai giao diện Đỏ Burgundy (Dark Cherry) và Băng Thanh (Glacier / Light Blue); cập nhật thông tin chủ sở hữu.",
