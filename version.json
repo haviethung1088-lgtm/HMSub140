@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.4",
+  "ver": "1.2.6",
   "date": "2026-10-13",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,8 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.6: thời tiết tự cập nhật mỗi 10 phút, cập nhật ngay sau khi lưu GPS và làm mới khi quay lại app nếu dữ liệu đã cũ.",
+    "Bản 1.2.5: thêm năm giao diện Space Black, Cosmic Orange, Lavender, Sage và Mist Blue.",
     "Bản 1.2.4: thêm hai giao diện Đỏ Burgundy (Dark Cherry) và Băng Thanh (Glacier / Light Blue); cập nhật thông tin chủ sở hữu.",
     "Bản 1.2.3: bỏ bù chiều rộng gây tràn màn hình ở mức zoom thấp; giữ hàng nút cố định trong khung.",
     "Điều chỉnh thẻ màu giao diện cho thanh trạng thái Safari/iPhone.",
