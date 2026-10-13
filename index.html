@@ -86,6 +86,7 @@ nav button b{transition:transform .15s}
 nav button.on{color:var(--pri);font-weight:700;border-color:var(--pri);background:var(--bg)}
 nav button.on b{transform:scale(1.15)}
 @supports(background:color-mix(in srgb,red,blue)){nav button.on{background:color-mix(in srgb,var(--pri) 14%,var(--card))}}
+#hdi .sub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 </style>
 <body>
 <header><div id="ban"><div id="hbar"><div id="clk"><b id="tm">--:--:--</b><span id="dt"></span></div><div id="wx1"></div></div><div id="wx2">Đang tải thời tiết…</div></div>
@@ -227,7 +228,7 @@ var w=null,wt="";try{w=JSON.parse(localStorage.getItem("hm26w"))}catch(e){}
 if(w&&w.c&&Date.now()-w.t<216e5&&o.t!="r"&&o.t!="s"){var tp=w.c.temperature_2m,pr=w.d&&w.d.p;if(pr>=60)wt="Khả năng mưa cao ("+Math.round(pr)+"%): mang áo mưa mỏng, chọn đường an toàn hoặc đổi giờ tập.";else if(tp>=32)wt="Trời nóng ("+Math.round(tp)+"°C): chạy sớm hoặc tối, mang nước, giảm cường độ nếu thấy choáng."}
 return"<div class='card'><div class='ds'><b>Gợi ý hôm nay</b></div>"+(pp.length?"<div class='ds'>Pace: "+pp.join(" · ")+"</div>":"")+"<div class='sub'>"+TIP[o.t]+(o.t=="l"||o.t=="x"?carb():"")+"</div>"+(wt?"<div class='sub' style='margin-top:4px'>"+wt+"</div>":"")+"</div>"}
 function today(){var p=CP,R=pd(p.race),i=Math.round((TODAY-D[0].d)/DAY),left=Math.round((R-TODAY)/DAY),N=D.length,me=ST.me,age=ageOf(),hh=new Date().getHours(),gr=hh<11?"Chào buổi sáng":hh<14?"Chào buổi trưa":hh<18?"Chào buổi chiều":"Chào buổi tối";
-var h="<h1>"+esc(p.name)+"</h1><div class='sub'>Giải ngày "+fY(R)+" ("+fL(R)+") · Mục tiêu "+hms(p.goal)+"</div><div class='card hero'>";
+var h="<h1>"+esc(p.name)+"</h1><div class='sub'>Giải ngày "+fY(R)+" ("+fL(R)+")</div><div class='card hero'>";
 h+="<div class='hi'>"+gr+",</div><div class='hn'>"+(me.name?esc(me.name):"Vận động viên")+"</div><div class='chips'>"+(age>0&&age<110?"<span class='chip'>"+age+" tuổi</span>":"")+"<span class='chip'>Mục tiêu "+hms(p.goal)+" · "+pc(p.goal/HMD)+"/km</span>"+(i>=0&&i<N?"<span class='chip'>Tuần "+(D[i].w+1)+"/"+(N/7)+" · "+esc(D[i].ph)+"</span>":"")+"</div>"+(me.name?"":"<div class='sub' style='margin-bottom:8px'>Nhập tên của bạn trong ⚙️ Cài đặt để hiện ở đây.</div>");
 h+=left>0?"<div class='big'>"+left+" ngày</div><div class='sub'>nữa đến ngày thi đấu"+(left>=7?" (khoảng "+Math.floor(left/7)+" tuần"+(left%7?" "+left%7+" ngày":"")+")":"")+"</div>":(left==0?"<div class='big'>Hôm nay thi!</div>":"<div class='big'>Đã xong</div>");
 h+="<div class='bar'><i id='pb'></i></div><div class='sub' id='pg' style='margin-top:6px'></div></div>";
