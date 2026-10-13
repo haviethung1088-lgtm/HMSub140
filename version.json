@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.12",
+  "ver": "1.2.14",
   "date": "2026-10-13",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,8 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.14: đưa icon About, Cài đặt và thu phóng về cao độ cũ; vẫn giữ nút trong suốt trên nền tiêu đề.",
+    "Bản 1.2.13: bỏ nền và viền riêng quanh About/Cài đặt/thu phóng.",
     "Bản 1.2.12: tăng độ đậm nền bong bóng tiêu đề; thu nhỏ thẻ giao diện và nút màu nhấn.",
     "Bản 1.2.11: tiêu đề tất cả tab có nền pha nhẹ màu nhấn và khung bo cong kiểu bong bóng.",
     "Bản 1.2.10: sửa co tên giải theo chiều rộng chữ thực tế trên màn hình, tránh cắt tên ở các mức thu phóng lớn hơn.",
