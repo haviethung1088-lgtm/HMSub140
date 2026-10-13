@@ -94,6 +94,10 @@ nav button.on b{transform:scale(1.15)}
 .dt{font-size:13px;line-height:1.45;padding:2px 0 6px}.dt b{display:block;margin-top:6px;color:var(--tx)}.dt ul{margin:3px 0 0;padding-left:18px;color:var(--mut)}.dt li{margin:2px 0}
 .d.flash{animation:fl 1.8s}@keyframes fl{0%,65%{box-shadow:0 0 0 3px var(--pri)}100%{box-shadow:0 0 0 0 transparent}}
 .hs .bt{font-size:13px;padding:0 2px;white-space:nowrap}
+.wc{display:flex;align-items:flex-end;gap:3px;height:118px;padding-top:4px}.wc>div{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.wc .bx{position:relative;width:100%;border-radius:4px 4px 0 0;background:var(--ln)}.wc .bx i{position:absolute;left:18%;right:18%;bottom:0;border-radius:3px 3px 0 0;background:var(--ok)}
+.wc em{font-style:normal;font-size:9px;color:var(--mut);line-height:1.3;white-space:nowrap}.wc small{font-size:10px;color:var(--mut);line-height:1.5}.wc .cw small{color:var(--pri);font-weight:700}.wc .cw .bx{box-shadow:0 0 0 2px var(--pri)}
+.wl{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-top:6px}.wl span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px;background:var(--ln)}.wl span.a::before{background:var(--ok)}
 </style>
 <body>
 <header><div id="ban"><div id="hbar"><div id="clk"><b id="tm">--:--:--</b><span id="dt"></span></div><div id="wx1"></div></div><div id="wx2">Đang tải thời tiết…</div></div>
@@ -236,7 +240,7 @@ function dayHTML(i){var o=D[i],dt=o.d,dn=DOW[dt.getDay()]+" "+fD(dt),lu=" ("+fL(
 var f=o.t=="r"?"":'<div class="df">'+(o.km?"KH "+o.km+" km":"")+(o.km?ksel('data-k="'+o.k+'" data-kp="i"','data-k="'+o.k+'" data-kp="d"',kv,true):"")+'<button class="nb'+(has?" has":"")+'" data-k="'+o.k+'" aria-label="Ghi chú">📝</button><button class="ck" data-k="'+o.k+'">✔</button></div>'+notePanel(o.k);
 return '<div class="d t-'+o.t+dn2+ms+'" data-k="'+o.k+'" data-p="'+(past?1:0)+'"><div class="dh"><span><b>'+dn+'</b><small class="lu">'+lu+'</small></span><span class="tp">'+TN[o.t]+'</span></div><div class="ds">'+esc(o.s)+'</div>'+dtl(o)+f+'</div>'}
 function prog(){var n=0,tot=0,km=0,pk=0,ms=0;D.forEach(function(o){if(o.t!="r"){tot++;if(CP.v[o.k])n++;else if(o.d<TODAY)ms++}km+=num(CP.k[o.k]);pk+=o.km||0});return{n:n,tot:tot,km:km,pk:pk,ms:ms}}
-function calc(){var g=prog(),el=E("pg");var ht=E("ht");if(ht)ht.innerHTML=homeTiles();var hp=E("hp");if(hp)hp.innerHTML=homeTip();if(el){el.innerHTML=g.n+"/"+g.tot+" buổi · "+g.km.toFixed(1)+" km thực tế (kế hoạch "+Math.round(g.pk)+" km)"+(g.ms?" · bỏ lỡ "+g.ms+" buổi":"");E("pb").style.width=(100*g.n/Math.max(1,g.tot))+"%"}
+function calc(){var g=prog(),el=E("pg");var ht=E("ht");if(ht)ht.innerHTML=homeTiles();var hp=E("hp");if(hp)hp.innerHTML=homeTip();var wc=E("wc");if(wc)wc.innerHTML=wkChart();if(el){el.innerHTML=g.n+"/"+g.tot+" buổi · "+g.km.toFixed(1)+" km thực tế (kế hoạch "+Math.round(g.pk)+" km)"+(g.ms?" · bỏ lỡ "+g.ms+" buổi":"");E("pb").style.width=(100*g.n/Math.max(1,g.tot))+"%"}
 for(var w=0;w<D.length/7;w++){var e=E("wk"+w);if(!e)continue;var a=0,p=0;for(var q=0;q<7;q++){var o=D[w*7+q];p+=o.km||0;a+=num(CP.k[o.k])}p=Math.round(p*10)/10;e.textContent=a>0?(Math.round(a*10)/10)+" / "+p+" km":p+" km"}}
 function hrr(a,b){var hx=hrmax();return hx?" (nhịp tim khoảng "+Math.round(hx.v*a/100)+"–"+Math.round(hx.v*b/100)+" lần/phút)":""}
 function dtl(o){var z=zones(CP),Ez=rng(z.e),Tz=rng(z.t),Iz=rng(z.i),Hz=pc(z.hm),s=o.s,how=[],tip=[],m,mn=[];
@@ -271,6 +275,15 @@ var li=function(x){return"<li>"+x+"</li>"};
 return"<details class='dtl'><summary>Chi tiết &amp; lưu ý</summary><div class='dt'><b>Cách tập</b><ul>"+how.map(li).join("")+"</ul><b>Lưu ý để hiệu quả</b><ul>"+tip.map(li).join("")+"</ul></div></details>"}
 document.addEventListener("click",function(e){var w=e.target.closest&&e.target.closest(".wd[data-dk]");if(!w)return;var k=w.dataset.dk;goTab(1);var el=document.querySelector('#s1 .d[data-k="'+k+'"]');if(el){var dt=el.closest("details");if(dt)dt.open=true;setTimeout(function(){el.scrollIntoView({block:"center"});el.classList.add("flash");setTimeout(function(){el.classList.remove("flash")},1800)},60)}});
 var TIP={r:"Ngày nghỉ: ngủ đủ 7–9 giờ, đi bộ nhẹ, uống đủ nước và ăn đủ đạm.",e:"Chạy nhẹ vẫn nói được thành câu. Đừng đuổi pace, mục tiêu là tích lũy quãng đường.",q:"Khởi động đủ, giữ đúng pace từng phần, chạy hồi phục thật chậm giữa các lần.",l:"Ăn nhẹ trước 1–2 giờ, mang nước hoặc gel. Tập ăn uống giống ngày thi.",t:"Hôm trước nghỉ đủ, khởi động kỹ, chạy hết sức đều. Ghi giờ ngay sau buổi tập.",s:"Tập chậm, đúng kỹ thuật, dừng trước khi kiệt sức. Không tập nặng sát buổi chạy chất lượng.",x:"Ngày thi: 2 km đầu chậm hơn mục tiêu 5–10 giây mỗi km, uống nước đều, đừng thử đồ mới."};
+function wkChart(){var N=D.length/7,pl=[],ac=[],mx=1,cw=Math.floor(Math.round((TODAY-D[0].d)/DAY)/7),h="",tp=0,ta=0,pk=0,pkw=0;
+for(var w=0;w<N;w++){var a=0,p=0;for(var q=0;q<7;q++){var o=D[w*7+q];p+=o.km||0;a+=num(CP.k[o.k])}p=Math.round(p*10)/10;a=Math.round(a*10)/10;pl.push(p);ac.push(a);if(p>mx)mx=p;if(a>mx)mx=a;if(p>pk){pk=p;pkw=w}if(w<=cw){tp+=p;ta+=a}}
+var H=84,lb=N<=14;h+="<div class='wc'>";
+for(var w=0;w<N;w++){var hp=Math.max(2,Math.round(H*pl[w]/mx)),ha=ac[w]>0?Math.max(2,Math.round(H*ac[w]/mx)):0;
+h+="<div"+(w==cw?" class='cw'":"")+">"+(lb?"<em>"+Math.round(pl[w])+"</em>":"")+"<div class='bx' style='height:"+hp+"px'>"+(ha?"<i style='height:"+ha+"px'></i>":"")+"</div><small>"+(w+1)+"</small></div>"}
+h+="</div><div class='wl'><span>Kế hoạch (số trên cột)</span><span class='a'>Thực tế</span></div>";
+var cwv=cw>=0&&cw<N;
+h+="<div class='sub' style='margin-top:6px'>"+(cwv?"Tuần "+(cw+1)+": "+ac[cw]+" / "+pl[cw]+" km. ":"")+"Tuần cao điểm: tuần "+(pkw+1)+" ("+Math.round(pk)+" km)."+(cwv&&cw>0?" Tính đến hết tuần "+(cw+1)+": "+(Math.round(ta*10)/10)+" / "+(Math.round(tp*10)/10)+" km.":"")+"</div>";
+return h}
 function homeTiles(){var g=prog(),i=Math.round((TODAY-D[0].d)/DAY),N=D.length,nw=N/7,cw=Math.max(0,Math.min(nw-1,Math.floor(i/7))),wp=0,wa=0,wn=0,wt=0,sp="",DN=["CN","T2","T3","T4","T5","T6","T7"];
 for(var q=0;q<7;q++){var o=D[cw*7+q];wp+=o.km||0;wa+=num(CP.k[o.k]);if(o.t!="r"){wt++;if(CP.v[o.k])wn++}
 sp+="<div class='wd t-"+o.t+(CP.v[o.k]?" done":"")+(o.k==fk(TODAY)?" now":"")+"' data-dk='"+o.k+"'><small>"+DN[o.d.getDay()]+"</small><b>"+o.d.getDate()+"</b><span class='wi'>"+(o.t=="r"?"😴":o.t=="s"?"💪":o.t=="x"?"🏁":"🏃")+"</span><i>"+(o.km?(CP.v[o.k]?"✔ ":"")+kmS(o.km):(CP.v[o.k]?"✔":"–"))+"</i></div>"}
@@ -292,7 +305,7 @@ h+="<div class='bar'><i id='pb'></i></div><div class='sub' id='pg' style='margin
 if(i<0)h+="<h2>Giáo án bắt đầu "+fD(D[0].d)+"</h2>"+dayHTML(0);
 else if(i<N)h+="<h2>Hôm nay · Tuần "+(D[i].w+1)+" · "+D[i].ph+"</h2>"+dayHTML(i)+"<div id='hp'></div>"+(i<N-1?"<h2>Ngày mai</h2>"+dayHTML(i+1):"");
 else{var has=ST.rs.some(function(r){return r.plan==p.id&&Math.abs(pd(r.date)-R)<=3*DAY});h+="<div class='card'>Giáo án đã kết thúc. "+(has?"Kết quả đã được ghi trong tab Giải.":"Hãy ghi lại kết quả thi đấu để dùng cho kế hoạch sau.")+(has?"":"<div class='df' style='margin-top:8px'><button class='bt' data-go='4'>Nhập kết quả thi đấu</button></div>")+"</div>"}
-h+="<h2>Tuần này</h2><div id='ht'></div><div class='df hs' style='margin-top:10px'><button class='bt' data-go='1'>📅 Lịch</button><button class='bt' data-go='2'>⏱ Pace</button><button class='bt' data-go='3'>🏁 Race Day</button><button class='bt' data-go='4'>🏅 Giải</button></div>";
+h+="<h2>Tuần này</h2><div id='ht'></div><h2>Km theo tuần</h2><div class='card' id='wc'></div><div class='df hs' style='margin-top:10px'><button class='bt' data-go='1'>📅 Lịch</button><button class='bt' data-go='2'>⏱ Pace</button><button class='bt' data-go='3'>🏁 Race Day</button><button class='bt' data-go='4'>🏅 Giải</button></div>";
 return h}
 function cal(){var N=D.length/7,cw=Math.floor(Math.round((TODAY-D[0].d)/DAY)/7),h="<h1>Lịch "+N+" tuần</h1><div class='sub'>"+fD(D[0].d)+" đến "+fY(pd(CP.race))+"</div>";
 for(var w=0;w<N;w++){var km=0;for(var q=0;q<7;q++)km+=D[w*7+q].km||0;var a=D[w*7].d,b=D[w*7+6].d;
