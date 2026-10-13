@@ -1,6 +1,6 @@
 /* My Race – Service Worker: offline + Web Push */
-var V = "myrace-v3";
-var ASSETS = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png"];
+var V = "myrace-v5";
+var ASSETS = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "assets/optimus-head.jpg", "assets/bumblebee-head.jpg", "assets/kirito-head.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(V).then(function (c) { return c.addAll(ASSETS); }).catch(function () {}).then(function () { return self.skipWaiting(); }));
