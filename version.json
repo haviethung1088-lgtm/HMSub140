@@ -1,5 +1,5 @@
 {
-    "ver":  "1.2.62",
+    "ver":  "1.2.63",
     "date":  "2026-10-14",
     "owner":  {
                   "name":  "Hà Việt Hùng",
@@ -7,6 +7,7 @@
                   "email":  "haviethung1088@gmail.com"
               },
     "notes":  [
+                  "Bản 1.2.63: tách lời khuyên ngày thi theo nắng nóng, độ ẩm, gió/giật, mưa, dông và UV; bổ sung các số liệu dự báo cần thiết; tạo khoảng cách và làm mờ hơn giờ cập nhật thời tiết.",
                   "Bản 1.2.62: sửa lỗi khởi động do thiếu hàm chuẩn hóa dữ liệu; thêm nhánh khởi động dự phòng để màn hình logo không bị kẹt nếu gặp lỗi.",
                   "Bản 1.2.61: kiểm tra cấu trúc dữ liệu trước khi khôi phục, giữ bản dự phòng hợp lệ và mở Chế độ an toàn khi dữ liệu lỗi; ngăn cập nhật tự tải lại liên tục khi bản phát hành chưa đồng bộ; thêm nhắc sao lưu ở Trang chủ và hiển thị giờ cập nhật thời tiết.",
                   "Bản 1.2.60: chuyển Hướng dẫn sử dụng thành mục cuối thanh điều hướng, cập nhật cách dùng các tính năng mới và tự thu gọn mục hướng dẫn trước khi mở mục khác.",
