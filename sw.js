@@ -1,5 +1,5 @@
 /* My Race – Service Worker: offline + Web Push */
-var V = "myrace-v29";
+var V = "myrace-v30";
 var ASSETS = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "assets/optimus-head.jpg", "assets/bumblebee-head.jpg", "assets/kirito-head.png", "assets/ironman-hero.jpg", "assets/avengers-team.jpg"];
 
 self.addEventListener("install", function (e) {
