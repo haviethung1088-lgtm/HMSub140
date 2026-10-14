@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.42",
+  "ver": "1.2.44",
   "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,8 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.44: lịch sử cập nhật hiển thị tối đa 5 bản gần nhất; dùng Show more để xem các bản cũ hơn.",
+    "Bản 1.2.43: thu nhỏ nút làm mới thời tiết và đặt ở góc phải banner; thêm mô tả ngắn cạnh biểu tượng thông tin trong các mục thu gọn.",
     "Bản 1.2.42: thu gọn mục vị trí thời tiết và nhắc tập; thêm nút làm mới thời tiết theo vị trí; hiển thị lịch sử cập nhật mới nhất.",
     "Bản 1.2.41: chuyển chỉ dẫn khối lượng xuống ngay dưới lựa chọn khối lượng; chỉ dẫn thời lượng nằm dưới tạo kế hoạch mới và hiển thị số tuần theo ngày đã chọn.",
     "Bản 1.2.40: thu gọn các hướng dẫn dài trong mục Giải sau biểu tượng thông tin; chạm để mở nội dung.",
