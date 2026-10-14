@@ -1,5 +1,5 @@
 {
-    "ver":  "1.2.56",
+    "ver":  "1.2.58",
     "date":  "2026-10-14",
     "owner":  {
                   "name":  "Hà Việt Hùng",
@@ -7,6 +7,8 @@
                   "email":  "haviethung1088@gmail.com"
               },
     "notes":  [
+                  "Bản 1.2.58: thêm hiệu ứng nhấn rõ ràng cho các nút trên toàn app.",
+                  "Bản 1.2.57: câu chúc ngày thi được chọn ngẫu nhiên lại mỗi lần mở app.",
                   "Bản 1.2.56: các hướng dẫn có biểu tượng i tự đóng khi chuyển tab, sang mục khác hoặc mở hướng dẫn i khác.",
                   "Bản 1.2.55: bấm lại tiêu đề lịch sử khi đã Show more để thu danh sách về 5 bản gần nhất.",
                   "Bản 1.2.54: lịch sử phiên bản gộp ghi chú cục bộ và từ version.json, tránh dữ liệu remote cũ che mất bản mới.",
