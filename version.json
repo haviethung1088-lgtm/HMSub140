@@ -1,5 +1,5 @@
 {
-    "ver": "1.2.70",
+    "ver": "1.2.71",
     "date": "2026-10-14",
     "owner": {
         "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
         "email": "haviethung1088@gmail.com"
     },
     "notes": [
+        "Bản 1.2.71: đổi icon iPhone/PWA theo ảnh vận động viên mới; giữ logo chữ ở màn hình khởi động.",
         "Bản 1.2.70: màn hình khởi động dùng logo có chữ; đổi URL icon iPhone để nhận diện icon mới khi thêm lại ứng dụng.",
         "Bản 1.2.69: dùng ảnh logo My Race độ phân giải cao do anh cung cấp.",
         "Bản 1.2.68: thay logo ảnh raster bằng SVG vector sắc nét ở mọi kích thước.",

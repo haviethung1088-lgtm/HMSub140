@@ -1,6 +1,6 @@
 /* My Race – Service Worker: offline + Web Push */
-var V = "myrace-v34";
-var ASSETS = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon-v1-2-70.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "assets/myrace-logo.png", "assets/optimus-head.jpg", "assets/bumblebee-head.jpg", "assets/kirito-head.png", "assets/ironman-hero.jpg", "assets/avengers-team.jpg"];
+var V = "myrace-v35";
+var ASSETS = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon-v1-2-71.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "assets/myrace-logo.png", "assets/optimus-head.jpg", "assets/bumblebee-head.jpg", "assets/kirito-head.png", "assets/ironman-hero.jpg", "assets/avengers-team.jpg"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(V).then(function (c) { return c.addAll(ASSETS); }).catch(function () {}).then(function () { return self.skipWaiting(); }));
@@ -43,8 +43,8 @@ self.addEventListener("push", function (e) {
   e.waitUntil(self.registration.showNotification(d.title || "My Race", {
     body: d.body || "",
     tag: d.tag || "myrace",
-    icon: "apple-touch-icon-v1-2-70.png",
-    badge: "apple-touch-icon-v1-2-70.png",
+    icon: "apple-touch-icon-v1-2-71.png",
+    badge: "apple-touch-icon-v1-2-71.png",
     data: { url: d.url || "./" }
   }));
 });
