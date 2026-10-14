@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.36",
+  "ver": "1.2.39",
   "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,9 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.39: chọn riêng ngày chạy chính và chạy phụ; 4 buổi cốt lõi vào đúng ngày được chọn, ngày chạy phụ không ảnh hưởng tiến độ.",
+    "Bản 1.2.38: chọn loại buổi riêng cho cả 7 ngày; ngày chạy thêm ngoài 4 buổi chính là chạy nhẹ tùy chọn, chỉ cộng km thực tế.",
+    "Bản 1.2.37: tùy chỉnh ngày chạy, ngày bổ trợ và ngày nghỉ theo tuần; km chạy thêm ở ngày bổ trợ/nghỉ chỉ cộng vào km thực tế.",
     "Bản 1.2.36: sửa tên class ảnh nền Bumblebee để ảnh được nạp và hiển thị đúng.",
     "Bản 1.2.35: chỉ giao diện giới hạn mới có nút khóa; cập nhật nội dung bản quyền thành phần mềm miễn phí.",
     "Bản 1.2.34: thêm nút khóa cho mọi giao diện đang mở; muốn mở lại cần Gift code hoặc hoàn thành mục tiêu hai tuần liên tiếp.",
