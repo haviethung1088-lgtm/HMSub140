@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.48",
+  "ver": "1.2.49",
   "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.49: thêm thống kê số hoạt động và km thực tế theo tháng/lũy kế năm trên Trang chủ; tiêu đề biểu đồ tuần kèm tên kế hoạch; rút gọn lời chúc ở Dấu ấn cá nhân.",
     "Bản 1.2.48: tôn vinh mục Dấu ấn cá nhân bằng bục top 3, xếp hạng medal theo thành tích và gọi chi tiết là Certificate.",
     "Bản 1.2.47: chạm medal đang mở lần nữa để ẩn thông tin; chạm medal khác để chuyển nội dung.",
     "Bản 1.2.46: thu gọn hướng dẫn mở khóa giao diện và sao lưu; thêm dấu ấn medal cho từng kế hoạch và thông tin kết quả khi chạm medal đã mở.",
