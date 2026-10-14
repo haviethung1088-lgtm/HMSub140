@@ -1,5 +1,5 @@
 /* My Race – Service Worker: offline + Web Push */
-var V = "myrace-v22";
+var V = "myrace-v23";
 var ASSETS = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "assets/optimus-head.jpg", "assets/bumblebee-head.jpg", "assets/kirito-head.png", "assets/ironman-hero.jpg", "assets/avengers-team.jpg"];
 
 self.addEventListener("install", function (e) {
@@ -7,7 +7,7 @@ self.addEventListener("install", function (e) {
 });
 self.addEventListener("activate", function (e) {
   e.waitUntil(caches.keys().then(function (ks) {
-    return Promise.all(ks.filter(function (k) { return k !== V; }).map(function (k) { return caches.delete(k); }));
+    return Promise.all(ks.filter(function (k) { return k.indexOf("myrace-") === 0 && k !== V; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
 /* Dùng bản đã lưu trước, tải bản mới ngầm để app mở nhanh khi mạng yếu. */
