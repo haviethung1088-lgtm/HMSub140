@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.40",
+  "ver": "1.2.41",
   "date": "2026-10-14",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.41: chuyển chỉ dẫn khối lượng xuống ngay dưới lựa chọn khối lượng; chỉ dẫn thời lượng nằm dưới tạo kế hoạch mới và hiển thị số tuần theo ngày đã chọn.",
     "Bản 1.2.40: thu gọn các hướng dẫn dài trong mục Giải sau biểu tượng thông tin; chạm để mở nội dung.",
     "Bản 1.2.39: chọn riêng ngày chạy chính và chạy phụ; 4 buổi cốt lõi vào đúng ngày được chọn, ngày chạy phụ không ảnh hưởng tiến độ.",
     "Bản 1.2.38: chọn loại buổi riêng cho cả 7 ngày; ngày chạy thêm ngoài 4 buổi chính là chạy nhẹ tùy chọn, chỉ cộng km thực tế.",
