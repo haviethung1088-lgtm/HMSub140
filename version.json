@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.75",
+  "ver": "1.2.77",
   "date": "2026-10-15",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,8 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.77: thay minh họa SVG Naruto bằng ảnh anime thật từ trang chính thức; thêm theme Chelsea FC với ảnh Stamford Bridge và bộ icon riêng.",
+    "Bản 1.2.76: chuyển Naruto · Làng Lá thành giao diện giới hạn; thêm minh họa banner riêng, icon điều hướng theo theme và lưu ảnh ngoại tuyến.",
     "Bản 1.2.75: thêm theme Naruto · Làng Lá; làm ảnh banner Sword Art Online rõ và nổi bật hơn.",
     "Bản 1.2.74: chỉ cho phép nhập km và đánh dấu hoàn thành từ ngày tập trở đi; khóa các ngày tương lai, bỏ dải nút tắt cuối Trang chủ.",
     "Bản 1.2.73: thêm icon vuông cạnh logo My Race trong mục Giới thiệu.",
