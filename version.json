@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.80",
+  "ver": "1.2.84",
   "date": "2026-10-15",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,10 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.84: thay banner Naruto bằng ảnh đội 7 do anh cung cấp; căn khung dọc để Naruto nổi bật trong banner ngang.",
+    "Bản 1.2.83: thay ảnh Naruto banner bằng ảnh anime ngang khác, Naruto nằm bên phải trên nền trời xanh; ảnh chuyển mờ trái sang rõ phải.",
+    "Bản 1.2.82: thay ảnh banner Naruto bằng ảnh ngang Naruto bay giữa trời xanh; khoảng cách lời chào và vị trí nhãn banner cũng được chỉnh lại.",
+    "Bản 1.2.81: tăng khoảng cách lời chào/tên vận động viên và dời nhãn Naruto/Chelsea xuống chân banner.",
     "Bản 1.2.80: thay banner bằng hình Naruto Shippuden chính thức; làm mới phong cách bóng đá cho thanh điều hướng, nút cài đặt và thẻ thông tin phiên bản Chelsea.",
     "Bản 1.2.79: thay ảnh Naruto bằng ảnh ngang, nhân vật ở bên phải; ảnh Naruto/Chelsea phủ gần hết banner với hiệu ứng mờ trái sang rõ phải.",
     "Bản 1.2.78: hòa màu banner Naruto và Chelsea mượt hơn; thay icon Chelsea bằng bộ biểu tượng bóng đá riêng.",
