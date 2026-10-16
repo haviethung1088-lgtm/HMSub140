@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.114",
+  "ver": "1.2.115",
   "date": "2026-10-17",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.115: riêng theme My Race thu nhỏ cụm thời tiết, kéo sát đồng hồ hơn và tăng độ tương phản chuyển sắc xanh trên giờ/nhiệt độ.",
     "Bản 1.2.114: riêng theme My Race đưa biểu tượng thời tiết và nhiệt độ cạnh đồng hồ; chuyển sắc xanh logo từ thời gian đến nhiệt độ.",
     "Bản 1.2.113: đưa wordmark sát mép phải, đặt dưới hàng icon; bỏ overflow cắt popup để menu thu phóng hiện đủ lựa chọn.",
     "Bản 1.2.112: thêm hai gạch xanh lá/cyan hai đầu tagline trong banner; giữ vị trí wordmark, thu nhỏ và hạ thấp để tách khỏi cụm icon.",
