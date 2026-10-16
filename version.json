@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.106",
+  "ver": "1.2.108",
   "date": "2026-10-16",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,8 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.108: giữ nguyên banner như bản 1.2.106; chỉ chuyển sắc nền thẻ tiêu đề từ trái sang phải, wordmark nhỏ chìm góc phải và có viền sáng mờ, không đổi kích thước thẻ.",
+    "Bản 1.2.107: đặt wordmark nhỏ gọn ở góc dưới phải thẻ tiêu đề, giữ nguyên kích thước thẻ và các biểu tượng; banner My Race chuyển sắc mờ trái sang rõ phải với màu hài hòa.",
     "Bản 1.2.106: làm mờ/tan mép runner bằng alpha trong PNG, chuyển wordmark nhỏ và mờ xuống nền thẻ tiêu đề; không còn logo chữ chồng trên banner thời tiết.",
     "Bản 1.2.105: làm nền/logo chữ banner My Race chỉ hiển thị trong theme My Race; các giao diện khác khôi phục banner cũ. Làm viền nội dung cam tươi và giữ đường phân cách tiêu đề cyan.",
     "Bản 1.2.104: chỉnh chữ 100% trên thanh tiêu đề My Race về màu cyan; biểu tượng i tiếp tục màu cam.",
