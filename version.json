@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.116",
+  "ver": "1.2.117",
   "date": "2026-10-17",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.117: màu giờ và nhiệt độ trong theme My Race khớp chiều màu wordmark Race: cam chanh → xanh lá → xanh chanh.",
     "Bản 1.2.116: theme My Race kéo cụm thời tiết gần giờ thêm khoảng 3 mm; chữ giờ/nhiệt độ đậm nghiêng, bỏ viền và chuyển màu theo chữ Race từ xanh navy sang xanh lá.",
     "Bản 1.2.115: riêng theme My Race thu nhỏ cụm thời tiết, kéo sát đồng hồ hơn và tăng độ tương phản chuyển sắc xanh trên giờ/nhiệt độ.",
     "Bản 1.2.114: riêng theme My Race đưa biểu tượng thời tiết và nhiệt độ cạnh đồng hồ; chuyển sắc xanh logo từ thời gian đến nhiệt độ.",
