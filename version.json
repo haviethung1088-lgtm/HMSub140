@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.108",
+  "ver": "1.2.109",
   "date": "2026-10-16",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.109: làm mềm alpha runner ở cả bốn mép; tiêu đề giữ đúng kích thước và vị trí biểu tượng; chỉ hiện chữ My Race tách khỏi tagline, rõ màu và có viền trắng mờ trên nền chuyển sắc.",
     "Bản 1.2.108: giữ nguyên banner như bản 1.2.106; chỉ chuyển sắc nền thẻ tiêu đề từ trái sang phải, wordmark nhỏ chìm góc phải và có viền sáng mờ, không đổi kích thước thẻ.",
     "Bản 1.2.107: đặt wordmark nhỏ gọn ở góc dưới phải thẻ tiêu đề, giữ nguyên kích thước thẻ và các biểu tượng; banner My Race chuyển sắc mờ trái sang rõ phải với màu hài hòa.",
     "Bản 1.2.106: làm mờ/tan mép runner bằng alpha trong PNG, chuyển wordmark nhỏ và mờ xuống nền thẻ tiêu đề; không còn logo chữ chồng trên banner thời tiết.",
