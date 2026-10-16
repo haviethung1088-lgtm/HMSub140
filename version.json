@@ -1,12 +1,13 @@
 {
-  "ver": "1.2.86",
-  "date": "2026-10-15",
+  "ver": "1.2.87",
+  "date": "2026-10-16",
   "owner": {
     "name": "Hà Việt Hùng",
     "phone": "0968xxx888",
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.87: ghi đầy đủ Easy/Tempo/Interval trong bảng Pace; thanh điều hướng tự ẩn sau 5 giây không thao tác và vuốt ngang để chuyển tab.",
     "Bản 1.2.86: loại các ghi chú cập nhật trùng phiên bản để mỗi phiên bản chỉ xuất hiện một lần.",
     "Bản 1.2.85: khôi phục ảnh banner các theme giới hạn cũ về độ rộng 46%; Naruto và Chelsea tiếp tục dùng ảnh phủ rộng riêng.",
     "Bản 1.2.84: thay banner Naruto bằng ảnh đội 7 do anh cung cấp; căn khung dọc để Naruto nổi bật trong banner ngang.",
