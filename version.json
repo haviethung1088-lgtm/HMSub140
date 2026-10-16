@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.94",
+  "ver": "1.2.95",
   "date": "2026-10-16",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.95: popup sinh nhật bắn pháo giấy lúc mở, thêm pháo hoa, sao và quầng sáng; chạm để đóng ngay hoặc tự đóng sau 20 giây.",
     "Bản 1.2.94: bỏ chạm để hiện thanh điều hướng; chỉ vuốt xuống mới hiện, vuốt lên ẩn ngay, và tự ẩn sau 3 giây không thao tác.",
     "Bản 1.2.93: đổi lời nhắn popup ngày đua; thanh điều hướng vuốt lên để ẩn, vuốt xuống để hiện; popup sinh nhật có pháo giấy và bánh kem.",
     "Bản 1.2.92: ở mức thu phóng 100%, chỉnh bảng Pace và ký hiệu để Vùng, Pace và Nhịp tim nằm gọn trên cùng một dòng; các mức trên 100% giữ bố cục cũ.",
