@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.96",
+  "ver": "1.2.97",
   "date": "2026-10-16",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.97: hạ bong bóng điều hướng xuống sát mép dưới vùng an toàn của màn hình.",
     "Bản 1.2.96: thanh điều hướng thành bong bóng nổi có viền, gọn và cố định khi nội dung cuộn; đổi nhãn Trang chủ thành Home, Hướng dẫn thành Guide.",
     "Bản 1.2.95: popup sinh nhật bắn pháo giấy lúc mở, thêm pháo hoa, sao và quầng sáng; chạm để đóng ngay hoặc tự đóng sau 20 giây.",
     "Bản 1.2.94: bỏ chạm để hiện thanh điều hướng; chỉ vuốt xuống mới hiện, vuốt lên ẩn ngay, và tự ẩn sau 3 giây không thao tác.",
