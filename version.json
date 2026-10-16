@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.100",
+  "ver": "1.2.101",
   "date": "2026-10-16",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.101: chuyển My Race thành giao diện mặc định cho lượt cài mới, không giới hạn; hòa icon runner vào nền banner, thêm wordmark trong suốt và điểm nhấn cam.",
     "Bản 1.2.100: thêm giao diện giới hạn My Race, nhận diện chủ đạo xanh navy/cyan/xanh lá theo logo và icon; banner dùng icon runner của app, đồng bộ phong cách thẻ và thanh điều hướng.",
     "Bản 1.2.99: hạ thêm khoảng 4 px thanh bong bóng trên máy có vùng an toàn, giữ nguyên khoảng đệm tối thiểu trên iPhone 8/Android.",
     "Bản 1.2.98: tự căn khoảng cách thanh bong bóng theo vùng an toàn; hạ gần vạch Home trên iPhone mới và giữ mép không bị cắt trên máy nút Home/Android.",
