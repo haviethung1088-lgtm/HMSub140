@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.91",
+  "ver": "1.2.92",
   "date": "2026-10-16",
   "owner": {
     "name": "Hà Việt Hùng",
@@ -7,6 +7,7 @@
     "email": "haviethung1088@gmail.com"
   },
   "notes": [
+    "Bản 1.2.92: ở mức thu phóng 100%, chỉnh bảng Pace và ký hiệu để Vùng, Pace và Nhịp tim nằm gọn trên cùng một dòng; các mức trên 100% giữ bố cục cũ.",
     "Bản 1.2.91: kéo dài hiệu ứng ẩn hiện thanh điều hướng lên khoảng 1,2 giây để chuyển động chậm và êm hơn.",
     "Bản 1.2.90: khắc phục vuốt tab trên màn hình cảm ứng, nhận vuốt từ thẻ và nút, hạ ngưỡng; làm thanh điều hướng ẩn hiện từ từ trong khoảng 0,7 giây, không bị chế độ giảm chuyển động làm biến mất tức thì.",
     "Bản 1.2.89: lời chào popup chia 3 khung giờ, tối đa 2 lần mỗi khung và không lặp trong ngày; lời chúc sinh nhật/ngày đua tối đa 2 lần toàn ngày, mỗi lần khác nhau.",
